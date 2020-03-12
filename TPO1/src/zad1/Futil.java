@@ -1,6 +1,6 @@
-package zad1;
 
-import java.io.FileOutputStream;
+
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -40,7 +40,7 @@ public class Futil {
                         return CONTINUE;
 
                     FileChannel channelIn  = FileChannel.open(path);
-                    FileChannel channelOut = new FileOutputStream(resultFileName, true).getChannel();
+                    FileChannel channelOut = FileChannel.open(destinationPath, StandardOpenOption.WRITE);
                     channelOut.position(channelOut.size());
 
                     ByteBuffer byteBufferIn = ByteBuffer.allocate(256);
@@ -66,17 +66,17 @@ public class Futil {
 
                 @Override
                 public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                	exc.printStackTrace();
-                	return CONTINUE;
+                    exc.printStackTrace();
+                    return CONTINUE;
                 }
 
                 @Override
                 public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-                	return CONTINUE;
+                    return CONTINUE;
                 }
             };
 
-        Files.walkFileTree(Paths.get(dirName), simpleFileVisitor);
+            Files.walkFileTree(Paths.get(dirName), simpleFileVisitor);
         } catch (IOException e) {
             e.printStackTrace();
         }
