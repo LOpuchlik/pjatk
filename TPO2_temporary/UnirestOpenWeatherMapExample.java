@@ -5,6 +5,13 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 
 
+/*import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;*/
+
+import java.math.BigDecimal;
+
 
 public class OpenWeatherMap {
     public static void main(String[] args) throws UnirestException {
@@ -13,10 +20,10 @@ public class OpenWeatherMap {
     String location = "Warszawa,pl";
     String unitSystem = "&units=metric";
     String lang = "&lang=pl";
-    String apiKey = "&appid=API_KEY";
+    String apiKey = "&appid=API_KEY"; // <-- zamiast API_KEY wpisać poprawny api key
 
     String query = host + location + unitSystem + apiKey + lang;
-
+    
     HttpResponse <JsonNode> response = Unirest.get(query).asJson();
     JSONObject jsonObject = response.getBody().getObject();
 
@@ -39,20 +46,23 @@ public class OpenWeatherMap {
 
 
     System.out.println("\n\tFORECAST \n\n" + forecast);
+
+
+    String hostCurrency = "https://api.exchangeratesapi.io/latest?base=";
+    String againstCurrency = "PLN";
+    String queryCurrency = hostCurrency + againstCurrency;
+    HttpResponse <JsonNode> responseCurrency = Unirest.get(queryCurrency).asJson();
+    JSONObject jsonObjectCurrency = responseCurrency.getBody().getObject();
+
+    BigDecimal jso = jsonObjectCurrency.getJSONObject("rates").getBigDecimal("EUR");
+    System.out.println(jso);
+
     
+/*    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    JsonParser jp = new JsonParser();
+    JsonElement je = jp.parse(responseCurrency.getBody().toString());
+    String prettyJsonString = gson.toJson(je);
+    System.out.println(prettyJsonString);*/
+
     }
 }
-
-/* Necessary external libraries for Unirest requests and responses:
-
-commons-codec-1.10.jar
-commons-logging-1.2.jar
-httpasyncclient-4.1.4.jar
-httpclient-4.5.6.jar
-httpcore-4.4.10.jar
-httpcore-nio-4.4.7.jar
-httpmime-4.5.2.jar
-json-20190722.jar
-unirest-java-1.4.9.jar
-
-*/
