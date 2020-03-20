@@ -5,22 +5,41 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 
 
-public class UnirestOpenWeatherMapExample {
+
+public class OpenWeatherMap {
     public static void main(String[] args) throws UnirestException {
 
     String host = "http://api.openweathermap.org/data/2.5/weather?q=";
-    String apiKey = "API-TOKEN";
-    String location = "Warsaw,pl";
+    String location = "Warszawa,pl";
+    String unitSystem = "&units=metric";
+    String lang = "&lang=pl";
+    String apiKey = "&appid=API_KEY";
 
-    String query = host + location + "&appid=" + apiKey;
-    System.out.println("Check path: " + query);
-
+    String query = host + location + unitSystem + apiKey + lang;
 
     HttpResponse <JsonNode> response = Unirest.get(query).asJson();
     JSONObject jsonObject = response.getBody().getObject();
-    String jsonString = jsonObject.toString();
-    System.out.println(jsonString);
 
+
+    String city = jsonObject.getString("name");
+    double temperature = Math.round(jsonObject.getJSONObject("main").getDouble("temp"))*(10d/10);
+    double pressure = jsonObject.getJSONObject("main").getDouble("pressure");
+    double humidity = jsonObject.getJSONObject("main").getDouble("humidity");
+    String countryCode = jsonObject.getJSONObject("sys").getString("country");
+    double wind = jsonObject.getJSONObject("wind").getDouble("speed");
+    String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
+
+
+    String forecast = "City: " + city + ", " + countryCode + "\n"
+            + "Description: " + description +"\n"
+            + "Temperature: " + temperature + " C\n"
+            + "Wind: " + wind + " km/h\n"
+            + "Pressure: " + pressure + " hPa\n"
+            + "Humidity: " + humidity + "%\n";
+
+
+    System.out.println("\n\tFORECAST \n\n" + forecast);
+    
     }
 }
 
