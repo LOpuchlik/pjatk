@@ -44,17 +44,13 @@ public class Service {
         this.currencyAbbrev = currencyAbbrev;
     }
 
-    public String print() {
-        return country + " " + city + " " + currencyAbbrev;
-    }
-
     public String getWeather(String city) {
         JSONObject jsonObject = null;
         HttpResponse<JsonNode> response = null;
         try {
             String host = "http://api.openweathermap.org/data/2.5/weather?q=";
             String unitSystem = "&units=metric";
-            String apiKey = "&appid=API_KEY";
+            String apiKey = "&appid=fc7c65da529852ed5a55de9ee62f43f9";
 
             String query = host + city + unitSystem + apiKey;
 
@@ -63,24 +59,43 @@ public class Service {
             e.printStackTrace();
         }
         jsonObject = response.getBody().getObject();
-
-
-        String cityName = jsonObject.getString("name");
-        double temperatureValue = Math.round(jsonObject.getJSONObject("main").getDouble("temp")) * (10d / 10);
-        double pressureValue = jsonObject.getJSONObject("main").getDouble("pressure");
-        double humidityValue = jsonObject.getJSONObject("main").getDouble("humidity");
-        double windValue = jsonObject.getJSONObject("wind").getDouble("speed");
-        String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
-
-
-        return "\t\t\tWEATHER FORECAST" +
-                "\nCity: " + cityName
-                + "\nDescription: " + description
-                + "\nTemperature: " + temperatureValue + " C"
-                + "\nWind: " + windValue + " km/h"
-                + "\nPressure: " + pressureValue + " hPa"
-                + "\nHumidity: " + humidityValue + "%";
+        return jsonObject.toString();
 
     }
+
+
+    public Double getRateFor(String currencyAbbrev) {
+        String[] locales = Locale.getISOCountries();
+        HashMap<String, String> codeCountryMap = new HashMap<>();
+        for (String countryCode : locales) {
+            Locale obj = new Locale("", countryCode);
+            codeCountryMap.put(obj.getDisplayCountry(Locale.ENGLISH), obj.getCountry());
+        }
+        String codeFromCountry = codeCountryMap.get(country);
+        Locale countryLocale = new Locale("", codeFromCountry);
+        Currency currency = Currency.getInstance(countryLocale);
+        String currencyCode = currency.getCurrencyCode();
+
+
+        HttpResponse<JsonNode> responseCurrency = null;
+        JSONObject jsonObjectCurrency = null;
+        try {
+            String hostAPI = "https://api.exchangeratesapi.io/latest?base=";
+            String againstCurrency = currencyCode;
+            String queryCurrency = hostAPI + againstCurrency;
+            responseCurrency = Unirest.get(queryCurrency).asJson();
+        } catch (UnirestException ex) {
+            ex.printStackTrace();
+        }
+        jsonObjectCurrency = responseCurrency.getBody().getObject();
+        return jsonObjectCurrency.getJSONObject("rates").getDouble(currencyAbbrev);
+
+    }
+
+    Double getNBPRate() { //zwraca kurs złotego wobec waluty danego kraju
+
+        return null;
+    }
+
 
 }

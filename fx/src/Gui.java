@@ -1,6 +1,4 @@
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.concurrent.Worker;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,22 +10,31 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.json.JSONObject;
+
 public class Gui extends Application {
 
     Service s;
-    private Stage window, dialog;
     private WebView browser;
-    private WebEngine webEngine;
     private String host = "https://en.wikipedia.org/wiki/";
 
-    TextField countryFill;
-    TextField cityFill;
-    TextField currencyFill;
+    // variables for user inputs
+    private TextField countryFill;
+    private TextField cityFill;
+    private TextField currencyFill;
+
+    // variables for prettyFormat method
+    private String cityValue;
+    private double temp;
+    private String press;
+    private String desc;
+    private String descValue;
+    private double humValue;
+    private double windValue;
 
 
     @Override
     public void start(Stage primaryStage) {
-        window = primaryStage;
         primaryStage.setTitle("TPO2");
 
         HBox topPanel = new HBox();
@@ -50,13 +57,13 @@ public class Gui extends Application {
 
         StackPane wikiWindow = new StackPane();
         browser = new WebView();
-        webEngine = browser.getEngine();
+        WebEngine webEngine = browser.getEngine();
         webEngine.load(host+"Warsaw");
 
         changeData.setOnAction(evnt -> {
             Stage dialog = new Stage();
             dialog.initModality(Modality.APPLICATION_MODAL);
-            //dialog.initOwner(primaryStage);
+            dialog.initOwner(primaryStage);
             GridPane dialogVbox = new GridPane();
             dialogVbox.setPadding(new Insets(15,15,15,15));
             dialogVbox.setVgap(10);
@@ -86,8 +93,8 @@ public class Gui extends Application {
                 s.setCountry(countryFill.getText());
                 s.setCity(cityFill.getText());
                 s.setCurrencyAbbrev(currencyFill.getText());
-                System.out.println("Control check: " + host+cityFill.getText());
-                System.out.println(s.print());
+                weatherDisplay.setText("\t\t\tWEATHER FORECAST\n" + prettyFormat(s.getWeather(cityFill.getText())));
+                currencyDisplay.setText("\t\t\tCURRENCY RATE\n" + s.getRateFor(currencyFill.getText()).toString());
                 browser.getEngine().load(host+cityFill.getText());
                 dialog.close();
 
@@ -105,21 +112,88 @@ public class Gui extends Application {
         topPanel.getChildren().addAll(weatherDisplay, currencyDisplay, NBPDisplay, changeData);
         wikiWindow.getChildren().addAll(browser);
 
-
         BorderPane mainLayout = new BorderPane();
         mainLayout.setTop(topPanel);
         mainLayout.setCenter(wikiWindow);
 
         Scene scene = new Scene(mainLayout, 1024, 768);
-        window.setScene(scene);
-        window.show();
-
-
- /*       button.setOnAction(evnt -> {
-            s = new Service("Dog");
-            ta.setText(s.getName());
-        });*/
-
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
     }
+
+
+    public String getCity() {
+        return cityValue;
+    }
+
+    private void setCity(String city) {
+        this.cityValue = city;
+    }
+
+
+    public String getDescription() {
+        return descValue;
+    }
+
+    private void setDescription(String description) {
+        this.descValue = description;
+    }
+
+    public double getTemp() {
+        return temp;
+    }
+
+    private void setTemp(double temperature) {
+        this.temp = temperature;
+    }
+
+    public String getPress() {
+        return press;
+    }
+
+    private void setPress(String pressure) {
+        this.press = pressure;
+    }
+    public String geteDesc() {
+        return desc;
+    }
+
+    private void setDesc(String descr) {
+        this.desc = descr;
+    }
+
+    public double getHum() {
+        return humValue;
+    }
+
+    private void setHum(Double hum) {
+        this.humValue = hum;
+    }
+
+    public double getWind() {
+        return windValue;
+    }
+
+    private void setWind(Double wind) {
+        this.windValue = wind;
+    }
+
+    public String prettyFormat (String jsonObject) {
+            JSONObject jo = new JSONObject(s.getWeather(s.getCity()));
+            setCity(jo.getString("name"));
+            setDesc(jo.getJSONArray("weather").getJSONObject(0).optString("description"));
+            setPress(jo.getJSONObject("main").optString("pressure"));
+            setTemp(jo.getJSONObject("main").optDouble("temp"));
+            setHum(jo.getJSONObject("main").optDouble("humidity"));
+            setWind(jo.getJSONObject("wind").optDouble("speed"));
+
+        return "City: "+ cityValue + "\n"
+                + "Description: " + desc + "\n"
+                + "Temperature: " + Math.round(temp)*(100d/100) + " C\n"
+                + "Pressure: " + press + " hPa\n"
+                + "Wind: " + windValue + " km/h\n"
+                + "Humidity: " + humValue + " %";
+    }
+
 }
