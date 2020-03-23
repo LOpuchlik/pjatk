@@ -95,6 +95,7 @@ public class Gui extends Application {
                 s.setCurrencyAbbrev(currencyFill.getText());
                 weatherDisplay.setText("\t\t\tWEATHER FORECAST\n" + prettyFormat(s.getWeather(cityFill.getText())));
                 currencyDisplay.setText("\t\t\tCURRENCY RATE\n" + s.getRateFor(currencyFill.getText()).toString());
+                NBPDisplay.setText("\t\t\t\tNBP RATE\n" + s.getNBPRate());
                 browser.getEngine().load(host+cityFill.getText());
                 dialog.close();
 
