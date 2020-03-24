@@ -62,6 +62,7 @@ public class Gui extends Application {
 
         changeData.setOnAction(evnt -> {
             Stage dialog = new Stage();
+            dialog.setTitle("Input parameters in English");
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(primaryStage);
             GridPane dialogVbox = new GridPane();
@@ -87,7 +88,7 @@ public class Gui extends Application {
 
 
             Button performSearch = new Button("Search");
-            GridPane.setConstraints(performSearch, 1, 3);
+            GridPane.setConstraints(performSearch, 0, 3);
             performSearch.setOnAction(evt -> {
                 s = new Service(countryFill.getText());
                 s.setCountry(countryFill.getText());
@@ -100,8 +101,11 @@ public class Gui extends Application {
                 dialog.close();
 
             });
+            Button cancel = new Button("Cancel");
+            GridPane.setConstraints(cancel, 1, 3);
+            cancel.setOnAction(evt -> dialog.close());
 
-            dialogVbox.getChildren().addAll(countryLabel, countryFill, cityLabel, cityFill, currencyLabel, currencyFill, performSearch);
+            dialogVbox.getChildren().addAll(countryLabel, countryFill, cityLabel, cityFill, currencyLabel, currencyFill, performSearch, cancel);
 
             Scene dialogScene = new Scene(dialogVbox, 300, 200);
             dialog.setScene(dialogScene);

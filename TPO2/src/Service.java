@@ -66,12 +66,13 @@ public class Service {
 
             String q = host + city + "," + country + unitSystem + apiKey;
             String query = q.replace(" ", "%20");
-            //System.out.println(query);
             response = Unirest.get(query).asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
-        jsonObject = response.getBody().getObject();
+
+            jsonObject = response.getBody().getObject();
+
         return jsonObject.toString();
 
     }
@@ -86,10 +87,10 @@ public class Service {
             Locale obj = new Locale("", countryCode);
             codeCountryMap.put(obj.getDisplayCountry(Locale.ENGLISH), obj.getCountry());
         }
-        String codeFromCountry = codeCountryMap.get(country);
-        Locale countryLocale = new Locale("", codeFromCountry);
-        Currency currency = Currency.getInstance(countryLocale);
-        String currencyCode = currency.getCurrencyCode();
+            String codeFromCountry = codeCountryMap.get(country);
+            Locale countryLocale = new Locale("", codeFromCountry);
+            Currency currency = Currency.getInstance(countryLocale);
+            String currencyCode = currency.getCurrencyCode();
 
 
         HttpResponse<JsonNode> responseCurrency = null;
@@ -102,14 +103,16 @@ public class Service {
         } catch (UnirestException ex) {
             ex.printStackTrace();
         }
-        jsonObjectCurrency = responseCurrency.getBody().getObject();
+
+            jsonObjectCurrency = responseCurrency.getBody().getObject();
+
 
         double result = 0;
         if (!currencyAbbrev.equals(currencyCode))
             try {
                 result = jsonObjectCurrency.getJSONObject("rates").getDouble(currencyAbbrev);
             }
-            catch (Exception e) {
+            catch (Exception exce) {
 
             }
         else
@@ -123,6 +126,16 @@ public class Service {
 
 
     public Double getNBPRate() { //zwraca kurs złotego wobec waluty danego kraju
+
+        List<String> listOfCurrenciesA = new ArrayList<>();
+        List<String> ListOfRatesA = new ArrayList<>();
+        List<String> listOfCurrenciesB = new ArrayList<>();
+        List<String> ListOfRatesB = new ArrayList<>();
+        URLConnection urlConnection;
+        StringBuffer NBPText_A = null;
+        StringBuffer NBPText_B = null;
+
+
         URL NBP_a = null;
         try {
             NBP_a = new URL("http://www.nbp.pl/kursy/kursya.html");
@@ -130,16 +143,11 @@ public class Service {
             e.printStackTrace();
         }
 
-        List<String> listaWalutA = new ArrayList<>();
-        List<String> listaKursowStringA = new ArrayList<>();
-
-        StringBuffer NBPText_A = null;
-        URLConnection urlConnection_A;
 
         try {
-            urlConnection_A = NBP_a.openConnection();
-            urlConnection_A.connect();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection_A.getInputStream()));
+            urlConnection = NBP_a.openConnection();
+            urlConnection.connect();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
             NBPText_A = new StringBuffer();
             String line;
@@ -150,18 +158,18 @@ public class Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         String sA = NBPText_A.toString();
 
-        Pattern waluta = Pattern.compile("[1]{1}[0]{0,4}\\s[A-Z]{3}");
-        Matcher matcherWaluta = waluta.matcher(sA);
-        while (matcherWaluta.find())
-            listaWalutA.add(matcherWaluta.group());
+        Pattern currency = Pattern.compile("[1]{1}[0]{0,4}\\s[A-Z]{3}");
+        Pattern rate = Pattern.compile("[0-9]{1,2}[,]{1}[0-9]{4}");
 
-        Pattern kurs = Pattern.compile("[0-9]{1,2}[,]{1}[0-9]{4}");
-        Matcher matcherKurs = kurs.matcher(sA);
-        while (matcherKurs.find())
-            listaKursowStringA.add(matcherKurs.group());
+        Matcher matcherCurrency = currency.matcher(sA);
+        while (matcherCurrency.find())
+            listOfCurrenciesA.add(matcherCurrency.group());
+
+        Matcher matcherRate = rate.matcher(sA);
+        while (matcherRate.find())
+            ListOfRatesA.add(matcherRate.group());
 
 
 //---------------------------------------------------------------------------------------
@@ -172,18 +180,11 @@ public class Service {
             e.printStackTrace();
         }
 
-        List<String> listaWalutB = new ArrayList<>();
-        List<String> listaKursowStringB = new ArrayList<>();
-
-
-        StringBuffer NBPText_B = null;
-        URLConnection urlConnection_B;
-
 
         try {
-            urlConnection_B = NBP_b.openConnection();
-            urlConnection_B.connect();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection_B.getInputStream()));
+            urlConnection = NBP_b.openConnection();
+            urlConnection.connect();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
             NBPText_B = new StringBuffer();
             String line;
@@ -194,18 +195,17 @@ public class Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         String sB = NBPText_B.toString();
 
-        waluta = Pattern.compile("[1]{1}[0]{0,4}\\s[A-Z]{3}");
-        matcherWaluta = waluta.matcher(sB);
-        while (matcherWaluta.find())
-            listaWalutB.add(matcherWaluta.group());
 
-        kurs = Pattern.compile("[0-9]{1,2}[,]{1}[0-9]{4}");
-        matcherKurs = kurs.matcher(sB);
-        while (matcherKurs.find())
-            listaKursowStringB.add(matcherKurs.group());
+        matcherCurrency = currency.matcher(sB);
+        while (matcherCurrency.find())
+            listOfCurrenciesB.add(matcherCurrency.group());
+
+
+        matcherRate = rate.matcher(sB);
+        while (matcherRate.find())
+            ListOfRatesB.add(matcherRate.group());
 
 // -----------------------------------------------------------------------------------------------
 
@@ -213,57 +213,57 @@ public class Service {
 
         // czesc dotyczaca walut
 
-        List<String> walutyStringCumulated = Stream.of(listaWalutA, listaWalutB)
+        List<String> currenciesStringCumulated = Stream.of(listOfCurrenciesA, listOfCurrenciesB)
                 .flatMap(x -> x.stream())
                 .collect(Collectors.toList());
 
-        String bothWaluty = walutyStringCumulated.toString();
+        String bothTablesCurrencies = currenciesStringCumulated.toString();
 
-        String cumrepl_w = bothWaluty.replace(", "," ");
-        String cumrepl_wa = cumrepl_w.replace("[", "");
-        String cumrepl_wal = cumrepl_wa.replace("]","");
+        String step1C = bothTablesCurrencies.replace(", "," ");
+        String step2C = step1C.replace("[", "");
+        String step3C = step2C.replace("]","");
 
-        String[] cumSplitWal = cumrepl_wal.split(" ");
+        String[] cumSplitCur = step3C.split(" ");
 
         List<Double> prefixes = new ArrayList<>(); // <----------------------------------- PREFIXY
 
         List<String> symbols = new ArrayList<>(); // <----------------------------------- SYMBOLE WALUT
 
-        for (int i = 0; i < cumSplitWal.length; i++){
+        for (int i = 0; i < cumSplitCur.length; i++){
             if (i % 2 == 0)
-                prefixes.add(Double.parseDouble(cumSplitWal[i]));
+                prefixes.add(Double.parseDouble(cumSplitCur[i]));
             else
-                symbols.add(cumSplitWal[i]);
+                symbols.add(cumSplitCur[i]);
         }
 
 // czesc dotycząca kursów
 
-        List<String> kursyStringCumulated = Stream.of(listaKursowStringA, listaKursowStringB)
+        List<String> ratesStringCumulated = Stream.of(ListOfRatesA, ListOfRatesB)
                 .flatMap(x -> x.stream())
                 .collect(Collectors.toList());
 
-        String bothKursy = kursyStringCumulated.toString();
+        String bothTablesRates = ratesStringCumulated.toString();
 
-        String cumrepl_k = bothKursy.replace(", "," ");
-        String cumrepl_ku = cumrepl_k.replace("[", "");
-        String cumrepl_kur = cumrepl_ku.replace("]","");
-        String comaForDot = cumrepl_kur.replace(",", ".");
+        String step1R = bothTablesRates.replace(", "," ");
+        String step2R = step1R.replace("[", "");
+        String step3R = step2R.replace("]","");
+        String step4R = step3R.replace(",", ".");
 
-        String[] cumSplitKur = comaForDot.split(" ");
+        String[] cumSplitRat = step4R.split(" ");
 
-        List<Double> kursy = new ArrayList<>(); // <----------------------------------- KURSY WALUT
+        List<Double> ratesD = new ArrayList<>(); // <----------------------------------- KURSY WALUT
 
-        for (int i = 0; i < cumSplitKur.length; i++){
-            kursy.add(Double.parseDouble(cumSplitKur[i]));
+        for (int i = 0; i < cumSplitRat.length; i++){
+            ratesD.add(Double.parseDouble(cumSplitRat[i]));
         }
 
         double [] pref = new double[prefixes.size()];
-        double [] ratesArr = new double[kursy.size()];
-        double [] ratesRecounted = new double[kursy.size()];
+        double [] ratesArr = new double[ratesD.size()];
+        double [] ratesRecounted = new double[ratesD.size()];
 
         for (int i = 0; i < prefixes.size(); i++){
             pref[i] = prefixes.get(i);
-            ratesArr[i] = kursy.get(i);
+            ratesArr[i] = ratesD.get(i);
         }
 
         for (int i = 0; i < prefixes.size(); i++){
@@ -280,10 +280,6 @@ public class Service {
             symbolRate.put(symbols.get(i), rates.get(i));
         }
 
-       /* symbolRate.forEach((k, v) ->
-            System.out.println("" + k+" "+ v)
-        );*/
-
 
         String[] locales = Locale.getISOCountries();
         HashMap<String, String> codeCountryMap = new HashMap<>();
@@ -291,16 +287,12 @@ public class Service {
             Locale obj = new Locale("", countryCode);
             codeCountryMap.put(obj.getDisplayCountry(Locale.ENGLISH), obj.getCountry());
         }
-
-      /*  codeCountryMap.forEach((k, v) ->
-            System.out.println("" + k+", "+ v)
-        );*/
-
-        
         String codeFromCountry = codeCountryMap.get(country);
         Locale countryLocale = new Locale("", codeFromCountry);
-        Currency currency = Currency.getInstance(countryLocale);
-        String currencyCode = currency.getCurrencyCode();
+        Currency curr = Currency.getInstance(countryLocale);
+        String currencyCode = curr.getCurrencyCode();
+
+
 
         double out = 0;
         if (!currencyCode.equals("PLN"))
@@ -316,7 +308,6 @@ public class Service {
         } catch (Exception e){
 
         }
-
         return res;
 
     }
