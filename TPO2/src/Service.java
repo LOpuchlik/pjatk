@@ -57,27 +57,34 @@ public class Service {
     }
 
     public String getWeather(String city) {
-        JSONObject jsonObject = null;
+        String[] locales = Locale.getISOCountries();
+        HashMap<String, String> codeCountryMap = new HashMap<>();
+        for (String countryCode : locales) {
+            Locale obj = new Locale("", countryCode);
+            codeCountryMap.put(obj.getDisplayCountry(Locale.ENGLISH), obj.getCountry());
+        }
+        String codeFromCountry = codeCountryMap.get(country);
+
+
+        String jsonString = null;
         HttpResponse<JsonNode> response = null;
         try {
             String host = "http://api.openweathermap.org/data/2.5/weather?q=";
             String unitSystem = "&units=metric";
             String apiKey = "&appid=fc7c65da529852ed5a55de9ee62f43f9";
 
-            String q = host + city + "," + country + unitSystem + apiKey;
+            String q = host + city + "," + codeFromCountry + unitSystem + apiKey;
             String query = q.replace(" ", "%20");
+            //System.out.println(query);
             response = Unirest.get(query).asJson();
         } catch (UnirestException e) {
-            e.printStackTrace();
+
         }
 
-            jsonObject = response.getBody().getObject();
+            jsonString = response.getBody().getObject().toString();
 
-        return jsonObject.toString();
-
+        return jsonString;
     }
-
-
 
 
     public Double getRateFor(String currencyAbbrev) {
@@ -101,13 +108,13 @@ public class Service {
             String queryCurrency = hostAPI + againstCurrency;
             responseCurrency = Unirest.get(queryCurrency).asJson();
         } catch (UnirestException ex) {
-            ex.printStackTrace();
+
         }
 
             jsonObjectCurrency = responseCurrency.getBody().getObject();
 
 
-        double result = 0;
+        double result = 0.0;
         if (!currencyAbbrev.equals(currencyCode))
             try {
                 result = jsonObjectCurrency.getJSONObject("rates").getDouble(currencyAbbrev);
@@ -116,13 +123,10 @@ public class Service {
 
             }
         else
-            result = 1;
+            result = 1.0;
         return result;
 
     }
-
-
-
 
 
     public Double getNBPRate() { //zwraca kurs złotego wobec waluty danego kraju
@@ -275,6 +279,9 @@ public class Service {
             rates.add(d);
         }
 
+
+
+
         HashMap<String, Double> symbolRate = new HashMap<>();
         for (int i = 0; i < rates.size(); i++){
             symbolRate.put(symbols.get(i), rates.get(i));
@@ -293,7 +300,6 @@ public class Service {
         String currencyCode = curr.getCurrencyCode();
 
 
-
         double out = 0;
         if (!currencyCode.equals("PLN"))
             try {
@@ -303,12 +309,8 @@ public class Service {
             }
         else
             out = 1.0;
-        try {
-            res = 1.0 / out;
-        } catch (Exception e){
 
-        }
-        return res;
+        return out;
 
     }
 

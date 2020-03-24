@@ -31,6 +31,7 @@ public class Gui extends Application {
     private String descValue;
     private double humValue;
     private double windValue;
+    private String countryCode;
 
 
     @Override
@@ -184,21 +185,37 @@ public class Gui extends Application {
         this.windValue = wind;
     }
 
-    public String prettyFormat (String jsonObject) {
-        JSONObject jo = new JSONObject(s.getWeather(s.getCity()));
-        setCity(jo.getString("name"));
-        setDesc(jo.getJSONArray("weather").getJSONObject(0).optString("description"));
-        setPress(jo.getJSONObject("main").optString("pressure"));
-        setTemp(jo.getJSONObject("main").optDouble("temp"));
-        setHum(jo.getJSONObject("main").optDouble("humidity"));
-        setWind(jo.getJSONObject("wind").optDouble("speed"));
+    public String getCountryCode() {
+        return countryCode;
+    }
 
-        return "City: "+ cityValue + "\n"
+    private void setCountryCode(String cC) {
+        this.countryCode = cC.toUpperCase();
+    }
+
+    public String prettyFormat (String jObj) {
+        String res = null;
+
+        try {
+            JSONObject jo = new JSONObject(s.getWeather(s.getCity()));
+            setCity(jo.getString("name"));
+            setCountryCode(jo.getJSONObject("sys").optString("country"));
+            setDesc(jo.getJSONArray("weather").getJSONObject(0).optString("description"));
+            setPress(jo.getJSONObject("main").optString("pressure"));
+            setTemp(jo.getJSONObject("main").optDouble("temp"));
+            setHum(jo.getJSONObject("main").optDouble("humidity"));
+            setWind(jo.getJSONObject("wind").optDouble("speed"));
+        }catch (Exception except) {
+
+        }
+
+        res = "City: "+ cityValue + ", " + countryCode +"\n"
                 + "Description: " + desc + "\n"
                 + "Temperature: " + Math.round(temp)*(100d/100) + " C\n"
                 + "Pressure: " + press + " hPa\n"
                 + "Wind: " + windValue + " km/h\n"
                 + "Humidity: " + humValue + " %";
+        return res;
     }
 
 }
