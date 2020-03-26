@@ -25,8 +25,6 @@ public class Service {
 
     private double res = 0;
 
-    public Service() {
-    }
 
     public Service(String country) {
         this.country = country;
@@ -56,6 +54,16 @@ public class Service {
         this.currencyAbbrev = currencyAbbrev;
     }
 
+    public String getCurrencyCodE() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCodE(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+
+
     public String getWeather(String city) {
         String[] locales = Locale.getISOCountries();
         HashMap<String, String> codeCountryMap = new HashMap<>();
@@ -64,6 +72,10 @@ public class Service {
             codeCountryMap.put(obj.getDisplayCountry(Locale.ENGLISH), obj.getCountry());
         }
         String codeFromCountry = codeCountryMap.get(country);
+        Locale countryLocale = new Locale("", codeFromCountry);
+        Currency currency = Currency.getInstance(countryLocale);
+        String currencyCode = currency.getCurrencyCode();
+        setCurrencyCodE(currencyCode);
 
 
         String jsonString = null;
@@ -88,24 +100,13 @@ public class Service {
 
 
     public Double getRateFor(String currencyAbbrev) {
-        String[] locales = Locale.getISOCountries();
-        HashMap<String, String> codeCountryMap = new HashMap<>();
-        for (String countryCode : locales) {
-            Locale obj = new Locale("", countryCode);
-            codeCountryMap.put(obj.getDisplayCountry(Locale.ENGLISH), obj.getCountry());
-        }
-            String codeFromCountry = codeCountryMap.get(country);
-            Locale countryLocale = new Locale("", codeFromCountry);
-            Currency currency = Currency.getInstance(countryLocale);
-            String currencyCode = currency.getCurrencyCode();
-
 
         HttpResponse<JsonNode> responseCurrency = null;
         JSONObject jsonObjectCurrency = null;
         try {
             String hostAPI = "https://api.exchangeratesapi.io/latest?base=";
-            String againstCurrency = currencyCode;
-            String queryCurrency = hostAPI + againstCurrency;
+            //String againstCurrency = currencyCode;
+            String queryCurrency = hostAPI + currencyCode;
             responseCurrency = Unirest.get(queryCurrency).asJson();
         } catch (UnirestException ex) {
 
@@ -240,7 +241,7 @@ public class Service {
                 symbols.add(cumSplitCur[i]);
         }
 
-// czesc dotycząca kursów
+        // czesc dotycząca kursów
 
         List<String> ratesStringCumulated = Stream.of(ListOfRatesA, ListOfRatesB)
                 .flatMap(x -> x.stream())
@@ -288,18 +289,8 @@ public class Service {
         }
 
 
-        String[] locales = Locale.getISOCountries();
-        HashMap<String, String> codeCountryMap = new HashMap<>();
-        for (String countryCode : locales) {
-            Locale obj = new Locale("", countryCode);
-            codeCountryMap.put(obj.getDisplayCountry(Locale.ENGLISH), obj.getCountry());
-        }
-        String codeFromCountry = codeCountryMap.get(country);
-        Locale countryLocale = new Locale("", codeFromCountry);
-        Currency curr = Currency.getInstance(countryLocale);
-        String currencyCode = curr.getCurrencyCode();
 
-
+        double res = 0;
         double out = 0;
         if (!currencyCode.equals("PLN"))
             try {
@@ -310,7 +301,8 @@ public class Service {
         else
             out = 1.0;
 
-        return out;
+        res = 1.0/out;
+        return res;
 
     }
 

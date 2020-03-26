@@ -1,3 +1,4 @@
+import com.sun.xml.internal.ws.util.StringUtils;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -59,7 +60,7 @@ public class Gui extends Application {
         StackPane wikiWindow = new StackPane();
         browser = new WebView();
         WebEngine webEngine = browser.getEngine();
-        webEngine.load(host+"Warsaw");
+        webEngine.load(host);
 
         changeData.setOnAction(evnt -> {
             Stage dialog = new Stage();
@@ -91,17 +92,23 @@ public class Gui extends Application {
             Button performSearch = new Button("Search");
             GridPane.setConstraints(performSearch, 0, 3);
             performSearch.setOnAction(evt -> {
-                s = new Service(countryFill.getText());
-                s.setCountry(countryFill.getText());
-                s.setCity(cityFill.getText());
-                s.setCurrencyAbbrev(currencyFill.getText());
-                weatherDisplay.setText("\t\t\tWEATHER FORECAST\n" + prettyFormat(s.getWeather(cityFill.getText())));
-                currencyDisplay.setText("\t\t\tCURRENCY RATE\n" + s.getRateFor(currencyFill.getText()).toString());
-                NBPDisplay.setText("\t\t\t\tNBP RATE\n" + s.getNBPRate());
-                browser.getEngine().load(host+cityFill.getText());
+                String cou = StringUtils.capitalize(countryFill.getText());
+                String cit = StringUtils.capitalize(cityFill.getText());
+                String cur = currencyFill.getText().toUpperCase();
+                s = new Service(cou);
+                s.setCountry(cou);
+                s.setCity(cit);
+                s.setCurrencyAbbrev(cur);
+                weatherDisplay.setText("\t\t\tWEATHER FORECAST\n" + prettyFormat(s.getWeather(cit)));
+                currencyDisplay.setText("\t\t\tCURRENCY RATE\n1 " + s.getCurrencyCodE() + " = " + (double)Math.round(s.getRateFor(cur)*100000d)/100000 + " " + cur);
+                NBPDisplay.setText("\t\t\t\tNBP RATE\n1 " + " PLN = " + (double)Math.round(s.getNBPRate()*100000d)/100000 + " " +  s.getCurrencyCodE());
+                browser.getEngine().load(host+cit);
                 dialog.close();
 
             });
+
+
+
             Button cancel = new Button("Cancel");
             GridPane.setConstraints(cancel, 1, 3);
             cancel.setOnAction(evt -> dialog.close());
