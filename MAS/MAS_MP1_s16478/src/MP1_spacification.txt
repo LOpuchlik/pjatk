@@ -1,0 +1,14 @@
+MP 01
+Klasy, atrybuty
+
+• Ekstensja - OK!
+• Ekst. - trwałość <----------- TO DO!
+
+• Atr. złożony - np. LocalDate birthDate w klasie RegularEmployee
+• Atr. opcjonalny - np. String formalEducation w klasie RegularEmployee
+• Atr. powtarzalny - np. List<String> formalEducation w klasie RegularEmployee
+• Atr. klasowy - np. double maxBonus = 5000d w klasie Manager
+• Atr. pochodny (wyliczeniowy) - np. salary w klasie RegularEmployee
+• Met. klasowa - np. countMeanEmployeesAge w klasie RegularEmployee - troche naciągane, ale co tam
+• Przesłonięcie - np. metoda toString w klasie RegularEmployee i metoda toString w klasie Manager
+• Przeciążenie - np. metoda countSalary() i countSalary(double bonus) w klasie Manager

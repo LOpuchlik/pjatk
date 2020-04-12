@@ -1,0 +1,55 @@
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Manager extends RegularEmployee implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private static double maxBonus = 5000d; // atrybut klasowy - wszyscy managerowie mogą mieć maksymalnie bonus tej wysokości
+    private double managersBaseSalary; // atrybut obiektowy - każdy manager może mieć inną bazę
+    private double percentBonus; // opcjonalny i obiektowy (przyjmuje wartości od 0 do 1)
+
+
+    public Manager(String name, String surname, LocalDate birthDate, String contactData, double managersBaseSalary) {
+        super(name, surname, birthDate, contactData);
+        this.managersBaseSalary = managersBaseSalary;
+    }
+
+    public static double getMaxBonus() {
+        return maxBonus;
+    }
+
+    public static void setMaxBonus(double maxBonus) {
+        Manager.maxBonus = maxBonus;
+    }
+
+    public double getBonus() {
+        return percentBonus;
+    }
+
+    public void setBonus(double percentBonus) {
+        this.percentBonus = percentBonus;
+    }
+
+    // przeciążanie metod, inaczej się liczy gdy jest bonus i gdy nie ma bonusa
+    public double countSalary() {
+        return managersBaseSalary;
+    }
+
+    public double countSalary(double percentBonus) {
+        return managersBaseSalary + (percentBonus * maxBonus);
+    }
+
+    @Override
+    public String toString() {
+        String description = "";
+        description += "Name and Surname:\t\t|\t" + super.getName() + " " + super.getSurname() + " (MANAGER)";
+        description += "\nDate of Birth (age):\t|\t" + super.getBirthDate() + " (" + super.getAgeInYears() + " years old)";
+        description += "\nContact Information:\t|\t" + super.getContactData();
+        if(super.getFormalEducation().size() > 0)
+            description += "\nFormal Education: \t\t|\t" + super.getFormalEducation().toString() + "\n";
+        else
+            description += "\nFormal Education: \t\t|\tNo formal education to show\n";
+
+        return description;
+}
+}
