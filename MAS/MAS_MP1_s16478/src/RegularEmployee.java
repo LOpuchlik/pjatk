@@ -144,11 +144,4 @@ public class RegularEmployee extends ObjectPlus implements Serializable {
         }
         return sumOfAges/numberOfEmployees;
     }
-
-/*    public double countSalary() {
-        salary = hoursWorkedInMonth * hourlyRate;
-        return salary;
-    }*/
-
-
 }

@@ -26,7 +26,11 @@ public class Manager extends RegularEmployee implements Serializable {
         return percentBonus;
     }
 
-    public void setBonus(double percentBonus) {
+    public void setBonus(double percentBonus) throws Exception {
+        if(percentBonus < 0.0 || percentBonus > 1.0)
+        {
+            throw new Exception("Percent bonus has to be in range between 0 and 1");
+        }
         this.percentBonus = percentBonus;
     }
 
