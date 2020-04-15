@@ -1,0 +1,31 @@
+MP 01
+Klasy, atrybuty
+
+• Ekstensja - zrobiona poprzez ObjectPlus
+• Ekst. - trwałość - zrobiłam zapis do pliku persistence.bin
+
+• Atr. złożony - np. LocalDate birthDate w klasie RegularEmployee
+• Atr. opcjonalny - np. String formalEducation w klasie RegularEmployee
+• Atr. powtarzalny - np. List<String> formalEducation w klasie RegularEmployee
+• Atr. klasowy - np. double maxBonus = 5000d w klasie Manager
+• Atr. pochodny (wyliczeniowy) - np. salary w klasie RegularEmployee
+• Met. klasowa - np. countMeanEmployeesAge w klasie RegularEmployee - troche naciągane, ale co tam
+• Przesłonięcie - np. metoda toString w klasie RegularEmployee i metoda toString w klasie Manager
+• Przeciążenie - np. metoda countSalary() i countSalary(double bonus) w klasie Manager
+
+
+Po załadowaniu danych z pliku:
+
+
+Name:					|	Dominik
+Surname:				|	Długopolski
+Date of Birth:			|	1983-07-07
+Age (in full years):	|	0                <-- brak wieku, gdyż atrybut ageInYears jest transient
+Contact Information:	|	e-mail: dominik.dlugopolski@gmail.com
+Formal Education: 		|	No formal education to show
+
+
+Name and Surname:		|	Michal Michalowski (MANAGER)
+Date of Birth (age):	|	1957-12-04 (0 years old)      <-- brak wieku, gdyż atrybut ageInYears jest transient
+Contact Information:	|	email: michal.michalowski@gmail.com
+Formal Education: 		|	[Master of Business Administration (Oxford), Computer Science (Oxford)]

@@ -8,11 +8,11 @@ public class RegularEmployee extends ObjectPlus implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String name; // wymagane
-    private String surname; // wymagane
-    private LocalDate birthDate; // wymagane
-    private String contactData; // wymagane
-    transient private int ageInYears; // wymagane i wyliczalne
+    private String name; // wymagany
+    private String surname; // wymagany
+    private LocalDate birthDate; // wymagany
+    private String contactData; // wymagany
+    transient private int ageInYears; // wymagany i wyliczalne, transient - nie zostanie zapisany do pliku
 
     private List<String> formalEducation = new ArrayList<>(); // atrybut powtarzalny opcjonalny - lista przechowująca formalne wykształcenie pracownika (może być ich kilka, dlatego atrybut powtarzalny), nie może być puste, bo jakieś wykształcenie każdy ma
     private double hoursWorkedInMonth; // opcjonalne, nie dotyczy managerów

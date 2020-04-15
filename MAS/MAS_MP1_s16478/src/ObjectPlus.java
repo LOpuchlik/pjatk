@@ -6,9 +6,9 @@ import java.util.*;
 
 public class ObjectPlus implements Serializable {
 
-    // mapa jest tak jakby listą list - tablicą tablic
+    // mapa przechowująca wszystkie ekstensje (ekstensje wszystkich klas) - jest to taka tablica list
     private static Map<Class, List<ObjectPlus>> allExtents = new Hashtable<>(); // klucz - nazwa konkretnej biznesowej klasy
-                                                                                // kontener zawierający referencje do jej wystąpień (właściwa ekstensja)
+                                                                                // wartość - kontener zawierający referencje do jej wystąpień (właściwa ekstensja) - w tym przypadku Lista
 
     public ObjectPlus() {
         List<ObjectPlus> extent = null;

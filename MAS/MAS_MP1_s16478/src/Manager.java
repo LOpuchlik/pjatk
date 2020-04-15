@@ -1,12 +1,12 @@
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Manager extends RegularEmployee implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Manager extends RegularEmployee { // klasa Manager nie musi implementować Serializable, bo dzidziczy go z nadklasy RegularEmployee, która go implementuje
+
 
     private static double maxBonus = 5000d; // atrybut klasowy - wszyscy managerowie mogą mieć maksymalnie bonus tej wysokości
-    private double managersBaseSalary; // atrybut obiektowy - każdy manager może mieć inną bazę
-    private double percentBonus; // opcjonalny i obiektowy (przyjmuje wartości od 0 do 1)
+    private double managersBaseSalary; // atrybut obiektowy - każdy manager może mieć inną bazę, typ prymityeny - nie sprawdzam czy null
+    private double percentBonus; // opcjonalny i obiektowy, z ograniczeniem (przyjmuje wartości od 0 do 1)
 
 
     public Manager(String name, String surname, LocalDate birthDate, String contactData, double managersBaseSalary) {
@@ -34,7 +34,7 @@ public class Manager extends RegularEmployee implements Serializable {
         this.percentBonus = percentBonus;
     }
 
-    // przeciążanie metod, inaczej się liczy gdy jest bonus i gdy nie ma bonusa
+    // przeciążanie metod, inaczej się liczy gdy nie ma bonusa i gdy jest bonus
     public double countSalary() {
         return managersBaseSalary;
     }
@@ -43,7 +43,7 @@ public class Manager extends RegularEmployee implements Serializable {
         return managersBaseSalary + (percentBonus * maxBonus);
     }
 
-    @Override
+    @Override   // przesłonięcie metody toString()
     public String toString() {
         String description = "";
         description += "Name and Surname:\t\t|\t" + super.getName() + " " + super.getSurname() + " (MANAGER)";
@@ -55,5 +55,5 @@ public class Manager extends RegularEmployee implements Serializable {
             description += "\nFormal Education: \t\t|\tNo formal education to show\n";
 
         return description;
-}
+    }
 }
