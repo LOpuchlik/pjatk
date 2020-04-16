@@ -29,6 +29,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/zad1" />
       <recent name="$PROJECT_DIR$/src/zad1/servers" />
       <recent name="$PROJECT_DIR$/src/zad1/clients" />
     </key>
@@ -45,20 +47,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Client (1)">
-    <configuration name="Client (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.clients.Client" />
-      <module name="TPO3_OL_S16478" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="zad1.clients.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="zad1.Client" />
       <module name="TPO3_OL_S16478" />
@@ -72,12 +61,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GuiClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.gui.GuiClient" />
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="zad1.Client" />
       <module name="TPO3_OL_S16478" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="zad1.gui.*" />
+          <option name="PATTERN" value="zad1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DictServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="zad1.DictServer" />
+      <module name="TPO3_OL_S16478" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="zad1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -90,7 +92,20 @@
       <module name="TPO3_OL_S16478" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="zad1.gui.*" />
+          <option name="PATTERN" value="zad1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainServer (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="zad1.MainServer" />
+      <module name="TPO3_OL_S16478" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="zad1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,25 +126,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.Server" />
-      <module name="TPO3_OL_S16478" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="zad1.gui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Client (1)" />
-        <item itemvalue="Application.MainServer" />
-        <item itemvalue="Application.GuiClient" />
+        <item itemvalue="Application.MainServer (1)" />
+        <item itemvalue="Application.DictServer" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainServer" />
       </list>
     </recent_temporary>
   </component>
