@@ -46,11 +46,11 @@ public class Manager extends RegularEmployee { // klasa Manager nie musi impleme
     @Override   // przesłonięcie metody toString()
     public String toString() {
         String description = "";
-        description += "Name and Surname:\t\t|\t" + super.getName() + " " + super.getSurname() + " (MANAGER)";
-        description += "\nDate of Birth (age):\t|\t" + super.getBirthDate() + " (" + super.getAgeInYears() + " years old)";
-        description += "\nContact Information:\t|\t" + super.getContactData();
-        if(super.getFormalEducation().size() > 0)
-            description += "\nFormal Education: \t\t|\t" + super.getFormalEducation().toString() + "\n";
+        description += "Name and Surname:\t\t|\t" + getName() + " " + getSurname() + " (MANAGER)";
+        description += "\nDate of Birth (age):\t|\t" + getBirthDate() + " (" + getAgeInYears() + " years old)";
+        description += "\nContact Information:\t|\t" + getContactData();
+        if(getFormalEducation().size() > 0)
+            description += "\nFormal Education: \t\t|\t" + getFormalEducation().toString() + "\n";
         else
             description += "\nFormal Education: \t\t|\tNo formal education to show\n";
 

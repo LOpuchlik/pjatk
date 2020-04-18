@@ -7,7 +7,7 @@ import java.util.*;
 public class ObjectPlus implements Serializable {
 
     // mapa przechowująca wszystkie ekstensje (ekstensje wszystkich klas) - jest to taka tablica list
-    private static Map<Class, List<ObjectPlus>> allExtents = new Hashtable<>(); // klucz - nazwa konkretnej biznesowej klasy
+    public static Map<Class, List<ObjectPlus>> allExtents = new Hashtable<>(); // klucz - nazwa konkretnej biznesowej klasy
                                                                                 // wartość - kontener zawierający referencje do jej wystąpień (właściwa ekstensja) - w tym przypadku Lista
 
     public ObjectPlus() {
@@ -51,7 +51,5 @@ public class ObjectPlus implements Serializable {
         if(allExtents.containsKey(type))
             return (Iterable<T>) allExtents.get(type);
         throw new ClassNotFoundException(String.format("%s. Stored extents: %s", type.toString(), allExtents.keySet()));
-        }
-
-
+    }
 }
