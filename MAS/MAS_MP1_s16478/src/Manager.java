@@ -1,7 +1,7 @@
-import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Manager extends RegularEmployee { // klasa Manager nie musi implementować Serializable, bo dzidziczy go z nadklasy RegularEmployee, która go implementuje
+    private static final long serialVersionUID = 1L;
 
 
     private static double maxBonus = 5000d; // atrybut klasowy - wszyscy managerowie mogą mieć maksymalnie bonus tej wysokości
@@ -27,14 +27,13 @@ public class Manager extends RegularEmployee { // klasa Manager nie musi impleme
     }
 
     public void setBonus(double percentBonus) throws Exception {
-        if(percentBonus < 0.0 || percentBonus > 1.0)
-        {
+        if(percentBonus < 0.0 || percentBonus > 1.0) {
             throw new Exception("Percent bonus has to be in range between 0 and 1");
         }
         this.percentBonus = percentBonus;
     }
 
-    // przeciążanie metod, inaczej się liczy gdy nie ma bonusa i gdy jest bonus
+    // przeciążanie metod, inaczej się liczy gdy nie ma bonusa i gdy jest bonus (wtedy jest parametr)
     public double countSalary() {
         return managersBaseSalary;
     }

@@ -38,6 +38,14 @@ public class ObjectPlus implements Serializable {
             System.out.println(obj);
     }
 
+
+    static void printAllExtents () {
+        for (Map.Entry<Class, java.util.List<ObjectPlus>> entry : ObjectPlus.allExtents.entrySet()) {
+            System.out.println("--> Key = " + entry.getKey() + "\n--> Value =\n" + entry.getValue());
+            System.out.println();
+        }
+    }
+
     public static void writeExtents(ObjectOutputStream stream) throws IOException {
         stream.writeObject(allExtents);
     }

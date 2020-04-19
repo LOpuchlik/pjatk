@@ -14,8 +14,8 @@ public class Persistence {
             } catch(IOException e) {
                 System.err.println(e);
             } catch(ClassNotFoundException ex) {
-                System.err.println(ex + "\nClass has not been found.");
-            }
+            System.err.println(ex + "\nClass has not been found.");
+        }
         }
     }
 

@@ -12,12 +12,13 @@ public class RegularEmployee extends ObjectPlus implements Serializable {
     private String surname; // wymagany
     private LocalDate birthDate; // wymagany
     private String contactData; // wymagany
-    transient private int ageInYears; // wymagany i wyliczalne, transient - nie zostanie zapisany do pliku
+    transient private int ageInYears = 0; // wymagany i wyliczalne, transient - nie zostanie zapisany do pliku
 
     private List<String> formalEducation = new ArrayList<>(); // atrybut powtarzalny opcjonalny - lista przechowująca formalne wykształcenie pracownika (może być ich kilka, dlatego atrybut powtarzalny), nie może być puste, bo jakieś wykształcenie każdy ma
     private double hoursWorkedInMonth; // opcjonalne, nie dotyczy managerów
     private double hourlyRate; // opcjonalne - nie dotyczy managerów
-    transient private double salary; // wyliczalne i opcjonalna, bo manager ma zryczałtowaną bazę (brak stawki godzinowej i liczby przepracowanych godzin - siedzi ile musi)
+    transient private double salary = 0; // wyliczalne i opcjonalna, bo manager ma zryczałtowaną bazę (brak stawki godzinowej i liczby przepracowanych godzin - siedzi ile musi)
+    static double meanEmployeeAge = 0;
 
 
 
@@ -89,8 +90,7 @@ public class RegularEmployee extends ObjectPlus implements Serializable {
     }
 
     public void setFormalEducation(List<String> input) {
-        for (String s : input)
-            this.formalEducation.add(s);
+        this.formalEducation.addAll(input);
     }
 
     public double getHoursWorkedInMonth() {
@@ -118,6 +118,13 @@ public class RegularEmployee extends ObjectPlus implements Serializable {
         this.salary = salary;
     }
 
+    public static double getMeanEmployeeAge() {
+        return meanEmployeeAge;
+    }
+
+    public static void setMeanEmployeeAge(double meanEmployeeAge) {
+        RegularEmployee.meanEmployeeAge = meanEmployeeAge;
+    }
 
     @Override
     public String toString() {
@@ -127,6 +134,7 @@ public class RegularEmployee extends ObjectPlus implements Serializable {
         description += "\nDate of Birth:\t\t\t|\t" + birthDate;
         description += "\nAge (in full years):\t|\t" + ageInYears;
         description += "\nContact Information:\t|\t" + contactData;
+        description += "Fomal education" + formalEducation;
         if(formalEducation.size() > 0)
             description += "\nFormal Education: \t\t|\t" + getFormalEducation().toString() + "\n";
         else
@@ -142,6 +150,7 @@ public class RegularEmployee extends ObjectPlus implements Serializable {
         for (RegularEmployee e : empls){
             sumOfAges += e.getAgeInYears();
         }
-        return sumOfAges/numberOfEmployees;
+        meanEmployeeAge = sumOfAges/numberOfEmployees;
+        return meanEmployeeAge;
     }
 }
