@@ -10,12 +10,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class MainServerService extends  Thread{
-    Socket socket;
-    static Map<String, Integer> dict = new HashMap<>();
-    PrintWriter output;
-    BufferedReader input;
+    private Socket socket;
+    private static Map<String, Integer> dict = new HashMap<>();
+    private PrintWriter output;
+    private BufferedReader input;
+    private String languageShortcut;
 
-    public MainServerService(Socket socket) {
+    MainServerService(Socket socket) {
         this.socket = socket;
     }
 
@@ -26,27 +27,20 @@ public class MainServerService extends  Thread{
             String line;
             while((line = input.readLine()) != null) {
                 //check
-                System.out.println(line);
+                //System.out.println(line);
                 String command = line.split(",")[0];
 
                 switch (command){
                     case "IntroduceYourself":
-                        //check
-                        System.out.println("here: "+ line.split(",")[2]+" "+ line.split(",")[1]);
                         dict.put(line.split(",")[2],Integer.parseInt(line.split(",")[1]));   // path[2] to jezyk a path[1] to numer port
-                        System.out.println("Strategical check");
-                break;
+                    break;
                     case "TranslationRequest":
-                        String languageShortcut = line.split(",")[3];
+                        languageShortcut = line.split(",")[3];
                         String wordToTranslate = line.split(",")[1];
                         String targetPort = line.split(",")[2];
-                        //check
-                        System.out.println("lang: " + languageShortcut + ", word: " + wordToTranslate+", port: " + targetPort + " port danego slownika: " + dict.get(languageShortcut));
 
-                        InetAddress ia = InetAddress.getLocalHost();
-                        System.out.println("ia: " + ia.getHostAddress());
-                        forwardToDictServer(ia.getHostAddress(), dict.get(languageShortcut), "TranslationRequest,"+wordToTranslate+","+targetPort);
-                        break;
+                        forwardToDictServer("localhost",  "TranslationRequest,"+wordToTranslate+","+"localhost,"+targetPort);
+                    break;
                     default:
                         System.out.println("No such command to perform!");
                 }
@@ -58,14 +52,22 @@ public class MainServerService extends  Thread{
         }
     }
 
+    private void forwardToDictServer(String host, String info) throws IOException {
+        new Thread(() -> {
 
-    public void forwardToDictServer(String host, int port, String info) throws IOException {
-        socket = new Socket(host, port);   // cos tu sapie, ale podaję dobry adres serwera slownikowego i dobry numer portu
-        output = new PrintWriter(socket.getOutputStream(), true);
-        output.println(info);
-        closeDataExchange();
-        disconnect();
+            try {
+                socket = new Socket(host, dict.get(languageShortcut));
+                output = new PrintWriter(socket.getOutputStream(), true);
+                output.println(info);
+                closeDataExchange();
+                disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
     }
+
 
     private void closeDataExchange() throws IOException {
         input.close();
@@ -75,7 +77,6 @@ public class MainServerService extends  Thread{
     private void disconnect() throws IOException {
         socket.close();
     }
-
 
 
 }

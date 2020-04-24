@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +44,15 @@ public class GuiClient extends Application {
         window = primaryStage;
         window.setTitle("Dictionary prompt - TPO3");
 
+        VBox disp = new VBox();
+        Label dispLab = new Label("TRANSLATION");
+        dispLab.setFont(new Font("Arial", 12));
+        dispLab.setPadding(new Insets(1,200,1,210));
+        TextArea display = new TextArea();
+        display.setPadding(new Insets(3,3,3,3));
+        display.setEditable(false);
+        disp.getChildren().addAll(dispLab, display);
+
 
         GridPane topPanel = new GridPane();
         topPanel.setPadding(new Insets(15,15,15,15));
@@ -60,7 +69,7 @@ public class GuiClient extends Application {
         langShorts.add("EN");
         langShorts.add("ES");
         langShorts.add("DE");
-        langChoiceBox.setPromptText("Choose language       ");
+        langChoiceBox.setPromptText("Choose language");
         langChoiceBox.getItems().addAll(langShorts);
 
         GridPane.setConstraints(langChoiceBox, 2, 0);
@@ -85,7 +94,7 @@ public class GuiClient extends Application {
         words.add("pies");
         words.add("kot");
         words.add("ryba");
-        wordsChoice.setPromptText("Choose word            ");
+        wordsChoice.setPromptText("Choose word");
         wordsChoice.getItems().addAll(words);
         GridPane.setConstraints(wordsChoice, 2, 1);
         // Listen for selection changes
@@ -101,26 +110,40 @@ public class GuiClient extends Application {
         portField.setPromptText("port no.");
         GridPane.setConstraints(portField, 2, 2);
 
+        // Port range label
+        Label portRangeLabel = new Label("(1024-65535)");
+        GridPane.setConstraints(portRangeLabel, 0, 3);
+
 
         // Send button
-        Button sendRequest = new Button("Send");
+        Button sendRequest = new Button("Submit");
         GridPane.setConstraints(sendRequest, 4, 1);
         sendRequest.setOnAction(evnt -> {
 
             langShort = getLangShort();
             wordToTranslate = getWordToTranslate().toLowerCase();
             try {
-                portInput = Integer.parseInt(portField.getText());
-                portField.setText("");
+                if (!((Integer.parseInt(portField.getText()) < 1024 || (Integer.parseInt(portField.getText())) > 65535))) {
+                    portInput = Integer.parseInt(portField.getText());
+                    portField.setText("");
+                }
+                else
+                    System.out.println("You have input wrong value! Try again");
             } catch (Exception exc) {
-                System.err.println("Port number has to be of int type. Try again!");
+                System.err.println("Port number has to be of int type in range 1024 - 65535. Try again!");
             }
             System.out.println(langShort + ", " + wordToTranslate + ", " + portInput);
 
-            new GuiClientService(wordToTranslate, portInput, langShort);
 
+            new Thread(() -> {
+                try {
+                    new GuiClientService(wordToTranslate, portInput, langShort);
+                    display.setText(GuiClientService.response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         });
-
 
 
         // Close window button
@@ -128,24 +151,14 @@ public class GuiClient extends Application {
         GridPane.setConstraints(closeWindow, 5, 1);
         closeWindow.setOnAction(evnt -> window.close());
 
-        topPanel.getChildren().addAll(langShortcutLabel, langChoiceBox, wordLabel, wordsChoice, portLabel, portField, sendRequest, closeWindow);
+        topPanel.getChildren().addAll(langShortcutLabel, langChoiceBox, wordLabel, wordsChoice, portLabel, portField, portRangeLabel, sendRequest, closeWindow);
 
-
-
-        VBox disp = new VBox();
-        Label dispLab = new Label("TRANSLATION");
-        dispLab.setFont(new Font("Arial", 16));
-        dispLab.setPadding(new Insets(1,200,1,210));
-        TextArea display = new TextArea();
-        display.setPadding(new Insets(3,3,3,3));
-        display.setEditable(false);
-        disp.getChildren().addAll(dispLab, display);
 
         BorderPane mainLayout = new BorderPane();
         mainLayout.setTop(topPanel);
         mainLayout.setCenter(disp);
 
-        Scene scene = new Scene(mainLayout, 520, 250);
+        Scene scene = new Scene(mainLayout, 540, 250);
         window.setScene(scene);
         window.show();
     }

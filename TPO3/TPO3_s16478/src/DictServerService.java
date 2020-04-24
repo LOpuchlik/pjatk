@@ -1,21 +1,19 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 public class DictServerService extends Thread {
-    Socket socket;
-    BufferedReader input;
-    Map<String, Integer> dicts = new TreeMap<>();
-    private Map<String, String> requestedDictionary = new HashMap();
+    private Socket socket;
+    private BufferedReader input;
+    private PrintWriter output;
+    private Map<String, String> requestedDictionary = new HashMap<>();
+    private String address;
 
-    String wordToTranslate;
-    static String languageShortcut;
-    int targetPort;
+    private String wordToTranslate;
+    private int targetPort;
+
 
     public DictServerService(Socket socket) {
         this.socket = socket;
@@ -29,46 +27,67 @@ public class DictServerService extends Thread {
             while ((line = input.readLine()) != null) {
                 String command = line.split(",")[0];
                 //check
-                System.out.println(command);
+                //System.out.println("Tu dochodzi 1: " +command);
                 if (command.equals("TranslationRequest")) {
                     wordToTranslate = line.split(",")[1];
-                    languageShortcut = line.split(",")[2];
+                    address = line.split(",")[2];
                     targetPort = Integer.parseInt(line.split(",")[3]);
-                    System.out.println(line.split(",")[1] + line.split(",")[2] + Integer.parseInt(line.split(",")[3]));
+
+                    String fileName = DictServer.getL();
+                    prepareDictionary(fileName);
+
+
+                /*    System.out.println("--------------------------------------\nPrepared dictionary");
+                    // metoda wczytująca słownik - jest OK
+                    requestedDictionary.entrySet().forEach(entry->{
+                        System.out.println(entry.getKey() + ", " + entry.getValue());
+                    });*/
+
+
+                    // metoda tłumacząca - jest OK
+                    //translated = getTranslation(); // to trzeba wyslac do klienta
+                    //System.out.println("Translated: " + translated);
+                    send();
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        makeDictionary();
-
-        String translated = getTranslation(wordToTranslate);
-        System.out.println("Translated: " + translated);
     }
 
 
-    void makeDictionary () {
-        String fileName = DictServerService.languageShortcut;
-        // Initial content of the dictionary
-        // is read from the file - ES, EN or DE
-        // storing lines of the form: word,translation
+    private void prepareDictionary (String filename) {
+        System.out.println("Filename: " + filename);
+        System.out.println();
         try {
             BufferedReader br = new BufferedReader(
-                    new FileReader(fileName));
+                    new FileReader(filename));
             String line;
             while ((line = br.readLine()) != null) {
-                String[] translation = line.split(",");
-                requestedDictionary.put(translation[0], translation[1]);
+                requestedDictionary.put(line.split(",")[0], line.split(",")[1]);
             }
-        } catch (Exception exc) {
-            exc.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             System.exit(1);
         }
     }
 
-    public String getTranslation (String wordToTranslate) {
-        return wordToTranslate + " : " + requestedDictionary.get(wordToTranslate);
+    private String getTranslation () {
+        return "Response,"+wordToTranslate + " --> " + requestedDictionary.get(wordToTranslate);
     }
 
+    //zaimplementować metodę send do wysyłania odpowiedzi do klienta
+    private void send() {
+        new Thread(() -> {
+            try {
+                socket = new Socket(address, targetPort);
+                output = new PrintWriter(socket.getOutputStream(), true);
+                output.println(getTranslation());
+                output.close();
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
 }
