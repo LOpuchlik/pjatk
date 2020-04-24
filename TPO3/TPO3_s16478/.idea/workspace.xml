@@ -55,11 +55,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GuiClient-1">
+  <component name="RunManager" selected="Application.ESDictServer">
     <configuration name="DEDictServer" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="DictServer" />
       <module name="TPO3_s16478" />
-      <option name="PROGRAM_PARAMETERS" value="DE 9997" />
+      <option name="PROGRAM_PARAMETERS" value="DE 1025" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -67,7 +67,7 @@
     <configuration name="ENDictServer" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="DictServer" />
       <module name="TPO3_s16478" />
-      <option name="PROGRAM_PARAMETERS" value="EN 9999" />
+      <option name="PROGRAM_PARAMETERS" value="EN 1024" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -75,7 +75,7 @@
     <configuration name="ESDictServer" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="DictServer" />
       <module name="TPO3_s16478" />
-      <option name="PROGRAM_PARAMETERS" value="ES 9998" />
+      <option name="PROGRAM_PARAMETERS" value="ES 1026" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,7 +161,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DictServerService.java</url>
-          <line>92</line>
+          <line>90</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

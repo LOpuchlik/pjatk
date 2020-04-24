@@ -47,7 +47,7 @@ public class DictServerService extends Thread {
                     // metoda tłumacząca - jest OK
                     //translated = getTranslation(); // to trzeba wyslac do klienta
                     //System.out.println("Translated: " + translated);
-                    send();
+                    sendResponseToClient();
                 }
             }
         } catch (IOException e) {
@@ -60,12 +60,10 @@ public class DictServerService extends Thread {
         System.out.println("Filename: " + filename);
         System.out.println();
         try {
-            BufferedReader br = new BufferedReader(
-                    new FileReader(filename));
+            BufferedReader br = new BufferedReader(new FileReader(filename));
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null)
                 requestedDictionary.put(line.split(",")[0], line.split(",")[1]);
-            }
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
@@ -73,11 +71,11 @@ public class DictServerService extends Thread {
     }
 
     private String getTranslation () {
-        return "Response,"+wordToTranslate + " --> " + requestedDictionary.get(wordToTranslate);
+        return "Response,"+ requestedDictionary.get(wordToTranslate);
     }
 
     //zaimplementować metodę send do wysyłania odpowiedzi do klienta
-    private void send() {
+    private void sendResponseToClient() {
         new Thread(() -> {
             try {
                 socket = new Socket(address, targetPort);

@@ -17,9 +17,19 @@ public class GuiClient extends Application {
     private Stage window;
 
     // variables for passing to Client class and the unused.MainServer class
-    static String langShort;
-    static String wordToTranslate;
-    static int portInput;
+    private static String langShort;
+    private static String wordToTranslate;
+    private static int portInput;
+
+    public static int getPortInput() {
+        return portInput;
+    }
+
+    public static void setPortInput(int portInput) {
+        GuiClient.portInput = portInput;
+    }
+
+
 
     // getters and setters
     public String getLangShort() {
@@ -40,18 +50,26 @@ public class GuiClient extends Application {
 // ------------------------------------------------------------------------------------
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         window = primaryStage;
         window.setTitle("Dictionary prompt - TPO3");
 
+
         VBox disp = new VBox();
-        Label dispLab = new Label("TRANSLATION");
-        dispLab.setFont(new Font("Arial", 12));
-        dispLab.setPadding(new Insets(1,200,1,210));
+
+        Slider slider = new Slider(1028, 65535, 1);
+        slider.setPadding(new Insets(0, 0, 0, 15));
+        Label label = new Label("");
+        label.setPadding(new Insets(0, 0, 0, 15));
+        Label displayLabel = new Label(" TRANSLATION");
+        displayLabel.setFont(new Font("Arial", 12));
+        displayLabel.setPadding(new Insets(1,200,1,210));
         TextArea display = new TextArea();
+        display.setMaxWidth(540);
+        display.setMaxHeight(5);
         display.setPadding(new Insets(3,3,3,3));
         display.setEditable(false);
-        disp.getChildren().addAll(dispLab, display);
+        disp.getChildren().addAll(label, slider, displayLabel, display);
 
 
         GridPane topPanel = new GridPane();
@@ -73,7 +91,6 @@ public class GuiClient extends Application {
         langChoiceBox.getItems().addAll(langShorts);
 
         GridPane.setConstraints(langChoiceBox, 2, 0);
-        // Listen for selection changes
         langChoiceBox.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> setLangShort(newValue));
 
 
@@ -97,14 +114,15 @@ public class GuiClient extends Application {
         wordsChoice.setPromptText("Choose word");
         wordsChoice.getItems().addAll(words);
         GridPane.setConstraints(wordsChoice, 2, 1);
-        // Listen for selection changes
+
         wordsChoice.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> setWordToTranslate(newValue));
 
 
-        // Port label
+     /*   // Port label
         Label portLabel = new Label("Port no.:");
-        GridPane.setConstraints(portLabel, 0, 2);
+        GridPane.setConstraints(portLabel, 0, 2);*/
 
+/*
         // Port field
         TextField portField = new TextField();
         portField.setPromptText("port no.");
@@ -113,7 +131,15 @@ public class GuiClient extends Application {
         // Port range label
         Label portRangeLabel = new Label("(1024-65535)");
         GridPane.setConstraints(portRangeLabel, 0, 3);
-
+*/
+        setPortInput(1028);
+        label.setText("Port: "+ portInput);
+        // Adding Listener to value property.
+        slider.valueProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    label.setText("Port: " + (int) slider.getValue());
+                    setPortInput((int)slider.getValue());
+                });
 
         // Send button
         Button sendRequest = new Button("Submit");
@@ -122,17 +148,8 @@ public class GuiClient extends Application {
 
             langShort = getLangShort();
             wordToTranslate = getWordToTranslate().toLowerCase();
-            try {
-                if (!((Integer.parseInt(portField.getText()) < 1024 || (Integer.parseInt(portField.getText())) > 65535))) {
-                    portInput = Integer.parseInt(portField.getText());
-                    portField.setText("");
-                }
-                else
-                    System.out.println("You have input wrong value! Try again");
-            } catch (Exception exc) {
-                System.err.println("Port number has to be of int type in range 1024 - 65535. Try again!");
-            }
-            System.out.println(langShort + ", " + wordToTranslate + ", " + portInput);
+            portInput = getPortInput();
+            //System.out.println(langShort + ", " + wordToTranslate + ", " + portInput);
 
 
             new Thread(() -> {
@@ -151,14 +168,14 @@ public class GuiClient extends Application {
         GridPane.setConstraints(closeWindow, 5, 1);
         closeWindow.setOnAction(evnt -> window.close());
 
-        topPanel.getChildren().addAll(langShortcutLabel, langChoiceBox, wordLabel, wordsChoice, portLabel, portField, portRangeLabel, sendRequest, closeWindow);
+        topPanel.getChildren().addAll(langShortcutLabel, langChoiceBox, wordLabel, wordsChoice, sendRequest, closeWindow);
 
 
         BorderPane mainLayout = new BorderPane();
         mainLayout.setTop(topPanel);
         mainLayout.setCenter(disp);
 
-        Scene scene = new Scene(mainLayout, 540, 250);
+        Scene scene = new Scene(mainLayout, 540, 192);
         window.setScene(scene);
         window.show();
     }

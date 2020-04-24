@@ -21,7 +21,7 @@ public class DictServer {
         dictServerPort = port;
     }
 
-    void listen(){   // metoda listen w ogole nie startuje
+    void listen(){
         try {
             serverSocket = new ServerSocket(dictServerPort);
             System.out.println("Server is running and listening...");
@@ -29,8 +29,6 @@ public class DictServer {
                 new DictServerService(serverSocket.accept()).start();
                 System.out.println("Conection established");
                 System.out.println("Server port: "+serverSocket.getLocalPort());
-                //l = getKey(MainServerService.dict, serverSocket.getLocalPort());
-                System.out.println("l: " + l);
             }
         } catch (IOException e) {
             System.err.println(e);
@@ -58,33 +56,22 @@ public class DictServer {
         output.close();
     }
 
-    private void disconnect() throws IOException {
-        socket.close();
-    }
-
-
-    public static void setL(String l) {
+    private static void setL(String l) {
         DictServer.l = l;
     }
 
-    public static String getL() {
+    static String getL() {
         return l;
     }
 
     public static void main(String[] args){
-        System.out.println("Args[0]: " + args[0]);
-        System.out.println("Args[1]: " + args[1]);
         try {
             DictServer server = new DictServer(Integer.parseInt(args[1]));
-
             new Thread(server::listen).start();
-
             DictServer.setL(args[0]);
             server.introduce("localhost", MainServer.MAINSERVER_PORT);
             server.send("IntroduceYourself,"+ args[1] +"," + args[0]);
-
             server.closeDataExchange();
-            server.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }

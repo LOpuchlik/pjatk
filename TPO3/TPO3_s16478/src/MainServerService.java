@@ -26,10 +26,7 @@ public class MainServerService extends  Thread{
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String line;
             while((line = input.readLine()) != null) {
-                //check
-                //System.out.println(line);
                 String command = line.split(",")[0];
-
                 switch (command){
                     case "IntroduceYourself":
                         dict.put(line.split(",")[2],Integer.parseInt(line.split(",")[1]));   // path[2] to jezyk a path[1] to numer port
@@ -38,45 +35,37 @@ public class MainServerService extends  Thread{
                         languageShortcut = line.split(",")[3];
                         String wordToTranslate = line.split(",")[1];
                         String targetPort = line.split(",")[2];
-
-                        forwardToDictServer("localhost",  "TranslationRequest,"+wordToTranslate+","+"localhost,"+targetPort);
+                        String h = InetAddress.getLocalHost().toString().split("/")[1];
+                        forwardToDictServer("TranslationRequest,"+wordToTranslate+","+h+","+targetPort);
+                        //System.out.println("TranslationRequest,"+wordToTranslate+","+h+","+targetPort);
                     break;
                     default:
                         System.out.println("No such command to perform!");
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
-            e.getMessage();
-            e.getCause();
+            System.err.println(e);
         }
     }
 
-    private void forwardToDictServer(String host, String info) throws IOException {
+    private void forwardToDictServer(String info) {
         new Thread(() -> {
-
             try {
-                socket = new Socket(host, dict.get(languageShortcut));
+                socket = new Socket("localhost", dict.get(languageShortcut));
+                System.out.println("Forwarded to port: " + dict.get(languageShortcut));
                 output = new PrintWriter(socket.getOutputStream(), true);
                 output.println(info);
                 closeDataExchange();
-                disconnect();
+                //socket.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("This: "+e);
             }
 
         }).start();
     }
 
-
     private void closeDataExchange() throws IOException {
         input.close();
         output.close();
     }
-
-    private void disconnect() throws IOException {
-        socket.close();
-    }
-
-
 }

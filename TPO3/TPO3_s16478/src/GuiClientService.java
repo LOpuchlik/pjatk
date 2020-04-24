@@ -9,12 +9,21 @@ public class GuiClientService {
     private BufferedReader input;
     static String response;
 
+
     public GuiClientService(String wordToTranslate, int port, String languageShortcut) throws IOException {
         sendClientInfoToMainServer("TranslationRequest," + wordToTranslate + "," + port + "," + languageShortcut, MainServer.MAINSERVER_PORT, "localhost");
 
         ServerSocket server = new ServerSocket(port);
         socket = server.accept();
         receiveTranslationFromDictServer();
+
+        try{
+            socket.close();
+            server.close();
+        }
+        catch(NullPointerException e){
+            System.out.println("No sockets to close!");
+        }
     }
 
 
@@ -23,7 +32,23 @@ public class GuiClientService {
         exchangeData();
         output.println(info);
         closeDataExchage();
-        closeConnection();
+        socket.close();
+    }
+
+    private void receiveTranslationFromDictServer() throws IOException {
+        input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String line;
+        while ((line = input.readLine()) != null) {
+            String command = line.split(",")[0];
+            if (command.equals("Response")){
+                response = line.split(",")[1];
+            }
+        }
+        try {
+            input.close();
+        } catch (NullPointerException e){
+            System.err.println(e);
+        }
     }
 
     private void exchangeData() throws IOException {
@@ -34,21 +59,5 @@ public class GuiClientService {
     private void closeDataExchage() throws IOException {
         input.close();
         output.close();
-    }
-
-    private void closeConnection() throws IOException {
-        socket.close();
-    }
-
-    private void receiveTranslationFromDictServer() throws IOException {
-        input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        String line;
-        while ((line = input.readLine()) != null) {
-            System.out.println("Line: " + line);
-            String command = line.split(",")[0];
-            if (command.equals("Response")){
-                response = line.split(",")[1];
-            }
-        }
     }
 }
