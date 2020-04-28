@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8f3675c-144a-4ee7-ada9-4d66b5807d91" name="Default Changelist" comment="" />
+    <list default="true" id="ff4252a7-4645-4a7a-879f-241859e9a60f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,29 +11,14 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
-  <component name="ProjectId" id="1aWxjMsOk0bat8ZWEEWBdtVOEGY" />
+  <component name="ProjectId" id="1bA9mX0qmp2xo2xFPG1nTi4A92A" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ftpeer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/zad1" />
-      <recent name="$PROJECT_DIR$/src/zad1/servers" />
-      <recent name="$PROJECT_DIR$/src/zad1/clients" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -47,36 +32,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.Client" />
-      <module name="TPO3_OL_S16478" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="zad1.gui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.Client" />
-      <module name="TPO3_OL_S16478" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="zad1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DictServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.GuiClient">
+    <configuration name="DictServer DE" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="zad1.DictServer" />
       <module name="TPO3_OL_S16478" />
+      <option name="PROGRAM_PARAMETERS" value="DE 1026" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="zad1.*" />
@@ -87,8 +47,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.Main" />
+    <configuration name="DictServer EN" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="zad1.DictServer" />
+      <module name="TPO3_OL_S16478" />
+      <option name="PROGRAM_PARAMETERS" value="EN 1024" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="zad1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DictServer ES" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="zad1.DictServer" />
+      <module name="TPO3_OL_S16478" />
+      <option name="PROGRAM_PARAMETERS" value="ES 1025" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="zad1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuiClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="zad1.GuiClient" />
       <module name="TPO3_OL_S16478" />
       <extension name="coverage">
         <pattern>
@@ -100,8 +88,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainServer (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.MainServer" />
+    <configuration name="GuiClient_2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="zad1.GuiClient" />
       <module name="TPO3_OL_S16478" />
       <extension name="coverage">
         <pattern>
@@ -114,11 +102,11 @@
       </method>
     </configuration>
     <configuration name="MainServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="zad1.servers.MainServer" />
+      <option name="MAIN_CLASS_NAME" value="zad1.MainServer" />
       <module name="TPO3_OL_S16478" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="zad1.servers.*" />
+          <option name="PATTERN" value="zad1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,11 +114,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.MainServer" />
+      <item itemvalue="Application.DictServer EN" />
+      <item itemvalue="Application.DictServer ES" />
+      <item itemvalue="Application.DictServer DE" />
+      <item itemvalue="Application.GuiClient_2" />
+      <item itemvalue="Application.GuiClient" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainServer (1)" />
-        <item itemvalue="Application.DictServer" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GuiClient" />
         <item itemvalue="Application.MainServer" />
       </list>
     </recent_temporary>
@@ -140,11 +134,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c8f3675c-144a-4ee7-ada9-4d66b5807d91" name="Default Changelist" comment="" />
-      <created>1586865284930</created>
+      <changelist id="ff4252a7-4645-4a7a-879f-241859e9a60f" name="Default Changelist" comment="" />
+      <created>1588064190112</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586865284930</updated>
+      <updated>1588064190112</updated>
     </task>
     <servers />
   </component>
