@@ -1,9 +1,7 @@
 package kompozycja;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 public class Project {
 
@@ -12,15 +10,15 @@ public class Project {
     private static Set<Task> allTasks = new HashSet<>();
     private static Set<Project> allProjects = new HashSet<>();
 
-    public Project (String projectName) {
+    Project(String projectName) {
         this.projectName = projectName;
-        //dodawanie projestu do ekstensji projektow
+        //dodawanie projektu do ekstensji projektow
         allProjects.add(this);
     }
 
 
     // dodanie czesc ze sprawdzeniem czy dana czesc nie jest juz polaczona z jakas caloscia
-    public void addTask (Task task) throws Exception {
+    void addTask(Task task) throws Exception {
         if (!tasks.contains(task)) {
             // sprawdzenie czy ta czesc njuz dodana do jakiejs calosci
             if(allTasks.contains(task)) {
@@ -32,11 +30,18 @@ public class Project {
         }
     }
 
-
-    public void deleteProject (Project project) {
-        allProjects.remove(project);
-        allTasks.removeAll(tasks);
+    private List<Task> getTasks() {
+        return tasks;
     }
+
+/*    static void deleteProject(Project project) {
+        Iterator itr = project.getTasks().iterator();
+        while (itr.hasNext()) {
+            Task t = (Task)itr.next();
+            itr.remove();
+        }
+        allProjects.remove(project); // tego nie umiem usunac :(
+    }*/
 
     @Override
     public String toString() {

@@ -1,0 +1,25 @@
+ ------------------                -----------------
+|                  | *          * |                 |
+|        Set       |--------------|     Exercise    |
+|   numberOfSets   |      |       |       name      |
+|                  |      |       |   difficulty    |
+ ------------------       |        -----------------
+                          |
+                ----------------------
+               |     Set_Exercise     |
+               |     numberOfReps     |
+               |                      |
+                ----------------------
+
+ W celu implementacji trzeba rozbic ten uklad do dwoch ascocjacji zwyklych 1 do *.
+
+  ------------------                -----------------                -----------------
+ |                  | 1          * |                 | *          1 |                 |
+ |       Set        |--------------|   Set_Exercise  |--------------|     Exercise    |
+ |                  |              |                 |              |                 |
+  ------------------                -----------------                -----------------
+
+
+ Set to seria cwiczen. Posiada on atrybut typu int - ile serii danego cwiczenia w treningu zostanie wykonanych.
+ Exercise to wykonywane cwiczenie. Posiada atrynut typu String - nazwe i atrybut typu String poziom trudnosci.
+ Klasa asocjacyjna pozwala wprowadzic informacje ile powtorzen danego cwiczenia robi sie w jednej serii.

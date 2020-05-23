@@ -1,6 +1,6 @@
 package kompozycja;
 
-public class Task {
+class Task {
 
     private String taskName;
     private Project whole;
@@ -14,7 +14,7 @@ public class Task {
     public static Task createTask (Project whole, String taskName) throws Exception {
         // sprawdzanie czy calosc istnieje
         if (whole == null) {
-            throw new Exception("Calosc nie istnieje, nie mozna stworzyc do niej czesci");
+            throw new Exception("The whole (project) does not exist, therefore you cannot create a part for it");
         }
         //stworzenie nowej czesci
         Task task = new Task (whole, taskName);
@@ -23,17 +23,8 @@ public class Task {
         return task;
     }
 
-/*    // do usuwania taskow dla danego projektu
-    public static void removeTask (Project whole, String taskName) {
-
-    }*/
-
-
-    public String getTaskName() {
+    // getter and setter
+    String getTaskName() {
         return taskName;
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
     }
 }

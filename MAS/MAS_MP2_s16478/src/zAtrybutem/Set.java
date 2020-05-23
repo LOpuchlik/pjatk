@@ -4,43 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Set {
-
-
-    private int numberOfSetsInATraning;
+    private int numberOfSetsInWorkout;
     private List<Set_Exercise> setExercises = new ArrayList<>();
 
-    public Set(int numberOfSetsInATraning) {
-        this.numberOfSetsInATraning = numberOfSetsInATraning;
+    public Set(int numberOfSetsInWorkout) {
+        this.numberOfSetsInWorkout = numberOfSetsInWorkout;
     }
 
-    public void addSetExercise (Set_Exercise newSetExercise) {
-        if(!setExercises.contains(newSetExercise)){
+    void addSetExercise(Set_Exercise newSetExercise) {
+        if (!setExercises.contains(newSetExercise)) {
             setExercises.add(newSetExercise);
-
-            newSetExercise.setSet(this);
         }
     }
 
     @Override
     public String toString() {
-        String info =
-                "\nname of exercise: " + setExercises.get(0);
-                        //+ "numberOfSetsInATraning: " + numberOfSetsInATraning + "\nnumber of exercise repetitions: ";
-
-        // Add info about exercises
-      /*  for (Set_Exercise se : setExercises) {
-            info += se.getNumberOfReps() + "\n";
-        }*/
+        String info =  "";
+        for (Set_Exercise se: setExercises) {
+            info += se.toString() + " \n";
+        }
         return info;
-
-
     }
 
-    public int getNumberOfSetsInATraning() {
-        return numberOfSetsInATraning;
+    void removeSetExercise(Set_Exercise setExerciseForRemoval) {
+        if (this.setExercises.contains(setExerciseForRemoval)) {
+            this.setExercises.remove(setExerciseForRemoval);
+            setExerciseForRemoval.removeAssociation();
+        }
     }
 
-    public void setNumberOfSetsInATraning(int numberOfSetsInATraning) {
-        this.numberOfSetsInATraning = numberOfSetsInATraning;
+    //getter
+    int getNumberOfSetsInWorkout() {
+        return numberOfSetsInWorkout;
     }
 }
