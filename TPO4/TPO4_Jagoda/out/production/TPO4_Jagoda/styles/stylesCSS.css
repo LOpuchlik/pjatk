@@ -1,0 +1,28 @@
+.root {
+    -fx-padding: 10;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+    -fx-border-color: #DB5461 ;
+    -fx-background-color: #F4CBC6;
+}
+
+.combo-box {
+    -fx-background-color: #F4AFAB;
+    -fx-border-color: #DB5461;
+}
+
+.button {
+    -fx-background-color: #DAB6C4;
+    -fx-border-color: #DB5461;
+    -fx-border-width: 2;
+    -fx-border-radius: 2;
+}
+
+
+.label {
+    -fx-border-color: #DB5461;
+    -fx-padding: 2;
+    -fx-border-width: 1;
+}
+
+
