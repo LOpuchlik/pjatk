@@ -12,12 +12,15 @@ import java.util.Set;
 public class Admin {
 
 
-    private AdminGuiHandler guiController;
+    private AGui guiService;
     private SocketChannel client;
     private int port = 1025;
 
-    public Admin(AdminGuiHandler adminGuiHandler) {
+  /*  public Admin(AdminGuiHandler adminGuiHandler) {
         this.guiController = adminGuiHandler;
+    }*/
+    public Admin(AGui adminGuiService) {
+        this.guiService = adminGuiService;
     }
 
     public void startClient() throws IOException {
@@ -104,7 +107,7 @@ public class Admin {
 
     private void handleReceivedMessage(String messageFromServer) {
         if (messageFromServer.startsWith("TOPICS")) {
-            this.guiController.handleRefreshedTopics(messageFromServer);
+            this.guiService.organizeTopics(messageFromServer);
         }
     }
 }

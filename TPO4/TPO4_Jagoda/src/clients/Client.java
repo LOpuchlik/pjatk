@@ -12,12 +12,12 @@ import java.util.Set;
 
 public class Client {
 
-    private ClientGuiHandler guiController;
+    private CGui guiService;
     private SocketChannel client;
     private int port = 1025;
 
-    public Client(ClientGuiHandler clientGuiHandler) {
-        this.guiController = clientGuiHandler;
+    public Client(CGui clientGuiHandler) {
+        this.guiService = clientGuiHandler;
     }
 
     public void startClient() throws IOException {
@@ -105,9 +105,9 @@ public class Client {
 
     private void handleReceivedMessage(String messageFromServer) {
         if (messageFromServer.startsWith("NEWS:")) {
-            this.guiController.displayNews(messageFromServer);
+            this.guiService.displayNews(messageFromServer);
         } else if (messageFromServer.startsWith("TOPICS")) {
-            this.guiController.displayListOfTopics(messageFromServer);
+            this.guiService.displayListOfTopics(messageFromServer);
         }
     }
 }

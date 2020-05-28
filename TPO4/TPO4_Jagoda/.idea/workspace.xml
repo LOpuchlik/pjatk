@@ -11,13 +11,26 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1cVfXq8su3KRxbQBMsVXCCN3ZRN" />
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TPO4_AM_S17168" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/trash" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -31,9 +44,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.StartClientGui_2">
-    <configuration name="StartAdminGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="admin.StartAdminGui" />
+  <component name="RunManager" selected="Application.CGui_2">
+    <configuration name="AGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="admin.AGui" />
       <module name="TPO4_Jagoda" />
       <extension name="coverage">
         <pattern>
@@ -45,8 +58,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StartClientGui_1" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="clients.StartClientGui" />
+    <configuration name="CGui_1" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="clients.CGui" />
       <module name="TPO4_Jagoda" />
       <extension name="coverage">
         <pattern>
@@ -58,8 +71,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StartClientGui_2" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="clients.StartClientGui" />
+    <configuration name="CGui_2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="clients.CGui" />
       <module name="TPO4_Jagoda" />
       <extension name="coverage">
         <pattern>
@@ -85,15 +98,15 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.StartAdminGui" />
-      <item itemvalue="Application.StartClientGui_1" />
-      <item itemvalue="Application.StartClientGui_2" />
+      <item itemvalue="Application.CGui_2" />
       <item itemvalue="Application.StartMiddleServer" />
+      <item itemvalue="Application.AGui" />
+      <item itemvalue="Application.CGui_1" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StartClientGui_1" />
-        <item itemvalue="Application.StartAdminGui" />
+        <item itemvalue="Application.CGui_1" />
+        <item itemvalue="Application.AGui" />
         <item itemvalue="Application.StartMiddleServer" />
       </list>
     </recent_temporary>
