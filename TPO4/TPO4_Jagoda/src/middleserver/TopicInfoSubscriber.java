@@ -2,7 +2,7 @@ package middleserver;
 
 import java.nio.channels.SelectionKey;
 
-public class TopicInfoSubscriber {
+class TopicInfoSubscriber {
     String identification;
     SelectionKey selectionKey;
     TopicInfoSubscriber(String identification, SelectionKey selectionKey) {

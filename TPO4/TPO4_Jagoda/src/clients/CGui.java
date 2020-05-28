@@ -109,12 +109,12 @@ public class CGui extends Application {
 
 
 // styling components
-        topicsRefreshButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-        subscribeButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-        unsubscribeButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        topicsRefreshButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white;");
+        subscribeButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white;");
+        unsubscribeButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white;");
 
-        logLabel.setStyle("-fx-text-fill: darkslateblue;");
-        logText.setStyle("-fx-text-fill: magenta;");
+        logLabel.setStyle("-fx-text-fill: #064a9c;");
+        logText.setStyle("-fx-text-fill: #064a9c;");
 
 
 
@@ -164,7 +164,6 @@ public class CGui extends Application {
 
 
 
-
     private void start(Client client) {
         Runnable runnable = () -> {
             try {
@@ -173,40 +172,12 @@ public class CGui extends Application {
                 e.printStackTrace();
             }
         };
-        Thread clientServerThread = new Thread(runnable);
-        clientServerThread.start();
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
 
-
-    public void subscribe(ActionEvent actionEvent) throws IOException {
-        String topic = this.subscribeField.getText();
-        updateLog("Subscribed to: " + topic);
-        this.client.subscribeToTopic(topic);
-        this.subscribeField.setText("");
-    }
-
-
-    public void unsubscribe(ActionEvent actionEvent) throws IOException {
-        String topic = this.unsubscribeField.getText();
-        updateLog("Unsubscribed from: " + topic);
-        this.client.unsubscribeFromTopic(topic);
-        this.unsubscribeField.setText("");
-    }
-
-    public void refreshTopics(ActionEvent actionEvent) throws IOException {
-        updateLog("Refreshed");
-        this.client.refreshTopics();
-    }
-
-
-
-
-
-
-
-
-
+// other methods
     void displayListOfTopics(String message) {
         this.topicsArea.setText("");
         String[] topics = message.split(" ");

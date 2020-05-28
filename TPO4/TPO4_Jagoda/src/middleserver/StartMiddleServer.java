@@ -21,9 +21,9 @@ import java.util.Set;
 public class StartMiddleServer {
 
     private static int port = 1025;
-    private static Map<String, List<ClientSubscriber>> topics_listsOfSubscribers = new HashMap<>();
-    private static Map<String, String> newsOnTopic = new HashMap<>();
-    private static Set<String> allRegisteredTopics = new HashSet<>();
+    private static Map<String, Set<ClientSubscriber>> topics_listsOfSubscribers = new HashMap<>();
+    private static Map<String, String> topic_new = new HashMap<>();
+    private static Set<String> allTopics = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
         startMiddleServer();
@@ -74,11 +74,11 @@ public class StartMiddleServer {
                         String topic = subWithTopic[1];
                         ClientSubscriber sub = new ClientSubscriber(topic, key);
 
-                        List<ClientSubscriber> subscribers;
+                        Set<ClientSubscriber> subscribers;
                         if (topics_listsOfSubscribers.containsKey(topic)) {
                             subscribers = topics_listsOfSubscribers.get(topic);
                         } else {
-                            subscribers = new LinkedList<>();
+                            subscribers = new HashSet<>();
                         }
                         subscribers.add(sub);
                         topics_listsOfSubscribers.put(topic, subscribers);
@@ -142,7 +142,7 @@ public class StartMiddleServer {
             log("No key for: " + topic);
             return;
         }
-        List<ClientSubscriber> subscribers = topics_listsOfSubscribers.get(topic);
+        Set<ClientSubscriber> subscribers = topics_listsOfSubscribers.get(topic);
         ClientSubscriber subscriberToRemove = null;
         for (ClientSubscriber s: subscribers) {
             if (s.selectionKey.equals(ky)) {
@@ -151,16 +151,15 @@ public class StartMiddleServer {
             }
         }
         if (subscriberToRemove == null) {
-            log("****** client never subscribed to topic " + topic);
+            System.out.println("Client is not subscribed to the topic, thus cannot be removed");
         } else {
-            log("***** removing client from subscribers ******");
             subscribers.remove(subscriberToRemove);
             topics_listsOfSubscribers.put(topic, subscribers);
         }
     }
 
     private static void deleteExistingTopic(String output) {
-        allRegisteredTopics.remove(output.substring(4));
+        allTopics.remove(output.substring(4));
     }
 
     private static void deleteSubscribersOfTopic(String output) {
@@ -168,11 +167,11 @@ public class StartMiddleServer {
     }
 
     private static void deleteNewsOnTopic(String output) {
-        newsOnTopic.remove(output.substring(4));
+        topic_new.remove(output.substring(4));
     }
 
     private static void registerNewTopic(String output) {
-        allRegisteredTopics.add(output.substring(4));
+        allTopics.add(output.substring(4));
     }
 
     private static String readMessage(SocketChannel channel) throws IOException {
@@ -191,7 +190,7 @@ public class StartMiddleServer {
 
             String topic = ((ClientSubscriber) ky.attachment()).topic;
             System.out.println("Sending news on topic: " + topic);
-            msg = "NEWS:" + topic + ":" + newsOnTopic.get(topic);
+            msg = "NEWS:" + topic + ":" + topic_new.get(topic);
 
         } else if (ky.attachment() instanceof TopicInfoSubscriber) {
 
@@ -208,7 +207,7 @@ public class StartMiddleServer {
 
     private static String getPossibleNewsTopics() {
         StringBuilder topics = new StringBuilder();
-        for (Iterator<String> iterator = allRegisteredTopics.iterator(); iterator.hasNext(); ) {
+        for (Iterator<String> iterator = allTopics.iterator(); iterator.hasNext(); ) {
             String it = iterator.next();
             topics.append(it).append(" ");
         }
@@ -233,9 +232,9 @@ public class StartMiddleServer {
 
         // update current news for topic
         System.out.println("Updating current news on topic " + topic);
-        newsOnTopic.put(topic, news);
+        topic_new.put(topic, news);
 
-        List<ClientSubscriber> subscribers = topics_listsOfSubscribers.get(topic);
+        Set<ClientSubscriber> subscribers = topics_listsOfSubscribers.get(topic);
         for (ClientSubscriber clientSubscriber : subscribers) {
             SocketChannel cl = (SocketChannel) clientSubscriber.selectionKey.channel();
             cl.register(selector, SelectionKey.OP_WRITE, clientSubscriber);

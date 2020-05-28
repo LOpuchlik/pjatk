@@ -44,7 +44,8 @@ public class AGui extends Application {
         this.admin = new Admin(this);
         start(this.admin);
 
-        chooseTopicLabel = new Label("Choose topic");
+        chooseTopicLabel = new Label("Choose a topic on which you want to add news");
+        chooseTopicLabel.setPadding(new Insets(20,0,0,0));
         this.chooseTopicComboBox = new ComboBox<>();
         this.chooseTopicComboBox.getItems().clear();
         this.chooseTopicComboBox.setValue("Choose topic");
@@ -71,6 +72,8 @@ public class AGui extends Application {
 
 //Remove existing topic
         removeTopicButton = new Button("Remove topic");
+        removeTopicButton.setMinWidth(100);
+        removeTopicButton.setPrefWidth(100);
         removeTopicField = new TextField();
         removeTopicField.setMaxWidth(COMPONENT_WIDTH);
 
@@ -78,12 +81,11 @@ public class AGui extends Application {
         logLabel = new Label();
 
 
-
 //Creating a Grid Pane
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.setMinSize(520, 450);
-        gridPane.setPrefSize(520, 450);
+        gridPane.setMinSize(500, 460);
+        gridPane.setPrefSize(520, 460);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setVgap(5);
         gridPane.setHgap(5);
@@ -91,30 +93,42 @@ public class AGui extends Application {
 
 
 //Arranging all the nodes in the grid
-        gridPane.add(chooseTopicLabel, 0, 0);
-        gridPane.add(chooseTopicComboBox, 0, 1);
+
+        gridPane.add(addTopicField, 0, 0);
+        gridPane.add(addNewTopicButton, 1, 0);
+        gridPane.add(removeTopicField,0, 1);
+        gridPane.add(removeTopicButton,1, 1);
+
         gridPane.add(topicsLabel,0, 2);
         gridPane.add(topicsArea, 0, 3);
         gridPane.add(refreshButton, 1, 3);
-        gridPane.add(typeNews, 0, 4);
-        gridPane.add(newsArea, 0, 5);
-        gridPane.add(sendNewsButton, 1, 5);
-        gridPane.add(addTopicField, 0, 6);
-        gridPane.add(addNewTopicButton, 1, 6);
-        gridPane.add(removeTopicField,0, 7);
-        gridPane.add(removeTopicButton,1, 7);
+
+
+        gridPane.add(chooseTopicLabel, 0, 4);
+        gridPane.add(chooseTopicComboBox, 0, 5);
+
+        gridPane.add(typeNews, 0, 6);
+        gridPane.add(newsArea, 0, 7);
+        gridPane.add(sendNewsButton, 1, 7);
+
+
         gridPane.add(logText,0, 8);
         gridPane.add(logLabel,0, 9);
 
 
-// styling components
-        addNewTopicButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-        removeTopicButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-        sendNewsButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-        refreshButton.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
 
-        logLabel.setStyle("-fx-text-fill: darkslateblue;");
-        logText.setStyle("-fx-text-fill: magenta;");
+
+
+// styling components
+        addNewTopicButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white; -fx-border-color: #0c72ed; -fx-border-width: 2;");
+        removeTopicButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white; -fx-border-color: #0c72ed; -fx-border-width: 2;");
+        sendNewsButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white; -fx-border-color: #0c72ed; -fx-border-width: 2;");
+        refreshButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white; -fx-border-color: #0c72ed; -fx-border-width: 2;");
+
+        logText.setStyle("-fx-text-fill: #064a9c;");
+        logLabel.setStyle("-fx-text-fill: #064a9c;");
+
+        chooseTopicComboBox.setStyle("-fx-background-color: #a7c9f2; -fx-border-color: #0c72ed; -fx-border-width: 2;");
 
 
 
@@ -175,14 +189,16 @@ public class AGui extends Application {
 
     private void start(Admin admin) {
         Runnable runnable = () -> {
+
             try {
                 admin.startClient();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         };
-        Thread clientServerThread = new Thread(runnable);
-        clientServerThread.start();
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
 
