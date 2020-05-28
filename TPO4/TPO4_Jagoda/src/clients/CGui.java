@@ -85,28 +85,22 @@ public class CGui extends Application {
 
 
 
-        //Arranging all the nodes in the grid
-        gridPane.add(topicsLabel, 0, 0);
-        gridPane.add(topicsArea, 0, 1);
-        gridPane.add(topicsRefreshButton,1, 1);
+// arranging all the nodes in the grid
+        gridPane.add(subscribeField, 0, 0);
+        gridPane.add(subscribeButton, 1, 0);
 
+        gridPane.add(unsubscribeField, 0, 1);
+        gridPane.add(unsubscribeButton, 1, 1);
 
-        gridPane.add(newsLabel, 0, 2);
-        gridPane.add(newsArea, 0, 3);
+        gridPane.add(topicsLabel, 0, 2);
+        gridPane.add(topicsArea, 0, 3);
+        gridPane.add(topicsRefreshButton,1, 3);
 
-
-        gridPane.add(subscribeField, 0, 4);
-        gridPane.add(subscribeButton, 1, 4);
-
-
-        gridPane.add(unsubscribeField, 0, 5);
-        gridPane.add(unsubscribeButton, 1, 5);
+        gridPane.add(newsLabel, 0, 4);
+        gridPane.add(newsArea, 0, 5);
 
         gridPane.add(logText, 0, 6);
         gridPane.add(logLabel,0, 7);
-
-
-
 
 // styling components
         topicsRefreshButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white;");
@@ -115,8 +109,6 @@ public class CGui extends Application {
 
         logLabel.setStyle("-fx-text-fill: #064a9c;");
         logText.setStyle("-fx-text-fill: #064a9c;");
-
-
 
 // actions on buttons -------- START ------------------------------------------------------
 
@@ -162,8 +154,6 @@ public class CGui extends Application {
         stage.show();
     }
 
-
-
     private void start(Client client) {
         Runnable runnable = () -> {
             try {
@@ -175,7 +165,6 @@ public class CGui extends Application {
         Thread thread = new Thread(runnable);
         thread.start();
     }
-
 
 // other methods
     void displayListOfTopics(String message) {
@@ -190,7 +179,7 @@ public class CGui extends Application {
         this.newsArea.appendText(message.substring(5) + "\n");
     }
 
-    public void updateLog(String msg) {
+    private void updateLog(String msg) {
         this.logLabel.setText(msg);
     }
 
