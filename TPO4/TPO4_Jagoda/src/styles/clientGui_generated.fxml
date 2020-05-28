@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minWidth="-Infinity" prefHeight="412.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clients.ClientGuiHandler">
+<AnchorPane minWidth="-Infinity" prefHeight="212.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clients.ClientGuiHandler">
     <stylesheets>
         <URL value="@stylesCSS.css" />
     </stylesheets>
@@ -16,7 +16,7 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="190.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
@@ -33,7 +33,7 @@
 
 
 
-                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="0">
+                <HBox prefHeight="20.0" prefWidth="200.0" GridPane.rowIndex="0">
                     <children>
                         <GridPane alignment="CENTER" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0">
                             <columnConstraints>
@@ -49,7 +49,7 @@
                                         <Label alignment="TOP_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="176.0" text="News:" wrapText="true" textAlignment="CENTER" />
                                     </children>
                                     <GridPane.margin>
-                                        <Insets bottom="15.0" left="15.0" right="15.0" top="50.0" />
+                                        <Insets bottom="15.0" left="15.0" right="15.0" top="20.0" />
                                     </GridPane.margin>
                                     <padding>
                                         <Insets left="10.0" right="15.0" />
@@ -65,7 +65,7 @@
                                         </Label>
                                     </children>
                                     <GridPane.margin>
-                                        <Insets bottom="15.0" right="15.0" top="65.0" />
+                                        <Insets bottom="15.0" right="15.0" top="35.0" />
                                     </GridPane.margin>
                                     <padding>
                                         <Insets bottom="15.0" left="25.0" right="15.0" />
@@ -82,7 +82,7 @@
 
 
 
-                <HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="263.0" spacing="10.0" GridPane.rowIndex="1">
+                <HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="145.0" prefWidth="263.0" spacing="10.0" GridPane.rowIndex="1">
                     <children>
                         <GridPane alignment="CENTER" minWidth="-Infinity" prefWidth="600.0">
                             <columnConstraints>
@@ -95,7 +95,7 @@
                             <children>
 
 
-                                <HBox minWidth="-Infinity" spacing="30.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <HBox minWidth="-Infinity" spacing="100.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                     <GridPane.margin>
                                         <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
                                     </GridPane.margin>
@@ -103,7 +103,7 @@
                                         <Insets left="10.0" right="10.0" />
                                     </padding>
                                     <children>
-                                        <TextArea fx:id="topicsTextArea" editable="false" minHeight="50.0" minWidth="150" prefHeight="50.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                        <TextArea fx:id="topicsArea" editable="false" minHeight="50.0" minWidth="150" prefHeight="50.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
                                                 <Insets />
                                             </HBox.margin>
@@ -115,7 +115,7 @@
 
                                 <HBox minWidth="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                     <children>
-                                        <TextArea fx:id="newsTxtArea" wrapText="true" editable="false" minHeight="50.0" minWidth="150.0" prefHeight="50.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                                        <TextArea fx:id="newsArea" wrapText="true" editable="false" minHeight="50.0" minWidth="150.0" prefHeight="50.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
                                                 <Insets />
                                             </HBox.margin>
@@ -139,11 +139,8 @@
 
             <HBox spacing="50.0" GridPane.rowIndex="2">
                 <children>
-                    <Button fx:id="refreshTopicsBttn" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Refresh list of topics" onAction="#refreshTopics"/>
-                    <Button fx:id="clearAllBttn" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="240" text="Reset" onAction="#clearAll">
-                        <HBox.margin>
-                            <Insets left="10.0" />
-                        </HBox.margin></Button>
+                    <Button fx:id="refreshButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Refresh list of topics" onAction="#refreshTopics"/>
+
                 </children>
                 <padding>
                     <Insets left="15.0" right="15.0" />
@@ -157,12 +154,11 @@
             <children>
                 <HBox minWidth="-Infinity" spacing="30.0" GridPane.rowIndex="3">
                     <children>
-                        <Label alignment="TOP_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Subscribe " />
-                        <TextField fx:id="registerTopicTxtField" minWidth="-Infinity" prefWidth="200.0" promptText="topic name" />
-                        <Button fx:id="subscribeBttn" minWidth="-Infinity" mnemonicParsing="false" onAction="#subscribe" prefWidth="150.0" text="Subscribe" />
+                        <TextField fx:id="subscribeField" minWidth="-Infinity" prefWidth="200.0" promptText="topic name" />
+                        <Button fx:id="subscribeButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#subscribe" prefWidth="150.0" text="Subscribe" />
                     </children>
                     <GridPane.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="55.0" />
+                        <Insets bottom="15.0" left="100.0" right="15.0" top="35.0" />
                     </GridPane.margin>
                     <padding>
                         <Insets left="10.0" right="10.0" />
@@ -174,12 +170,11 @@
 
                 <HBox minWidth="-Infinity" spacing="30.0" GridPane.rowIndex="4">
                     <children>
-                        <Label alignment="TOP_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Unsubscribe " textAlignment="CENTER" />
-                        <TextField fx:id="removeTopicTxtField" minWidth="-Infinity" prefWidth="200.0" promptText="topic name" />
-                        <Button fx:id="unsubscribeBttn" minWidth="-Infinity" mnemonicParsing="false" onAction="#unsubscribe" prefWidth="150.0" text="Unsubscribe"/>
+                        <TextField fx:id="unsubscribeField" minWidth="-Infinity" prefWidth="200.0" promptText="topic name" />
+                        <Button fx:id="unsubscribeButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#unsubscribe" prefWidth="150.0" text="Unsubscribe"/>
                     </children>
                     <GridPane.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="40.0" />
+                        <Insets bottom="15.0" left="100.0" right="15.0" top="40.0" />
                     </GridPane.margin>
                     <padding>
                         <Insets left="10.0" right="10.0" />
@@ -191,10 +186,10 @@
 
 
 
-                <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="580.0" spacing="30.0" GridPane.rowIndex="5">
+                <HBox minWidth="-Infinity" prefHeight="100.0" prefWidth="596.0" spacing="30.0" GridPane.rowIndex="5">
                     <children>
                         <Label minWidth="-Infinity" text="Log: " />
-                        <Label fx:id="msgLabel"  minWidth="-Infinity" prefWidth="470.0" />
+                        <Label fx:id="logLabel"  minWidth="-Infinity" prefWidth="470.0" />
                     </children>
                     <padding>
                         <Insets left="15.0" right="10.0" />

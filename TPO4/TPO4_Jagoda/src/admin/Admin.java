@@ -28,7 +28,7 @@ public class Admin {
         SelectionKey selectionKey = this.client.register(clientSelector, SelectionKey.OP_READ);
 
         while (true) {
-            log("-  AdminGui "  + "is waiting for the select operation...");
+            log("Waiting for select choice");
             int availableChannels = clientSelector.select();
             if (availableChannels == 0)
                 continue;
@@ -39,17 +39,18 @@ public class Admin {
             while (iterator.hasNext()) {
                 SelectionKey key = iterator.next();
                 if (key.isAcceptable()) {
-
+                    log("a --> AcceptBLE");
                 } else if (key.isConnectable()) {
-
+                    log("a --> Connectable");
                 } else if (key.isReadable()) {
+                    log("A --> Readable");
                     SocketChannel serverChannel = (SocketChannel) key.channel();
                     String messageFromServer = readMessage(serverChannel);
-                    log("Msg from server: " + messageFromServer);
+                    log("Server to admin: " + messageFromServer);
                     handleReceivedMessage(messageFromServer);
                     serverChannel.register(clientSelector, SelectionKey.OP_READ);
                 } else if (key.isWritable()) {
-
+                    log("a --> Writable");
                 }
                 iterator.remove();
             }
@@ -71,7 +72,7 @@ public class Admin {
 
     void registerTopic(String topic) throws IOException {
         System.out.println("Registering new topic. Client:" + this.client);
-        String message = "*REG_" + topic;
+        String message = "REG:" + topic;
         log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
@@ -83,27 +84,26 @@ public class Admin {
 
     void deregisterTopic(String topic) throws IOException {
         System.out.println("Deleting topic. Client:" + this.client);
-        String message = "*DEL_" + topic;
+        String message = "DEL:" + topic;
         log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
     void publishNews(String topicWithNews) throws IOException {
         System.out.println("Publishing news to topic. Client:" + this.client);
-        String message = "*NEWS_" + topicWithNews;
+        String message = "NEWS:" + topicWithNews;
         log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
     public void refreshTopics() throws IOException {
-        System.out.println("Refreshing topics. Client:" + this.client);
-        String message = "*TOPICS";
-        log("Sending message " + message + " to client: " + client);
+        String message = "TOPICS";
+        //log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
     private void handleReceivedMessage(String messageFromServer) {
-        if (messageFromServer.startsWith("*TOPICS")) {
+        if (messageFromServer.startsWith("TOPICS")) {
             this.guiController.handleRefreshedTopics(messageFromServer);
         }
     }

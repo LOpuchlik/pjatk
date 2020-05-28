@@ -12,39 +12,27 @@ public class AdminGuiHandler {
     private Admin admin;
 
     @FXML
-    private TextField registerTopicTxtField;
+    private TextField addTopicField;
 
     @FXML
-    private Button registerTopicBttn;
+    private TextField removeTopicField;
 
     @FXML
-    private TextField removeTopicTxtField;
+    private ComboBox<String> chooseTopicComboBox;
 
     @FXML
-    private Button removeTopicBttn;
+    private TextArea newsArea;
 
     @FXML
-    private ComboBox<String> chooseTopicCmbBox;
+    private TextArea topicsArea;
 
     @FXML
-    private TextArea newsTxtArea;
-
-    @FXML
-    private TextArea topicsTextArea;
-
-    @FXML
-    private Button publishNewsBttn;
-
-    @FXML
-    private Button refreshBttn;
-
-    @FXML
-    private Label msgLabel;
+    private Label logLabel;
 
     public void initialize() throws IOException {
         this.admin = new Admin(this);
-        this.chooseTopicCmbBox.getItems().clear();
-        this.chooseTopicCmbBox.setValue("Choose topic");
+        this.chooseTopicComboBox.getItems().clear();
+        this.chooseTopicComboBox.setValue("Choose topic");
         startAdminClient(this.admin);
     }
 
@@ -64,53 +52,52 @@ public class AdminGuiHandler {
         clientServerThread.start();
     }
 
-    public void register(ActionEvent actionEvent) throws IOException {
-        String topic = this.registerTopicTxtField.getText();
-        setMessageForMessageFiled("New topic has been added");
+    public void addNewTopic(ActionEvent actionEvent) throws IOException {
+        String topic = this.addTopicField.getText();
+        updateLog("New topic has been added: " + topic);
         this.admin.registerTopic(topic);
+        this.addTopicField.setText("");
     }
 
-    public void deregister(ActionEvent actionEvent) throws IOException {
-        String topic = this.removeTopicTxtField.getText();
-        setMessageForMessageFiled("Topic has been removed");
+    public void removeTopicFromList(ActionEvent actionEvent) throws IOException {
+        String topic = this.removeTopicField.getText();
+        updateLog("Topic: " + topic+ " has been removed");
         this.admin.deregisterTopic(topic);
+        this.removeTopicField.setText("");
     }
 
     public void publishNews(ActionEvent actionEvent) throws IOException {
-        String news = this.newsTxtArea.getText();
-        String topic = this.chooseTopicCmbBox.getValue();
-        setMessageForMessageFiled("News on topic have been sent!");
-        this.admin.publishNews(topic + "_" + news);
+        String news = this.newsArea.getText();
+        String topic = this.chooseTopicComboBox.getValue();
+        updateLog("News on topic have been sent!");
+        this.admin.publishNews(topic + ":" + news);
     }
 
     public void refreshTopics(ActionEvent actionEvent) throws IOException {
-        setMessageForMessageFiled("Topic list has been refreshes!");
+        updateLog("Refreshed!!");
         this.admin.refreshTopics();
     }
 
     public void handleRefreshedTopics(String message) {
         // Set all topics to text field
-        this.topicsTextArea.setText("");
-        String[] topics = message.split(" ");
-        for (String s: topics) {
-            this.topicsTextArea.appendText(s + "\n");
+        this.topicsArea.setText("");
+        String[] listOfTopics = message.split(" ");
+        for (String s: listOfTopics) {
+            this.topicsArea.appendText(s + "\n");
         }
 
-        //populate combobox with new values
-        this.chooseTopicCmbBox.getItems().clear();
-        this.chooseTopicCmbBox.getItems().addAll(topics);
-        this.chooseTopicCmbBox.getItems().remove(topics[0]); // remove header
+        // wypelnianie comboboxa tematami
+        this.chooseTopicComboBox.getItems().clear();
+   /*     for (int i = 1; i < listOfTopics.length; i++) {
+            this.chooseTopicComboBox.getItems().add(listOfTopics[i]);
+        }*/
+        this.chooseTopicComboBox.getItems().addAll(listOfTopics);
+        this.chooseTopicComboBox.getItems().remove(listOfTopics[0]);
     }
 
-    public void clearAll(ActionEvent actionEvent) {
-        this.newsTxtArea.setText("");
-        this.topicsTextArea.setText("");
-        this.registerTopicTxtField.setText("");
-        this.removeTopicTxtField.setText("");
-    }
 
-    private void setMessageForMessageFiled(String msg) {
-        this.msgLabel.setText(msg);
+    private void updateLog(String msg) {
+        this.logLabel.setText(msg);
     }
 
 

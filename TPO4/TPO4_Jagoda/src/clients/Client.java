@@ -71,43 +71,43 @@ public class Client {
     }
 
     private String readMessage(SocketChannel channel) throws IOException {
-        ByteBuffer buffer = ByteBuffer.allocate(256);
+        ByteBuffer buffer = ByteBuffer.allocate(64);
         channel.read(buffer);
         return new String(buffer.array()).trim();
     }
 
     private void sendMessage(String msg) throws IOException {
-            ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes());
-            client.write(buffer);
-            buffer.clear();
+        ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes());
+        client.write(buffer);
+        buffer.clear();
     }
 
     void subscribeToTopic(String topic) throws IOException {
         System.out.println("subscribing to topic. client:" + this.client);
-        String message = new String("#SUB_" + topic);
+        String message = new String("SUB:" + topic);
         log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
     void unsubscribeFromTopic(String topic) throws IOException {
         System.out.println("unsubscribing from topic. client:" + this.client);
-        String message = new String("#UNSUB_" + topic);
+        String message = new String("UNSUB:" + topic);
         log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
     void refreshTopics() throws IOException {
         System.out.println("Refreshing possible topics. client:" + this.client);
-        String message = new String("#TOPICS");
+        String message = new String("TOPICS");
         log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
     private void handleReceivedMessage(String messageFromServer) {
-        if (messageFromServer.startsWith("#NEWS_")) {
-            this.guiController.handleNews(messageFromServer);
-        } else if (messageFromServer.startsWith("#TOPICS")) {
-            this.guiController.handleRefreshedTopics(messageFromServer);
+        if (messageFromServer.startsWith("NEWS:")) {
+            this.guiController.displayNews(messageFromServer);
+        } else if (messageFromServer.startsWith("TOPICS")) {
+            this.guiController.displayListOfTopics(messageFromServer);
         }
     }
 }

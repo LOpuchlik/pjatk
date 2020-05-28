@@ -16,7 +16,7 @@ public class StartClientGui extends Application {
         window.setTitle("Client");
         window.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource(path));
-        window.setScene(new Scene(root, 610, 450));
+        window.setScene(new Scene(root, 610, 350));
         window.show();
     }
 }

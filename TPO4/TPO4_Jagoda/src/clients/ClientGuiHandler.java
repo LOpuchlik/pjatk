@@ -13,41 +13,24 @@ public class ClientGuiHandler {
 
     private Client client;
 
+    @FXML
+    private TextArea newsArea;
 
     @FXML
-    private TextField registerTopicTxtField;
+    private TextArea topicsArea;
 
     @FXML
-    private Button subscribeBttn;
+    private TextField subscribeField;
 
     @FXML
-    private TextField removeTopicTxtField;
+    private TextField unsubscribeField;
 
     @FXML
-    private Button unsubscribeBttn;
-
-    @FXML
-    private TextArea newsTxtArea;
-
-    @FXML
-    private TextArea topicsTextArea;
-
-    @FXML
-    private Button clearAllBttn;
-
-    @FXML
-    private Button refreshTopicsBttn;
-
-    @FXML
-    private Label msgLabel; //editable="false"
+    private Label logLabel;
 
     public void initialize() throws IOException {
-        log("Client GUI initialized");
         this.client = new Client(this);
-        startClient(this.client);
-    }
 
-    private void startClient(Client client) {
         Runnable runnable = () -> {
             try {
                 client.startClient();
@@ -59,49 +42,41 @@ public class ClientGuiHandler {
         clientServerThread.start();
     }
 
+
     public void subscribe(ActionEvent actionEvent) throws IOException {
-        String topic = this.registerTopicTxtField.getText();
-        setMessageForMessageFieled("Subscribed to topic");
+        String topic = this.subscribeField.getText();
+        updateLog("Subscribed to: " + topic);
         this.client.subscribeToTopic(topic);
+        this.subscribeField.setText("");
     }
 
 
     public void unsubscribe(ActionEvent actionEvent) throws IOException {
-        String topic = this.removeTopicTxtField.getText();
-        setMessageForMessageFieled("Unsubscribed from topic");
+        String topic = this.unsubscribeField.getText();
+        updateLog("Unsubscribed from: " + topic);
         this.client.unsubscribeFromTopic(topic);
+        this.unsubscribeField.setText("");
     }
 
     public void refreshTopics(ActionEvent actionEvent) throws IOException {
-        setMessageForMessageFieled("Refreshed topics");
+        updateLog("Refreshed");
         this.client.refreshTopics();
     }
 
-    void handleRefreshedTopics(String message) {
-        this.topicsTextArea.setText("");
+    void displayListOfTopics(String message) {
+        this.topicsArea.setText("");
         String[] topics = message.split(" ");
         for (String s: topics) {
-            this.topicsTextArea.appendText(s + "\n");
+            this.topicsArea.appendText(s + "\n");
         }
     }
 
-    void handleNews(String message) {
-        this.newsTxtArea.appendText(message.substring(6) + "\n");
+    void displayNews(String message) {
+        this.newsArea.appendText(message.substring(5) + "\n");
     }
 
-    public void clearAll(ActionEvent actionEvent) {
-        setMessageForMessageFieled("Cleared all");
-        this.newsTxtArea.setText("");
-        this.topicsTextArea.setText("");
-        this.registerTopicTxtField.setText("");
-        this.removeTopicTxtField.setText("");
-    }
-
-    private void setMessageForMessageFieled(String msg) {
-        this.msgLabel.setText(msg);
-    }
-    private void log(String s) {
-        System.out.println(s);
+    public void updateLog(String msg) {
+        this.logLabel.setText(msg);
     }
 
 }
