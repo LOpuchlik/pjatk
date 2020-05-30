@@ -3,10 +3,10 @@ package middleserver;
 import java.nio.channels.SelectionKey;
 
 class TopicInfoSubscriber {
-    String identification;
+    String userIdentity;
     SelectionKey selectionKey;
-    TopicInfoSubscriber(String identification, SelectionKey selectionKey) {
-        this.identification = identification;
+    TopicInfoSubscriber(String userIdentity, SelectionKey selectionKey) {
+        this.userIdentity = userIdentity;
         this.selectionKey = selectionKey;
     }
 }

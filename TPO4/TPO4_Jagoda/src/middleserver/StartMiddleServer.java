@@ -12,8 +12,6 @@ import java.rmi.server.ExportException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,18 +29,16 @@ public class StartMiddleServer {
 
     private static void startMiddleServer() throws IOException {
         Selector selector = Selector.open();
-        log("Selector open: " + selector.isOpen());
-
-        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();  // start servera
+        log("server:\t\t\t\tis ready...");
         serverSocketChannel.bind(new InetSocketAddress("localhost", port));
         serverSocketChannel.configureBlocking(false);
 
-        int ops = serverSocketChannel.validOps();
-        SelectionKey selectKy = serverSocketChannel.register(selector, ops, null);
+        int serverValidOperations = serverSocketChannel.validOps();
+        SelectionKey selectKey = serverSocketChannel.register(selector, serverValidOperations);
 
         while (true) {
             int numberOfKeys = selector.select();
-            
             Set<SelectionKey> selectedKeys = selector.selectedKeys();
             Iterator<SelectionKey> iterator = selectedKeys.iterator();
 
@@ -50,76 +46,96 @@ public class StartMiddleServer {
                 SelectionKey key = iterator.next();
 
                 if (key.isAcceptable()) {
-                    log("Acceptable");
 
-                    SocketChannel client = serverSocketChannel.accept();
-                    client.configureBlocking(false);
-                    client.register(selector, SelectionKey.OP_READ);
-                    log("Client: " + client + " accepted new connection");
+                    SocketChannel socket = serverSocketChannel.accept(); // akceptacja polaczenia
+                    socket.configureBlocking(false);
+                    socket.register(selector, SelectionKey.OP_READ);
+                    log("server:\t\t\t\tAcceptable:\t\t\t\tnew connection\t\t\t\t\t" + socket);
 
                 } else if (key.isReadable()) {
-                    SocketChannel client = (SocketChannel) key.channel();
+                    SocketChannel socket = (SocketChannel) key.channel();
+                    String receivedMessage = readMessage(socket);  // receivedMessage = output
+                    log("server:\t\t\t\tReadable:\t\t\t\treceived message\t\t\t\t" + receivedMessage);
 
-                    String output = readMessage(client);
-                    log("Read from client: " + output);
 
+// -------------- START ----------- COMMUNICATION WITH CLIENT -----------------------------------
 
-                    /** Messages from client*/
-                    if (output.startsWith("SUB:")) {
-                        String[] subWithTopic = output.split(":");
-                        if (subWithTopic.length != 2) {
+                    if (receivedMessage.startsWith("subscribe:")) {
+                        String[] subscriptionRequest = receivedMessage.split(":");
+                        if (subscriptionRequest.length != 2) {
                             log("Client wants to subscribe to empty or invalid topic!");
                         }
 
-                        String topic = subWithTopic[1];
-                        ClientSubscriber sub = new ClientSubscriber(topic, key);
+                        String topic = subscriptionRequest[1];
+                        ClientSubscriber cS = new ClientSubscriber(topic, key);
 
-                        Set<ClientSubscriber> subscribers;
+                        Set<ClientSubscriber> subscribersSet;
                         if (topics_listsOfSubscribers.containsKey(topic)) {
-                            subscribers = topics_listsOfSubscribers.get(topic);
+                            subscribersSet = topics_listsOfSubscribers.get(topic);
                         } else {
-                            subscribers = new HashSet<>();
+                            subscribersSet = new HashSet<>();
                         }
-                        subscribers.add(sub);
-                        topics_listsOfSubscribers.put(topic, subscribers);
+                        subscribersSet.add(cS);
+                        topics_listsOfSubscribers.put(topic, subscribersSet);
 
-                    } else if (output.startsWith("UNSUB:")) {
-                        handleClientUnsubscribeFromTopic(output, key);
-                    } else if (output.startsWith("TOPICS")) {
+                    } else if (receivedMessage.startsWith("unsubscribe:")) { // when client wants to unsubscribe from topic
+                        if (receivedMessage.length() == 13) {
+                            System.err.println("You have to specify topic name from which you want to unsubscribe");
+                            return;
+                        }
+
+                        String topic = receivedMessage.split(":")[1];
+                        if (!topics_listsOfSubscribers.containsKey(topic)) {
+                            log("No topic - " + topic + " - in the topic-subscribers map");
+                            return;
+                        }
+                        Set<ClientSubscriber> subscribers = topics_listsOfSubscribers.get(topic);
+                        ClientSubscriber subscriberToRemove = null;
+                        for (ClientSubscriber s: subscribers) {
+                            if (s.selectionKey.equals(key)) {
+                                //System.out.println("client unsubscribed from topic found");
+                                subscriberToRemove = s;
+                            }
+                        }
+                        if (subscriberToRemove == null) {
+                            System.out.println("Client is not subscribed to the topic, thus cannot be removed");
+                        } else {
+                            subscribers.remove(subscriberToRemove);
+                            topics_listsOfSubscribers.put(topic, subscribers);
+                        }
+                    } else if (receivedMessage.startsWith("TOPICS")) {
                         TopicInfoSubscriber topicInfoSubscriber = new TopicInfoSubscriber("client", key);
-                        client.register(selector, SelectionKey.OP_WRITE, topicInfoSubscriber);
+                        socket.register(selector, SelectionKey.OP_WRITE, topicInfoSubscriber);
                     }
 
-                    /** Messages from admin*/
-                    if (output.startsWith("NEWS:")) {
-                        passNewsFromAdminToClients(output, selector, key);
-                    } else if (output.startsWith("TOPICS")) {
+// -------------- END -------------- COMMUNICATION WITH CLIENT -----------------------------------
+
+// -------------- START ------------ COMMUNICATION WITH ADMIN -----------------------------------
+                    if (receivedMessage.startsWith("NEWS:")) {
+                        forwardNewsToClient(receivedMessage, selector, key);
+                    } else if (receivedMessage.startsWith("TOPICS")) {
                         TopicInfoSubscriber topicInfoSubscriber = new TopicInfoSubscriber("admin", key);
-                        client.register(selector, SelectionKey.OP_WRITE, topicInfoSubscriber);
-                    } else if (output.startsWith("REG:")) {
-                        registerNewTopic(output);
-                    } else if (output.startsWith("DEL:")) {
-                        deleteExistingTopic(output);
-                        deleteSubscribersOfTopic(output);
-                        deleteNewsOnTopic(output);
+                        socket.register(selector, SelectionKey.OP_WRITE, topicInfoSubscriber);
+                    } else if (receivedMessage.startsWith("ADD:")) {
+                        addNewTopic(receivedMessage);
+                    } else if (receivedMessage.startsWith("REMOVE:")) {
+                        topics_listsOfSubscribers.remove(receivedMessage.substring(7));
+                        topic_new.remove(receivedMessage.substring(7));
+                        allTopics.remove(receivedMessage.substring(7));
                     }
 
                 } else if (key.isWritable()) {
-                    log("Writeable");
-
-                    SocketChannel clientChannel = (SocketChannel) key.channel();
-
-                    String msg = createMessageToSend(key);
-
-                    byte[] message = msg.getBytes();
-                    ByteBuffer buff = ByteBuffer.wrap(message);
-                    clientChannel.write(buff);
-                    buff.clear();
-
-                    clientChannel.register(selector, SelectionKey.OP_READ);
+                    log("server:\t\t\t\tWriteable");
+                    SocketChannel socket = (SocketChannel) key.channel();
+                    String message = composeMessage(key);
+                    byte[] messageInBytesForm = message.getBytes();
+                    ByteBuffer byteBuffer = ByteBuffer.wrap(messageInBytesForm);
+                    socket.write(byteBuffer);
+                    byteBuffer.clear();
+                    socket.register(selector, SelectionKey.OP_READ);
 
                 } else if (key.isConnectable()) {
-                    log("Connectable");
+                    log("server:\t\t\t\tConnectable");
                 }
 
                 iterator.remove();
@@ -127,50 +143,9 @@ public class StartMiddleServer {
         }
     }
 
-    private static void log(String s) {
-        System.out.println(s);
-    }
 
-    private static void handleClientUnsubscribeFromTopic(String output, SelectionKey ky) {
-        if (output.length() == 7) {
-            log("Sending empty topic forbidden");
-            return; // client send empty topic
-        }
 
-        String topic = output.split(":")[1];
-        if (!topics_listsOfSubscribers.containsKey(topic)) {
-            log("No key for: " + topic);
-            return;
-        }
-        Set<ClientSubscriber> subscribers = topics_listsOfSubscribers.get(topic);
-        ClientSubscriber subscriberToRemove = null;
-        for (ClientSubscriber s: subscribers) {
-            if (s.selectionKey.equals(ky)) {
-                //System.out.println("client unsubscribed from topic found");
-                subscriberToRemove = s;
-            }
-        }
-        if (subscriberToRemove == null) {
-            System.out.println("Client is not subscribed to the topic, thus cannot be removed");
-        } else {
-            subscribers.remove(subscriberToRemove);
-            topics_listsOfSubscribers.put(topic, subscribers);
-        }
-    }
-
-    private static void deleteExistingTopic(String output) {
-        allTopics.remove(output.substring(4));
-    }
-
-    private static void deleteSubscribersOfTopic(String output) {
-        topics_listsOfSubscribers.remove(output.substring(4));
-    }
-
-    private static void deleteNewsOnTopic(String output) {
-        topic_new.remove(output.substring(4));
-    }
-
-    private static void registerNewTopic(String output) {
+    private static void addNewTopic(String output) {
         allTopics.add(output.substring(4));
     }
 
@@ -180,67 +155,61 @@ public class StartMiddleServer {
         return new String(buffer.array()).trim();
     }
 
-    private static String createMessageToSend(SelectionKey ky) throws ExportException {
-        if (ky.attachment() == null) {
+    private static String composeMessage(SelectionKey key) throws ExportException {
+        if (key.attachment() == null) {
             throw new ExportException("This shouldn't happen. Null attachment");
         }
 
-        String msg = "";
-        if (ky.attachment() instanceof ClientSubscriber) {
+        String mes = "";
+        if (key.attachment() instanceof ClientSubscriber) {
+            String topic = ((ClientSubscriber) key.attachment()).topic;
+            System.out.println("server:\t\t\t\tsent news on topic - " + topic);
+            mes = "NEWS:" + topic + ":" + topic_new.get(topic);
 
-            String topic = ((ClientSubscriber) ky.attachment()).topic;
-            System.out.println("Sending news on topic: " + topic);
-            msg = "NEWS:" + topic + ":" + topic_new.get(topic);
-
-        } else if (ky.attachment() instanceof TopicInfoSubscriber) {
-
-            if (((TopicInfoSubscriber) ky.attachment()).identification.equals("admin")) {
-                msg = "TOPICS " + getPossibleNewsTopics();
-            } else {
-                msg = "TOPICS " + getPossibleNewsTopics();
+        } else if (key.attachment() instanceof TopicInfoSubscriber) {
+            if (((TopicInfoSubscriber) key.attachment()).userIdentity.equals("admin") || ((TopicInfoSubscriber) key.attachment()).userIdentity.equals("client")) {
+                mes = "TOPICS " + getTopicsSet();
             }
-
         }
-
-        return msg;
+        return mes;
     }
 
-    private static String getPossibleNewsTopics() {
-        StringBuilder topics = new StringBuilder();
-        for (Iterator<String> iterator = allTopics.iterator(); iterator.hasNext(); ) {
+    private static String getTopicsSet() {
+        String topics="";
+        for (Iterator<String> iterator = allTopics.iterator();
+            iterator.hasNext(); ) {
             String it = iterator.next();
-            topics.append(it).append(" ");
+            topics += it + " ";
         }
-        return topics.toString();
+        return topics;
     }
 
-    private static void passNewsFromAdminToClients(String output, Selector selector, SelectionKey ky) throws ClosedChannelException {
-        String[] topicWithNews = output.split(":");
+    private static void forwardNewsToClient(String receivedMessage, Selector selector, SelectionKey key) throws ClosedChannelException {
+        String[] newsForClientMessage = receivedMessage.split(":");
+        String topic = newsForClientMessage[1];
+        String news = newsForClientMessage[2];
 
-        if (topicWithNews.length != 3) {
-            System.out.println("Wrong length of message");
+        if (newsForClientMessage.length != 3) { // format to --> news:topic:tresc
             return;
         }
-
-        String topic = topicWithNews[1];
-        String news = topicWithNews[2];
-
         if (!topics_listsOfSubscribers.containsKey(topic)) {
-            System.out.println("Topic subscribers doesnt have key " + topic);
+            System.out.println("Topic - " + topic + " - not in the map/does not have nay subscribers");
             return;
         }
 
-        // update current news for topic
-        System.out.println("Updating current news on topic " + topic);
+        // update map: topic-news
+        System.out.println("server:\t\t\t\tUpdated news on: " + topic);
         topic_new.put(topic, news);
 
         Set<ClientSubscriber> subscribers = topics_listsOfSubscribers.get(topic);
-        for (ClientSubscriber clientSubscriber : subscribers) {
-            SocketChannel cl = (SocketChannel) clientSubscriber.selectionKey.channel();
-            cl.register(selector, SelectionKey.OP_WRITE, clientSubscriber);
-            ky.attach(clientSubscriber);
+        for (ClientSubscriber cS : subscribers) {
+            SocketChannel socket = (SocketChannel) cS.selectionKey.channel();
+            socket.register(selector, SelectionKey.OP_WRITE, cS);
+            key.attach(cS);
         }
     }
 
+    private static void log(String logStatus) {
+        System.out.println(logStatus);
+    }
 }
-

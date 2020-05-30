@@ -12,15 +12,15 @@ import java.util.Set;
 public class Admin {
 
 
-    private AGui guiService;
+    private AGui aGui;
     private SocketChannel client;
     private int port = 1025;
 
-  /*  public Admin(AdminGuiHandler adminGuiHandler) {
-        this.guiController = adminGuiHandler;
-    }*/
-    public Admin(AGui adminGuiService) {
-        this.guiService = adminGuiService;
+    /*  public Admin(AdminGuiHandler adminGuiHandler) {
+          this.guiController = adminGuiHandler;
+      }*/
+    public Admin(AGui aGui) {
+        this.aGui = aGui;
     }
 
     public void startClient() throws IOException {
@@ -31,7 +31,7 @@ public class Admin {
         SelectionKey selectionKey = this.client.register(clientSelector, SelectionKey.OP_READ);
 
         while (true) {
-            log("Waiting for select choice");
+            log("admin:\t\t\t\twaiting for select");
             int availableChannels = clientSelector.select();
             if (availableChannels == 0)
                 continue;
@@ -42,18 +42,18 @@ public class Admin {
             while (iterator.hasNext()) {
                 SelectionKey key = iterator.next();
                 if (key.isAcceptable()) {
-                    log("a --> AcceptBLE");
+                    log("admin:\t\t\t\tAcceptable");
                 } else if (key.isConnectable()) {
-                    log("a --> Connectable");
+                    log("admin:\t\t\t\tConnectable");
                 } else if (key.isReadable()) {
-                    log("A --> Readable");
+                    log("admin:\t\t\t\tReadable");
                     SocketChannel serverChannel = (SocketChannel) key.channel();
                     String messageFromServer = readMessage(serverChannel);
-                    log("Server to admin: " + messageFromServer);
-                    handleReceivedMessage(messageFromServer);
+                    log("admin:\t\t\t\tadmin to server:" + messageFromServer);
+                    handleTopics(messageFromServer);
                     serverChannel.register(clientSelector, SelectionKey.OP_READ);
                 } else if (key.isWritable()) {
-                    log("a --> Writable");
+                    log("admin:\t\t\t\tWritable");
                 }
                 iterator.remove();
             }
@@ -73,41 +73,37 @@ public class Admin {
         byteBuffer.clear();
     }
 
-    void registerTopic(String topic) throws IOException {
-        System.out.println("Registering new topic. Client:" + this.client);
-        String message = "REG:" + topic;
-        log("Sending message " + message + " to client: " + client);
+    void addNewTopic(String topic) throws IOException {
+        System.out.println("admin:\t\t\t\tnew topic added: " + topic);
+        String message = "ADD:" + topic;
         sendMessage(message);
     }
 
-    private void log(String s) {
-        System.out.println(s);
-    }
-
-
-    void deregisterTopic(String topic) throws IOException {
-        System.out.println("Deleting topic. Client:" + this.client);
-        String message = "DEL:" + topic;
-        log("Sending message " + message + " to client: " + client);
+    void removeTopic(String topic) throws IOException {
+        System.out.println("admin:\t\t\t\tTopic - " + topic + " - removed");
+        String message = "REMOVE:" + topic;
         sendMessage(message);
     }
 
-    void publishNews(String topicWithNews) throws IOException {
-        System.out.println("Publishing news to topic. Client:" + this.client);
+    void sendNews(String topicWithNews) throws IOException {
+        String topic = topicWithNews.split(":")[0];
+        System.out.println("admin:\t\t\t\tmessage on topic - " + topic + " - sent");
         String message = "NEWS:" + topicWithNews;
-        log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
     public void refreshTopics() throws IOException {
         String message = "TOPICS";
-        //log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
-    private void handleReceivedMessage(String messageFromServer) {
+    private void handleTopics(String messageFromServer) {
         if (messageFromServer.startsWith("TOPICS")) {
-            this.guiService.organizeTopics(messageFromServer);
+            this.aGui.organizeTopics(messageFromServer);
         }
+    }
+
+    private void log(String logStatus) {
+        System.out.println(logStatus);
     }
 }

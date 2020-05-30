@@ -51,7 +51,7 @@ public class AGui extends Application {
         this.chooseTopicComboBox.setValue("Choose topic");
         this.chooseTopicComboBox.setPrefWidth(COMPONENT_WIDTH);
 
-// List of topics
+// set of topics
         topicsLabel = new Label("List of topics");
         topicsArea = new TextArea();
         topicsArea.setMaxWidth(COMPONENT_WIDTH);
@@ -137,7 +137,7 @@ public class AGui extends Application {
             String topic = this.addTopicField.getText();
             updateLog("New topic has been added - " + topic);
             try {
-                this.admin.registerTopic(topic);
+                this.admin.addNewTopic(topic);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -149,11 +149,12 @@ public class AGui extends Application {
             String topic = this.removeTopicField.getText();
             updateLog("Topic - " + topic+ " - has been removed");
             try {
-                this.admin.deregisterTopic(topic);
+                this.admin.removeTopic(topic);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
             this.removeTopicField.setText("");
+            this.chooseTopicComboBox.setValue("Choose topic");
         });
 
 
@@ -162,7 +163,7 @@ public class AGui extends Application {
             String topic = this.chooseTopicComboBox.getValue();
             updateLog("News on " + topic + " have been sent!");
             try {
-                this.admin.publishNews(topic + ":" + news);
+                this.admin.sendNews(topic + ":" + news);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

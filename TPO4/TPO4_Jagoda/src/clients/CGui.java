@@ -1,8 +1,6 @@
 package clients;
 
-import admin.Admin;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -103,9 +101,9 @@ public class CGui extends Application {
         gridPane.add(logLabel,0, 7);
 
 // styling components
-        topicsRefreshButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white;");
-        subscribeButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white;");
-        unsubscribeButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white;");
+        topicsRefreshButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white; -fx-border-color: #0c72ed; -fx-border-width: 2;");
+        subscribeButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white; -fx-border-color: #0c72ed; -fx-border-width: 2;");
+        unsubscribeButton.setStyle("-fx-background-color: #064a9c; -fx-text-fill: white; -fx-border-color: #0c72ed; -fx-border-width: 2;");
 
         logLabel.setStyle("-fx-text-fill: #064a9c;");
         logText.setStyle("-fx-text-fill: #064a9c;");
@@ -126,7 +124,7 @@ public class CGui extends Application {
             String topic = this.subscribeField.getText();
             updateLog("Subscribed to: " + topic);
             try {
-                this.client.subscribeToTopic(topic);
+                this.client.subscribe(topic);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -139,7 +137,7 @@ public class CGui extends Application {
             String topic = this.unsubscribeField.getText();
             updateLog("Unsubscribed from: " + topic);
             try {
-                this.client.unsubscribeFromTopic(topic);
+                this.client.unsubscribe(topic);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

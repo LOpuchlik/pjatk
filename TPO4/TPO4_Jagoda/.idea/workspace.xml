@@ -44,7 +44,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CGui_2">
+  <component name="RunManager" selected="Application.AGui">
     <configuration name="AGui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="admin.AGui" />
       <module name="TPO4_Jagoda" />
@@ -105,9 +105,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CGui_1" />
         <item itemvalue="Application.AGui" />
         <item itemvalue="Application.StartMiddleServer" />
+        <item itemvalue="Application.CGui_1" />
       </list>
     </recent_temporary>
   </component>

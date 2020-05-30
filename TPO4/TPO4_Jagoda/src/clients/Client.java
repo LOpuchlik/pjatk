@@ -12,12 +12,12 @@ import java.util.Set;
 
 public class Client {
 
-    private CGui guiService;
+    private CGui cGui;
     private SocketChannel client;
     private int port = 1025;
 
-    public Client(CGui clientGuiHandler) {
-        this.guiService = clientGuiHandler;
+    public Client(CGui cGui) {
+        this.cGui = cGui;
     }
 
     public void startClient() throws IOException {
@@ -28,7 +28,7 @@ public class Client {
         SelectionKey selectionKey = this.client.register(clientSelector, SelectionKey.OP_READ);
 
         while (true) {
-            log("*** " + this.getClass().getName() + " " + "Waiting for the select operation...");
+            log("client:\t\t\t\twaiting for select");
             int readyChannels = clientSelector.select();
             if (readyChannels == 0)
                 continue;
@@ -40,27 +40,26 @@ public class Client {
                 SelectionKey key = keyIterator.next();
 
                 if (key.isAcceptable()) {
-                    log("*** " + this.getClass().getName() + " key is acceptable");
+                    log("client:\t\t\t\tAcceptable");
 
                 } else if (key.isConnectable()) {
-                    log("*** " + this.getClass().getName() + " key is connectable");
+                    log("client:\t\t\t\tConnectable");
 
                 } else if (key.isReadable()) {
-                    log("*** " + this.getClass().getName() + " key is readable");
-
+                    log("client:\t\t\t\tReadable");
                     SocketChannel serverChannel = (SocketChannel) key.channel();
-
                     String messageFromServer = readMessage(serverChannel);
-                    log("Message read from server: " + messageFromServer);
-
-                    handleReceivedMessage(messageFromServer);
-
+                    log("client:\t\t\t\tMessage read from server: " + messageFromServer);
+                    if (messageFromServer.startsWith("NEWS:")) {
+                        this.cGui.displayNews(messageFromServer);
+                    } else if (messageFromServer.startsWith("TOPICS")) {
+                        this.cGui.displayListOfTopics(messageFromServer);
+                    }
                     serverChannel.register(clientSelector, SelectionKey.OP_READ);
 
                 } else if (key.isWritable()) {
-                    log("*** " + this.getClass().getName() + " key is writable");
+                    log("client:\t\t\t\tWritable");
                 }
-
                 keyIterator.remove();
             }
         }
@@ -76,38 +75,28 @@ public class Client {
         return new String(buffer.array()).trim();
     }
 
-    private void sendMessage(String msg) throws IOException {
-        ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes());
+    private void sendMessage(String message) throws IOException {
+        ByteBuffer buffer = ByteBuffer.wrap(message.getBytes());
         client.write(buffer);
         buffer.clear();
     }
 
-    void subscribeToTopic(String topic) throws IOException {
-        System.out.println("subscribing to topic. client:" + this.client);
-        String message = new String("SUB:" + topic);
-        log("Sending message " + message + " to client: " + client);
+    void subscribe(String topic) throws IOException {
+        System.out.println("client:\t\t\t\tsubscribed to topic: " + topic);
+        String message = new String("subscribe:" + topic);
         sendMessage(message);
     }
 
-    void unsubscribeFromTopic(String topic) throws IOException {
-        System.out.println("unsubscribing from topic. client:" + this.client);
-        String message = new String("UNSUB:" + topic);
-        log("Sending message " + message + " to client: " + client);
+    void unsubscribe(String topic) throws IOException {
+        System.out.println("client:\t\t\t\tUnsubscribed from: " + topic);
+        String message = new String("unsubscribe:" + topic);
         sendMessage(message);
     }
 
     void refreshTopics() throws IOException {
-        System.out.println("Refreshing possible topics. client:" + this.client);
+        System.out.println("client:\t\t\t\trefreshed topics set");
         String message = new String("TOPICS");
-        log("Sending message " + message + " to client: " + client);
         sendMessage(message);
     }
 
-    private void handleReceivedMessage(String messageFromServer) {
-        if (messageFromServer.startsWith("NEWS:")) {
-            this.guiService.displayNews(messageFromServer);
-        } else if (messageFromServer.startsWith("TOPICS")) {
-            this.guiService.displayListOfTopics(messageFromServer);
-        }
-    }
 }
