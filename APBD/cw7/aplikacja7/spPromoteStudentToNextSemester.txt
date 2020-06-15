@@ -1,0 +1,36 @@
+﻿CREATE PROCEDURE spPromoteStudentToNextSemester
+    @Name NVARCHAR(100), -- nazwa studiow
+    @Semester INT  -- zakladam, ze podaje numer biezacego semestru a nie tego, na ktory promuje
+AS
+BEGIN
+	DECLARE @OldIdEnrollment int;
+	SELECT @OldIdEnrollment = Max(IdEnrollment) FROM Enrollment;
+
+    DECLARE @NextIdEnrollment int;
+    SELECT @NextIdEnrollment = @OldIdEnrollment+1; -- wartosc nastepnego wpisu do Enrollmentu
+
+    DECLARE @StartDate DateTime;
+    SELECT @StartDate = GETDATE();
+
+    DECLARE @IdStudy int;
+    SELECT @IdStudy = IdStudy FROM Studies WHERE Name = @Name;
+
+    DECLARE @NewSemester int;
+    SELECT @NewSemester = @Semester+1;
+
+    IF NOT EXISTS (SELECT 1 FROM Enrollment WHERE Semester = @NewSemester AND IdStudy = (SELECT IdStudy FROM Studies WHERE Name = @Name))
+        BEGIN
+            -- dodawanie nowego wpisu w Enrollment z Wartoscią Semestr o 1 większa niz poprzednia, Id takiego Enrollmentu będzie o 1 większe niż maksymalna wartość ogolna IdEnrollmentów
+            INSERT INTO Enrollment (IdEnrollment, Semester, IdStudy, StartDate)
+            VALUES (@NextIdEnrollment, @NewSemester, @IdStudy, @StartDate);
+            -- Update wartosci IdEnrollment u Studenta na tą nową wartość
+            UPDATE Student SET IdEnrollment = @NextIdEnrollment
+            WHERE IdEnrollment = (SELECT IdEnrollment FROM Enrollment WHERE Semester = @Semester AND IdStudy = @IdStudy);
+        END;
+    ELSE
+        BEGIN
+            -- to sie dzieje, jeżeli istnieje wpis dla danego kierunku studiow na nastepny semestr
+            UPDATE Student SET IdEnrollment = (SELECT IdEnrollment FROM Enrollment WHERE IdStudy = @IdStudy AND Semester = @NewSemester)
+            WHERE IdEnrollment = (SELECT IdEnrollment FROM Enrollment WHERE Semester = @Semester AND IdStudy = @IdStudy);
+        END;
+END;

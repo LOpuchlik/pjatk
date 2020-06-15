@@ -1,0 +1,55 @@
+
+MY IDEAS
+
+Są 3 komponenty - Admin - MiddleServer i Client.
+
+
+W zadaniu chodzi o to, że w programie admina - program okienkowy z Gui są 3 funkcjonalnosci - dodaj temat, usuń temat, dodaj wiadomość na temat.
+Obsluga: zapewne jakiegos rodzaju pola tekstowe i buttony
+Pierwszym wyrazem (flagą) w przesylanej zawartosci będzie wlasnie nazwa tej funkcjonalnosci np. ADD, REMOVE lub NEWS, drugim czlonem bedzie temat i w przypadku NEWS bedzie trzeci czlon - to sama tresc wiadomosci. Kazdy z tych wyrazow bedzie oddzielony separtorem, np :. Chociaz moze lepszy bylby jakis mniej spotykany znak*, bo przeciez : moze byc czescia wiadomosci. 
+*Do przemyslenia!!!
+Przyklady przesylanego contentu,
+np. dodawanie nowego tematu ADD:sport
+usuwanie REMOVE:sport
+wysylanie newsa NEWS:sport:Cristiano Ronaldo naciagnal miesien, nie zagra w przyszlym meczu
+
+
+Po naciśnięciu odpowiedniego przycisku każdy dodany "item" byłby pushowany do serwera - (musi być to realizowane przez przesyłanie kanałami z użyciem selektorów).
+Te tematy i wiadomości są przechowywane na serwerze.
+-jakis kontener dla tematow - najlepiej SET to beda same unikalne wartosci
+-jakis kontener laczacy tematy z osobami na nie zapisanymi:
+		- 2 wyjscia:
+		1. mapa: klucz user, wartosci: tematy, na ktore jest zapisany ten user
+		2. mapa: klucz temat, wartosci: userzy zapisani na dany temat
+Ktora wersja lepsza, latwiejsza do obslugi? Zastanowic sie.
+
+-tez trzeba by przechowywac jakos wiadomości na tematy - chyba tez jakas mapa
+
+
+Ogólnie cały proces powinien wyglądać następująco. Serwer wstaje i slucha w nieskonczonej petli. Admin przesyła tematy do serwera. Serwer przesyła tematy do klienta i wyświetlane są one w gui klienta w polu tekstowym po nacisnieciu przycisku odswiezenia. Klient wybiera temat, który go interesuje i po swojej stronie tworzy odpowiedź dla serwera w postaci Stringa, gdzie pierwszy wyraz to flaga (subscribe zakończona dwukropkiem), i dalej wybrany temat (jakies pole i przycisk do wyslania). Taki string jest przesyłany kanałem do serwera i serwer zapisuje sobie danego klienta w postaci HashMapy (klucz: temat, wartość: uzytkownik (nazwa klienta).
+I to wszystko przechowywane jest na serwerze.
+Gdy od Admina nadejdą nowe tematy lub wiadomości, to automatycznie są one przesyłane dalej do klientów.
+
+Żeby nie duplikowac to może używac Setow zamiast List i po prostu, dla uproszczenia (ale gorszej wydajności) pushować caly content i nie sprawdzac czy cos juz bylo do kogos wysylane czy nie - nie bawić w sprawdzanie co już bylo przesylane a co nie.
+
+
+Przemyslenia:
+- Wlasciwie 	chyba	admin i client to prawie odbicia lustrzene - kazdy komunikuje sie tylko z serwerem posredniczacym - bezposrednio ze soba nie
+- oba maja troche inne metody:
+	admin 3: add, remove, news
+	client 2: subscribe, unsubscribe
+- server caly czas slucha zewszad, rozsyla wszystko w odpowiednich kierunkach zalezy, z ktorego konca cos dostanie ( duzo bardziaj skomplikowany niz klient i admin ) ale za to nie ma gui
+- postarac sie zeby sie sypal sie i nie rzucal niezlapanymi bledami
+
+
+PODSUMOWANIE I UWAGI
+Odpalanie: Middleserwer, potem admin, potem klienci.
+Wazne jest zeby podawac na raz po jednym itemie w kazdym przypadku.
+
+RESOURCES:
+http://tutorials.jenkov.com/java-nio/selectors.html
+https://www.baeldung.com/java-nio-selector
+https://www.baeldung.com/java-io-vs-nio
+https://crunchify.com/java-nio-non-blocking-io-with-server-client-example-java-nio-bytebuffer-and-channels-selector-java-nio-vs-io/
+
+

@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import static java.nio.file.FileVisitResult.CONTINUE;
+
 
 
 
@@ -18,61 +18,57 @@ public class Futil {
 
     public static void processDir(String dirName, String resultFileName) {
 
-        Charset cp1250 = Charset.forName("CP1250");
-        Charset utf8 = StandardCharsets.UTF_8;
 
-        Path destinationPath = Paths.get(resultFileName);
-        try {
-            destinationPath.toFile().createNewFile();
-            FileChannel.open(destinationPath,StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING).close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Path targetPath = Paths.get(resultFileName);
+		if(Files.exists(targetPath)) {
+			FileChannel.open(targetPath, StandardOpenOption.WRITE).truncate(0).close();
+		}
 
         try {
             SimpleFileVisitor<Path> simpleFileVisitor = new SimpleFileVisitor<Path>() {
 
                 @Override
-                public FileVisitResult visitFile(Path path, BasicFileAttributes bfa) throws IOException {
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 
-                    //System.out.println("Appending: " + path.toString());
-                    if (!bfa.isRegularFile())
-                        return CONTINUE;
+                   
+                    FileChannel chi  = FileChannel.open(file);
+                    FileChannel cho = FileChannel.open(targetPath, StandardOpenOption.WRITE);
+				    ByteBuffer bbi = ByteBuffer.allocate(128);
+                    
+					
+					cho.position(cho.size());
+                    int bytesRead = chi.read(bbi);
 
-                    FileChannel channelIn  = FileChannel.open(path);
-                    FileChannel channelOut = FileChannel.open(destinationPath, StandardOpenOption.WRITE);
-                    channelOut.position(channelOut.size());
-
-                    ByteBuffer byteBufferIn = ByteBuffer.allocate(256);
-                    int numberOfBytesRead = channelIn.read(byteBufferIn);
-
-                    while (numberOfBytesRead != -1){
-                        byteBufferIn.flip();
-                        CharBuffer charBuffer = cp1250.decode(byteBufferIn);
-                        ByteBuffer byteBufferOut = utf8.encode(charBuffer);
-                        while (byteBufferOut.hasRemaining()){
-                            channelOut.write(byteBufferOut);
+                
+               
+                        while (bytesRead != -1){
+                            bbi.flip();
+                            CharBuffer chb = Charset.forName("CP1250").decode(bbi);
+                            ByteBuffer bbo = Charset.forName("UTF-8").encode(chb);
+                            while (bbo.hasRemaining()){
+                                cho.write(bbo);
+                            }
+                            bbi.clear();
+                            bytesRead = chi.read(bbi);
                         }
-                        byteBufferIn.clear();
-                        numberOfBytesRead = channelIn.read(byteBufferIn);
-                    }
 
-                    channelIn.close();
-                    channelOut.close();
+                        chi.close();
+                        cho.close();
+						
 
-                    return CONTINUE;
+                    return FileVisitResult.CONTINUE;;
 
                 }
 
                 @Override
-                public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                    exc.printStackTrace();
-                    return CONTINUE;
+                public FileVisitResult visitFileFailed(Path file, IOException e) throws IOException {
+                    System.err.println(e);
+                    return FileVisitResult.CONTINUE;;
                 }
 
                 @Override
-                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-                    return CONTINUE;
+                public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
+                    return FileVisitResult.CONTINUE;;
                 }
             };
 
