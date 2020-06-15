@@ -29,26 +29,9 @@ class LongProject extends Project {
     @Override
     public String toString() {
         String msg="";
-
-        msg +=  "Long Project\n\n"+
-                "minDuration: " + getMinDuration() + "\n" +
-                "name: " + name +
-                "\ndescription: " + description +
-                "\nstartDate: " + startDate +
-                "\ndesiredEndDate: " + desiredEndDate;
-
-        if (endDate != null)
-            msg += "\nendDate: " + endDate;
-        else
-            msg += "\nendDate: project is not finished yet";
-
-
-        msg += "\nduration: " + super.getDuration() + " day(s)" +
-                "\ndelay: " + super.getDelay() +
-                "\ntotalNumberOfTasks: " + totalNumberOfTasks +
-                "\nnumberOfFinishedTasks: " + numberOfFinishedTasks +
-                "\nprogress: " + super.getProgress();
-
+        msg += "LONG PROJECT\n\n";
+        msg += "min duration:\t\t\t\t" + getMinDuration() + " days\n";
+        msg += super.toString();
         return msg;
 
     }

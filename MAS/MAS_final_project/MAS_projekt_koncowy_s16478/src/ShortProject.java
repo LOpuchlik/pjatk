@@ -29,26 +29,9 @@ class ShortProject extends Project {
     @Override
     public String toString() {
         String msg="";
-
-        msg +=  "Short Project\n\n" +
-                "maxDuration: " + getMaxDuration() + "\n" +
-                "name: " + name +
-                "\ndescription: " + description +
-                "\nstartDate: " + startDate +
-                "\ndesiredEndDate: " + desiredEndDate;
-
-                if (endDate != null)
-                    msg += "\nendDate: " + endDate;
-                else
-                    msg += "\nendDate: project is not finished yet";
-
-
-                msg += "\nduration: " + super.getDuration() + " day(s)" +
-                "\ndelay: " + super.getDelay() +
-                "\ntotalNumberOfTasks: " + totalNumberOfTasks +
-                "\nnumberOfFinishedTasks: " + numberOfFinishedTasks +
-                "\nprogress: " + super.getProgress();
-
+        msg += "SHORT PROJECT\n\n";
+        msg += "maxDuration:\t\t\t\t" + getMaxDuration() + " days\n";
+        msg += super.toString();
         return msg;
     }
 }
