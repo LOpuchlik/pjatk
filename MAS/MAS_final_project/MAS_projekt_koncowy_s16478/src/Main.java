@@ -1,3 +1,5 @@
+import javafx.application.Application;
+
 import java.time.LocalDate;
 
 public class Main {
@@ -30,6 +32,8 @@ public class Main {
 
 
         System.out.println("================================================================================================");
+
+
         //Checking correct formation of composition between Project and Task classes
         Project p1 = new MediumProject("gra na iPhone'a", "napisanie w pelni funkcjonalnej gry platformowej na iPhone'a", LocalDate.of(2020,6,13), LocalDate.of(2020,12,10), 70);
 
@@ -57,12 +61,46 @@ public class Main {
         //p2.addTask(t2);  // t2 jest juz czescia p1 - nie mozna dodac :D
 
 
-        System.out.println("Projekt 1");
+/*      System.out.println("Projekt 1");
         System.out.println(p1.toString());
         System.out.println();
         System.out.println("Projekt 2");
-        System.out.println(p2.toString());
+        System.out.println(p2.toString());*/
 
+
+
+
+        Team t = new Team("grupa");
+
+        Employee e1 = new Validator("jan", "kowalski", "Jan", "Kowalski", "jan.kowalski@gmail.com");
+        Employee e2 = new RegularEmployee("adam", "nowak", "Adam", "Nowak", "adam.nowak@gmail.com");
+
+        t.addEmployee(e1);
+        t.addEmployee(e2);
+        t.setLeader(e2);
+
+        System.out.println(t.toString());
+
+        System.out.println();
+
+// gui launching
+        ObjectPlus.getExtent(RegularEmployee.class).forEach(item-> {
+            Gui.allEmployees.add(item);
+        });
+        Application.launch(Gui.class, args);
+
+
+// ASSOCIATION WITH ATTRIBUTE TEST
+// ---------------------------------------------------------------------------
+        Project p = new ShortProject("aaa", "bbb", LocalDate.of(2020,5,15),LocalDate.of(2020,6,30),5);
+
+        Validator v = new Validator("val123", "pass432", "Adam", "Sandler", "adam.sandler@gmail.com");
+
+        Task ts = Task.createTask(p, "gui", "implementacja okienka", Priority.low);
+
+        Task_Validator tv = new Task_Validator(v, ts);
+
+        System.out.println(tv.toString());
 
         //Persistence.save();
     }

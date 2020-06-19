@@ -4,6 +4,7 @@ import java.util.List;
 public class Task extends  ObjectPlus {
 
     static List<Task> tasks = new ArrayList<>();
+    private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
 
     private Project projectAsWhole;
     private int taskNumber; // unique -- numery zadaniom są automatycznie nadawane przez zwiekszanie countera
@@ -49,4 +50,29 @@ public class Task extends  ObjectPlus {
     public void setTaskNumber() {
         this.taskNumber = projectAsWhole.getTasks().size()+1;
     }
+
+
+
+    void addTaskValidator(Task_Validator newTaskValidator) {
+        if (!taskValidators.contains(newTaskValidator)) {
+            taskValidators.add(newTaskValidator);
+        }
+    }
+
+    void removeTaskValidator(Task_Validator delTaskValidator) {
+        if (this.taskValidators.contains(delTaskValidator)) {
+            this.taskValidators.remove(delTaskValidator);
+            delTaskValidator.removeAssociation();
+        }
+    }
+
+    @Override
+    public String toString() {
+        String info = "";
+        for (Task_Validator tv: taskValidators) {
+            info += tv.toString() + " \n";
+        }
+        return info;
+    }
+
 }
