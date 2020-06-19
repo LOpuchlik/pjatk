@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Validator extends Employee{
+public class Validator extends Employee {
 
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
 
@@ -29,6 +29,7 @@ public class Validator extends Employee{
     @Override
     public String toString() {
         String info = "";
+        info += super.toString();
         for (Task_Validator tv: taskValidators) {
             info += tv.toString() + " \n";
         }

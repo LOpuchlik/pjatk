@@ -2,7 +2,6 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -10,9 +9,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
 public class Gui extends Application {
+
+    Team t = null;
+
     static String teamToDisplay="";
+    static TextField signature;
     Label teamSignature = new Label();
     Stage window;
     Scene scene1, scene2, scene3;
@@ -24,31 +26,24 @@ public class Gui extends Application {
 
 //--------------------------------------------------------
         // okienko 1
-        TextField signature = new TextField();
-        signature.setPromptText("input team signature");
+        Label label = new Label("Input team signature");
+        signature = new TextField();
         signature.setPadding(new Insets(10));
         signature.setPrefWidth(150);
         signature.maxWidth(150);
         Button createTeamButton = new Button("Create team");
-        createTeamButton.setAlignment(Pos.CENTER); // nie centeruje mi
         createTeamButton.setOnAction(evnt -> {
             teamSignature.setText(signature.getText());
-
-
-            //todo metoda tworzaca nowy zespol
-            // jakies addTeam
-            // Team t = new Team(signature.getText());
-            //dodaje to do extensji teamow <-- dodaje sie samo
-            //plus zmienia ta scene na kolejna
+      // metoda tworzaca nowy zespol
+            t = Team.addTeam(signature.getText()); // tworzy nowy zespol o podanej sygnaturze
             window.setScene(scene2);
-
 
         });
 
-        // Layout 1
+
         VBox vBoxLayout = new VBox(20); // all the objects are on top of each other
         vBoxLayout.setPadding(new Insets(15));
-        vBoxLayout.getChildren().addAll(signature, createTeamButton);
+        vBoxLayout.getChildren().addAll(label, signature, createTeamButton);
         scene1 = new Scene(vBoxLayout, 300, 200);
 
 //---------------------------------------------------------------------
@@ -63,18 +58,25 @@ public class Gui extends Application {
 
         table.getColumns().addAll(employeeColumn);
         Button addEmployeeButton = new Button("Add employee");
-        //addEmployeeButton.setOnAction(evnt -> {
+        addEmployeeButton.setOnAction(evnt -> {
         // tworzenie asocjacji pomiedzy wybranym pracownikiem i aktualnym zespolem
-        // });
+
+            if (table.getSelectionModel().getSelectedItem() != null) {
+                Employee selectedEmployee = table.getSelectionModel().getSelectedItem();
+
+                Team.teamMembers.add(selectedEmployee);
+                System.out.println(selectedEmployee.toString());
+            }
+         });
+
 
         Button nextButton = new Button("Next");
         nextButton.setOnAction(evnt -> window.setScene(scene3));
 
-
-        VBox vBox = new VBox();
+        VBox vBox = new VBox(10);
         vBox.setPadding(new Insets(15));
         vBox.getChildren().addAll(table ,addEmployeeButton, nextButton);
-        scene2 = new Scene(vBox, 300, 200);
+        scene2 = new Scene(vBox, 250, 400);
 
 
 // -----------------------------------------------------------------------
@@ -83,25 +85,22 @@ public class Gui extends Application {
         Label teamCreated = new Label("Team has been created");
         GridPane.setConstraints(teamCreated,0,0);
 
-
         Label teamSignatureLabel = new Label("Team signature: ");
         GridPane.setConstraints(teamSignatureLabel,0,1);
 
         GridPane.setConstraints(teamSignature,1,1);
         teamSignature.setText(teamToDisplay);
 
-
         Label numberOfEmployees = new Label("Number of employees: ");
         GridPane.setConstraints(numberOfEmployees,0,2);
         Label numberOfEmployeesField = new Label();
         GridPane.setConstraints(numberOfEmployeesField,1,2);
-        numberOfEmployeesField.setText("liczba osob w teamie"); // jakos wziac team size tu wciagnac
-
+        numberOfEmployeesField.setText(String.valueOf(Team.teamMembers.size())); // jakos wziac team size tu wyciagnac
 
         Button closeButton = new Button("Close");
         GridPane.setConstraints(closeButton, 1,3);
         closeButton.setOnAction(evnt -> {
-            window.close();
+        window.close();
         });
         GridPane summaryGridPane = new GridPane();
         summaryGridPane.setVgap(5);
@@ -111,9 +110,8 @@ public class Gui extends Application {
         scene3 = new Scene(summaryGridPane, 300, 200);
 
 //---------------------------------------------------------------------
-
         window.setScene(scene1);
-        window.setTitle("Team");
+        window.setTitle("");
         window.show();
 
     }
