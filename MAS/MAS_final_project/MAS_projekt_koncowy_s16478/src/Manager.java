@@ -10,8 +10,8 @@ public class Manager  extends Employee{
     double grantedBonus; // optional
     double baseSalary;
 
-    public Manager(String login, String password, String firstName, String lastName, String email) {
-        super(login, password, firstName, lastName, email);
+    public Manager(String login,  String firstName, String lastName, String email) {
+        super(login, firstName, lastName, email);
 
     }
 

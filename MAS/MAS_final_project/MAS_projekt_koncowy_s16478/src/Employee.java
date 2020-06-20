@@ -23,9 +23,8 @@ public class Employee extends ObjectPlus {
     int isLeader;
 
 
-    public Employee(String login, String password, String firstName, String lastName, String email) {
+    public Employee(String login, String firstName, String lastName, String email) {
         this.login = login;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

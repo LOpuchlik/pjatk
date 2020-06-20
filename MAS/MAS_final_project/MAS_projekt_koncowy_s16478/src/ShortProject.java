@@ -35,4 +35,3 @@ class ShortProject extends Project {
         return msg;
     }
 }
-

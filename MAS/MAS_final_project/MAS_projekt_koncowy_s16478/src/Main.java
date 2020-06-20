@@ -12,7 +12,7 @@ public class Main {
 // checking correctness of regular inheritance between Project and ShortProject, MediumProject, LongProject classes
         ShortProject sp = new ShortProject("implementacja gui","implementacja interfejsu graficznego do obsługi.....", LocalDate.of(2020, 5, 30), LocalDate.of(2020, 6, 14));
 
-        Manager m = new Manager("man1","xbsya", "Andrzej", "Zarzycki", "andrzej.zarzycki@gmail.com");
+        Manager m = new Manager("man1", "Andrzej", "Zarzycki", "andrzej.zarzycki@gmail.com");
 
         sp.setManager(m);
 
@@ -69,7 +69,7 @@ public class Main {
 
 
 // OVERLAPPING BETWEEN REGULAR EMPLOYEE AND LEADER - check
-        Employee emp = new Employee("st8273","pass9283", "Stefan", "Batory", "stefan.batory@gmail.com");
+        Employee emp = new Employee("st8273", "Stefan", "Batory", "stefan.batory@gmail.com");
         emp.isRegularEmployee(List.of("Java8", "Spring", "Hibernate"));
         emp.isLeader(0.05);
         //System.out.println(emp);
@@ -77,13 +77,13 @@ public class Main {
         Team t = new Team("grupa");
 
 
-        Employee e1 = new Validator("j53", "pass9374", "Jan", "Kowalski", "jan.kowalski@gmail.com");
-        Employee e2 = new RegularEmployee("ad05", "pass1234", "Adam", "Nowak", "adam.nowak@gmail.com");
-        Employee e3 = new RegularEmployee("ad07", "pass1645", "Adrian", "Wasilewski", "adrian.wasilewski@gmail.com");
-        Employee e4 = new RegularEmployee("an23", "pass8343", "Anna", "Smith", "anna.smith@gmail.com");
-        Employee e5 = new RegularEmployee("p12", "pass1205", "Piotr", "Guminski", "piotr.guminski@gmail.com");
-        Employee e6 = new RegularEmployee("g8362", "pass6475", "Grzegorz", "Klima", "grzegorz.klima@gmail.com");
-        Employee e7 = new RegularEmployee("kr8463", "pass0947", "Krystian", "Marek", "krystian.marek@gmail.com");
+        Employee e1 = new Validator("j53",  "Jan", "Kowalski", "jan.kowalski@gmail.com");
+        Employee e2 = new RegularEmployee("ad05",  "Adam", "Nowak", "adam.nowak@gmail.com");
+        Employee e3 = new RegularEmployee("ad07",  "Adrian", "Wasilewski", "adrian.wasilewski@gmail.com");
+        Employee e4 = new RegularEmployee("an23",  "Anna", "Smith", "anna.smith@gmail.com");
+        Employee e5 = new RegularEmployee("p12",  "Piotr", "Guminski", "piotr.guminski@gmail.com");
+        Employee e6 = new RegularEmployee("g8362",  "Grzegorz", "Klima", "grzegorz.klima@gmail.com");
+        Employee e7 = new RegularEmployee("kr8463", "Krystian", "Marek", "krystian.marek@gmail.com");
 
         t.addEmployee(e1);
         t.addEmployee(e2);
@@ -107,7 +107,7 @@ public class Main {
         Project p = new ShortProject("aaa", "bbb", LocalDate.of(2020,5,15),LocalDate.of(2020,6,30));
         p.setNumberOfFinishedTasks(1);
 
-        Validator v = new Validator("val123", "pass432", "Adam", "Sandler", "adam.sandler@gmail.com");
+        Validator v = new Validator("val123",  "Adam", "Sandler", "adam.sandler@gmail.com");
         Task ts = Task.createTask(p, "gui", "implementacja okienka", Priority.low);
         Task_Validator tv = new Task_Validator(v, ts);
 
@@ -123,17 +123,17 @@ public class Main {
         System.out.println(emp);*/
 
 //--------------
-    /*    System.out.println("Teams extent");
+        System.out.println("Teams extent");
         ObjectPlus.showExtent(Team.class);
 
-        System.out.println("+++++++++++++++++++++++++++++");
+       /* System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Short project extent");
         ObjectPlus.showExtent(ShortProject.class);*/
 
 
-        System.out.println("+++++++++++++++++++++++++++++");
+      /*  System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Manager extent");
-        ObjectPlus.showExtent(Manager.class);
+        ObjectPlus.showExtent(Manager.class);*/
 
         //Persistence.save();
     }

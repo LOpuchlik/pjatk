@@ -3,7 +3,12 @@ import java.util.List;
 
 public class Team extends ObjectPlus {
 
-    static List<Employee> teamMembers;
+    List<Employee> teamMembers = new ArrayList<>();
+
+    public List<Employee> getTeamMembers() {
+        return teamMembers;
+    }
+
     static List<String> signatures = new ArrayList<>();
 
 

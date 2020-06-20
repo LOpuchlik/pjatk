@@ -11,7 +11,9 @@ import javafx.stage.Stage;
 
 public class Gui extends Application {
 
-    Team t = null;
+    static Team t;
+    TextArea teamMembersArea = new TextArea();
+
 
     static String teamToDisplay="";
     static TextField signature;
@@ -68,6 +70,7 @@ public class Gui extends Application {
                 t.addEmployee(selectedEmployee);
                 System.out.println(selectedEmployee.toString());
             }
+
         });
 
 
@@ -92,11 +95,11 @@ public class Gui extends Application {
         GridPane.setConstraints(teamSignature,1,1);
         teamSignature.setText(teamToDisplay);
 
-        Label numberOfEmployees = new Label("Number of employees: ");
-        GridPane.setConstraints(numberOfEmployees,0,2);
-        Label numberOfEmployeesField = new Label();
-        GridPane.setConstraints(numberOfEmployeesField,1,2);
-        numberOfEmployeesField.setText(String.valueOf(Team.teamMembers.size())); // jakos wziac team size tu wyciagnac
+        GridPane.setConstraints(teamMembersArea,0,2);
+        teamMembersArea.setEditable(false);
+        teamMembersArea.setMaxWidth(100);
+        //teamMembersArea.setText(String.valueOf(t.getTeamMembers());
+
 
         Button closeButton = new Button("Close");
         GridPane.setConstraints(closeButton, 1,3);
@@ -107,7 +110,8 @@ public class Gui extends Application {
         summaryGridPane.setVgap(5);
         summaryGridPane.setHgap(5);
         summaryGridPane.setPadding(new Insets(15));
-        summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, numberOfEmployees, numberOfEmployeesField, closeButton);
+        summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, teamMembersArea, closeButton);
+        //summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, numberOfEmployees, numberOfEmployeesField, closeButton);
         scene3 = new Scene(summaryGridPane, 300, 200);
 
 //---------------------------------------------------------------------
