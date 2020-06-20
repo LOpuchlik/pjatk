@@ -10,7 +10,7 @@ public class RegularEmployee extends Employee{
     // for association between Regular Employee and Task
     private List<Task> taskList = new ArrayList<>();
 
-    private List<String> skills;
+    private transient List<String> skills;
 
     public RegularEmployee(String login,  String firstName, String lastName, String email) {
         super(login, firstName, lastName, email);

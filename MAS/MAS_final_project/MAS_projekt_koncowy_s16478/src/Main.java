@@ -7,8 +7,9 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        //Persistence.load();
+        Persistence.load();
 
+/*
 // checking correctness of regular inheritance between Project and ShortProject, MediumProject, LongProject classes
         ShortProject sp = new ShortProject("implementacja gui","implementacja interfejsu graficznego do obsługi.....", LocalDate.of(2020, 5, 30), LocalDate.of(2020, 6, 14));
 
@@ -61,7 +62,7 @@ public class Main {
         //p2.addTask(t2);  // t2 jest juz czescia p1 - nie mozna dodac :D
 
 
-      System.out.println("Projekt 1");
+        System.out.println("Projekt 1");
         System.out.println(p1.toString());
         System.out.println();
         System.out.println("Projekt 2");
@@ -74,8 +75,8 @@ public class Main {
         emp.isLeader(0.05);
         //System.out.println(emp);
 
-        Team t = new Team("grupa");
 
+        Team t = new Team("grupa");
 
         Employee e1 = new RegularEmployee("j53",  "Robert", "Kubica", "jan.kowalski@gmail.com");
         Employee e2 = new RegularEmployee("ad05",  "Adam", "Nowak", "adam.nowak@gmail.com");
@@ -123,23 +124,41 @@ public class Main {
         emp1.addTask(task1);
         emp2.addTask(task1);
 
+// task and team association check
+        Project project = new MediumProject("project", "some other project", LocalDate.of(2020,6,19), LocalDate.of(2020,11,10));
 
+        Task taskForTeam = Task.createTask(project, "taskName", "task to be done", Priority.medium);
+
+        Team teamforTask = new Team("team made especially for checking team-task association");
+
+        taskForTeam.setTeamForTask(teamforTask);
+
+*/
 
 
 //--------------
-        System.out.println("Teams extent");
-        ObjectPlus.showExtent(Team.class);
+
+/*
+        System.out.println();
 
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Short project extent");
         ObjectPlus.showExtent(ShortProject.class);
 
 
+
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Manager extent");
         ObjectPlus.showExtent(Manager.class);
+*/
 
-        System.out.println();
+
+
+/*      System.out.println("Teams extent");
+        ObjectPlus.showExtent(Team.class);*/
+
+
+/*      System.out.println();
 
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("RegularEmployee extent");
@@ -149,7 +168,7 @@ public class Main {
 
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Task extent");
-        ObjectPlus.showExtent(Task.class);
+        ObjectPlus.showExtent(Task.class);*/
 
         //Persistence.save();
     }

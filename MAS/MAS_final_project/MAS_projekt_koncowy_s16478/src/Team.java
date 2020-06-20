@@ -8,6 +8,9 @@ public class Team extends ObjectPlus {
     // for RegularEmployee-Team association
     private List<Employee> regEmps;
 
+    // for Task-Team association
+    private List<Task> tasksForTeamsList = new ArrayList<>();
+
     private static Set<String> signatures = new HashSet<>();
 
     private String signature;
@@ -30,15 +33,12 @@ public class Team extends ObjectPlus {
     }
 
 
-
-    //******************  tu cos nie bangla  *********************
-
     public void setSignature(String newSignature) throws Exception {
         if (!signatures.contains(newSignature)) {
             this.signature = newSignature;
             signatures.add(newSignature);
         } else {
-            throw new Exception("Signature is already used!"); // tworzy mi grupę, ale z nullem jako sygnaturą zespołu
+            throw new Exception("Signature is already used!");
         }
     }
 
@@ -62,6 +62,11 @@ public class Team extends ObjectPlus {
             }
         } else
             msg += "EMPTY TEAM HAS BEEN CREATED, no employees has been added to the team";
+
+        for (Task t : getTasksForTeamsList()) {
+            msg += "\nTask names:\n";
+            msg += "          - " + t.getName() + "\n";
+        }
         return msg;
     }
 
@@ -76,10 +81,20 @@ public class Team extends ObjectPlus {
         }
     }
 
+    // for Task-Team association
+    void addTaskForTeam (Task newTask) {
+        if (!tasksForTeamsList.contains(newTask)){
+            tasksForTeamsList.add(newTask);
+
+            // add reverse connection
+            newTask.setTeamForTask(this);
+        }
+    }
+
+
 
 
     // getters setters
-
 
     public List<Employee> getRegEmps() {
         return regEmps;
@@ -87,6 +102,14 @@ public class Team extends ObjectPlus {
 
     public void setRegEmps(List<Employee> regEmps) {
         this.regEmps = regEmps;
+    }
+
+    public List<Task> getTasksForTeamsList() {
+        return tasksForTeamsList;
+    }
+
+    public void setTasksForTeamsList(List<Task> tasksForTeamsList) {
+        this.tasksForTeamsList = tasksForTeamsList;
     }
 
     public static Set<String> getSignatures() {

@@ -7,6 +7,9 @@ public class Task extends  ObjectPlus {
     // for association between Regular Employee and Task
     private List<RegularEmployee> regularEmployeeList = new ArrayList<>();
 
+    //for association between Team and Task
+    private Team team;
+
     private static List<Task> tasks = new ArrayList<>();
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
 
@@ -67,6 +70,7 @@ public class Task extends  ObjectPlus {
         for (RegularEmployee re: regularEmployeeList) {
             info += "from RegularEmployee-Task associaton: " + re.toString() + ", task name: " + name + "\n";
         }
+
         return info;
     }
 
@@ -79,6 +83,16 @@ public class Task extends  ObjectPlus {
         newRegularEmployee.addTask(this);
     }
 
+    // for association between Team and Task
+    void setTeamForTask(Team newTeam) {
+        if (team != null)
+            team = null;
+        team = newTeam;
+
+        // add reverse connection
+        newTeam.addTaskForTeam(this);
+    }
+
 
 
     // getters setters
@@ -89,6 +103,14 @@ public class Task extends  ObjectPlus {
 
     public void setRegularEmployeeList(List<RegularEmployee> regularEmployeeList) {
         this.regularEmployeeList = regularEmployeeList;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public static List<Task> getTasks() {
@@ -156,5 +178,6 @@ public class Task extends  ObjectPlus {
     public void setStatus(Status status) {
         this.status = status;
     }
+
 
 }
