@@ -9,11 +9,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Gui extends Application {
 
     static Team t;
     TextArea teamMembersArea = new TextArea();
-
+    List<RegularEmployee> squad = new ArrayList<>();
 
     static String teamToDisplay="";
     static TextField signature;
@@ -47,15 +50,15 @@ public class Gui extends Application {
         VBox vBoxLayout = new VBox(20); // all the objects are on top of each other
         vBoxLayout.setPadding(new Insets(15));
         vBoxLayout.getChildren().addAll(label, signature, createTeamButton);
-        scene1 = new Scene(vBoxLayout, 300, 200);
+        scene1 = new Scene(vBoxLayout, 250, 160);
 
 //---------------------------------------------------------------------
 // okienko 2
         TableView<RegularEmployee> table = new TableView<>();
 
-        TableColumn<RegularEmployee, String> employeeColumn = new TableColumn<>("Employee");
+        TableColumn<RegularEmployee, String> employeeColumn = new TableColumn<>("Regular Employees");
         employeeColumn.setMinWidth(200);
-        employeeColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        employeeColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         table.setItems(allEmployees);
 
 
@@ -66,11 +69,13 @@ public class Gui extends Application {
 
             if (table.getSelectionModel().getSelectedItem() != null) {
                 RegularEmployee selectedEmployee = table.getSelectionModel().getSelectedItem();
-
-                //Team.teamMembers.add(selectedEmployee);
                 t.addEmployee(selectedEmployee);
-                System.out.println(selectedEmployee.toString());
+                squad.add(selectedEmployee);
+                allEmployees.remove(selectedEmployee);
+                table.setItems(allEmployees);
+                teamMembersArea.setText(squad.toString().replace(", "," ").replace("[","").replace("]",""));
             }
+
 
         });
 
@@ -98,11 +103,15 @@ public class Gui extends Application {
 
         GridPane.setConstraints(teamMembersArea,0,2);
         teamMembersArea.setEditable(false);
-        teamMembersArea.setMaxWidth(100);
-        //teamMembersArea.setText(String.valueOf(t.getTeamMembers());
-        Button gotToScene1Button = new Button("GCreate another team");
+        teamMembersArea.setMaxWidth(260);
+        teamMembersArea.setMaxHeight(400);
+        teamMembersArea.setWrapText(true);
+        Button gotToScene1Button = new Button("Create another team");
         GridPane.setConstraints(gotToScene1Button, 0,3);
-        gotToScene1Button.setOnAction(evnt -> window.setScene(scene1));
+        gotToScene1Button.setOnAction(evnt -> {
+            squad = new ArrayList<>();
+            window.setScene(scene1);
+        });
 
         Button closeButton = new Button("Close");
         GridPane.setConstraints(closeButton, 1,3);
@@ -114,8 +123,9 @@ public class Gui extends Application {
         summaryGridPane.setHgap(5);
         summaryGridPane.setPadding(new Insets(15));
         summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, teamMembersArea,  gotToScene1Button, closeButton);
-        //summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, numberOfEmployees, numberOfEmployeesField, closeButton);
-        scene3 = new Scene(summaryGridPane, 300, 200);
+        //summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature,  gotToScene1Button, closeButton);
+
+        scene3 = new Scene(summaryGridPane, 400, 250);
 
 //---------------------------------------------------------------------
         window.setScene(scene1);
