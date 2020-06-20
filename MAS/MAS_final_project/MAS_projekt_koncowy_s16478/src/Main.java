@@ -131,9 +131,9 @@ public class Main {
         ObjectPlus.showExtent(ShortProject.class);*/
 
 
-      /*  System.out.println("+++++++++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Manager extent");
-        ObjectPlus.showExtent(Manager.class);*/
+        ObjectPlus.showExtent(Manager.class);
 
         //Persistence.save();
     }

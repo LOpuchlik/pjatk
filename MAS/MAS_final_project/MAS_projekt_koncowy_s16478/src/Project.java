@@ -133,12 +133,11 @@ public abstract class Project extends ObjectPlus {
 
     // do asocjacji 1-* Manager-Projekt -- po stronie 1 setManager
     public void setManager (Manager newManager) {
-        if (manager != null){
-            // TODO remove istniejace polaczenie
-        } else {
-            manager = newManager;
-        }
+        if (manager != null)
+            manager = null;
 
+        manager=newManager;
+        //add reverse connection
         newManager.addProject(this);
     }
 
@@ -151,6 +150,7 @@ public abstract class Project extends ObjectPlus {
                 "\nstart date:\t\t\t\t\t" + startDate +
                 "\ndesired end date:\t\t\t" + desiredEndDate;
 
+
         if (endDate != null)
             msg += "\nreal end date:\t\t\t\t\t" + endDate;
         else
@@ -162,9 +162,13 @@ public abstract class Project extends ObjectPlus {
                 "\nnumber of finished tasks:\t" + numberOfFinishedTasks +
                 "\nprogress:\t\t\t\t\t" + getProgress() + " %";
         msg += "\nTasks:\n";
-        for (Task task : tasks) {
-            msg += "      task " + task.getTaskNumber() + ": " + task.getName() + "\n";
 
+        if (tasks.size() == 0) {
+            msg += "      no tasks added to this project yet\n";
+        } else {
+            for (Task task : tasks) {
+                msg += "      task " + task.getTaskNumber() + ": " + task.getName() + "\n";
+            }
         }
         return msg;
 

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Manager  extends Employee{
+public class Manager  extends Employee {
 
     // do asocjacji 1-* Manager-Projekt
     public List<Project> projects = new ArrayList<>();
@@ -10,7 +10,7 @@ public class Manager  extends Employee{
     double grantedBonus; // optional
     double baseSalary;
 
-    public Manager(String login,  String firstName, String lastName, String email) {
+    public Manager(String login, String firstName, String lastName, String email) {
         super(login, firstName, lastName, email);
 
     }
@@ -36,7 +36,5 @@ public class Manager  extends Employee{
         return info;
     }
 
-    double countSalary (double baseSalary, double grantedBonus) {
-        return baseSalary + grantedBonus*maxBonus;
-    }
+
 }
