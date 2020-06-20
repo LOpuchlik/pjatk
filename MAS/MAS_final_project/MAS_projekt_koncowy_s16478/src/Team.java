@@ -1,19 +1,14 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Team extends ObjectPlus {
 
     // for RegularEmployee-Team association
     List<Employee> regEmps;
 
-    //List<Employee> teamMembers = new ArrayList<>();
-
- /*   public List<Employee> getTeamMembers() {
-        return teamMembers;
-    }*/
-
-    static List<String> signatures = new ArrayList<>();
-
+    static Set<String> signatures = new HashSet<>();
 
     String signature;
     Employee leader;
@@ -30,27 +25,20 @@ public class Team extends ObjectPlus {
     }
 
     static Team addTeam(String signature) {
-        //this.signature = Gui.signature.getText();
         return new Team(signature);
     }
 
-/*    void addEmployee(Employee e) {
-        teamMembers.add(e);
-        this.teamSize = teamMembers.size();
 
 
-        //TODO zrobic polaczenie zwrotne
-        //e.add(this);
-    }*/
+    //******************  tu cos nie bangla  *********************
 
-
-    public void setSignature(String signature) throws Exception {
-        if (signatures.contains(signature))
-            throw new Exception("signature is already used!");
-        else
-            this.signature = signature;
-//todo cos nie tak mi te sygnatury bierze
-        signatures.add(signature);
+    public void setSignature(String newSignature) throws Exception {
+        if (!signatures.contains(newSignature)) {
+            this.signature = newSignature;
+            signatures.add(newSignature);
+        } else {
+            throw new Exception("Signature is already used!"); // tworzy mi grupę, ale z nullem jako sygnaturą zespołu
+        }
     }
 
 
@@ -64,13 +52,15 @@ public class Team extends ObjectPlus {
         msg += "Team name: " + signature + "\n";
         msg += "Team size: " + teamSize + "\n";
         msg += "Team leader: " + leader + "\n";
+        msg += "Team members: \n";
 
         if (teamSize != 0) {
             for (Employee e : regEmps) {
                 msg += "      - " + e;
                 msg += "\n";
             }
-        }
+        } else
+            msg += "EMPTY TEAM HAS BEEN CREATED, no employees has been added to the team";
         return msg;
     }
 

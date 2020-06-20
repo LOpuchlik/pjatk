@@ -39,10 +39,19 @@ public class Gui extends Application {
         Button createTeamButton = new Button("Create team");
         createTeamButton.setOnAction(evnt -> {
             teamSignature.setText(signature.getText());
-            // metoda tworzaca nowy zespol
-            t = Team.addTeam(signature.getText()); // tworzy nowy zespol o podanej sygnaturze
-            signature.setText("");
-            window.setScene(scene2);
+            // metoda tworzaca nowy zespol i sprawdzajaca sygnature czy juz istnieje
+            if (Team.signatures.contains(signature.getText()))
+                try {
+                    throw new Exception ("This signature already exists");
+                } catch (Exception e) {
+                    e.getMessage();
+                    signature.setText("");
+                }
+            else {
+                t = Team.addTeam(signature.getText()); // tworzy nowy zespol o podanej sygnaturze
+                signature.setText("");
+                window.setScene(scene2);
+            }
 
         });
 
