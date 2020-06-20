@@ -3,11 +3,14 @@ import java.util.List;
 
 public class Team extends ObjectPlus {
 
-    List<Employee> teamMembers = new ArrayList<>();
+    // for RegularEmployee-Team association
+    List<Employee> regEmps;
 
-    public List<Employee> getTeamMembers() {
+    //List<Employee> teamMembers = new ArrayList<>();
+
+ /*   public List<Employee> getTeamMembers() {
         return teamMembers;
-    }
+    }*/
 
     static List<String> signatures = new ArrayList<>();
 
@@ -23,7 +26,7 @@ public class Team extends ObjectPlus {
             e.getMessage();
         }
         this.teamSize = 0;
-        teamMembers = new ArrayList<>();
+        regEmps = new ArrayList<>();
     }
 
     static Team addTeam(String signature) {
@@ -31,22 +34,15 @@ public class Team extends ObjectPlus {
         return new Team(signature);
     }
 
-    void addEmployee(Employee e) {
+/*    void addEmployee(Employee e) {
         teamMembers.add(e);
         this.teamSize = teamMembers.size();
 
 
         //TODO zrobic polaczenie zwrotne
         //e.add(this);
-    }
+    }*/
 
-    void removeEmployee(Employee e) {
-        teamMembers.remove(e);
-        this.teamSize = teamMembers.size();
-
-        //TODO usuwac polaczenie zwrotne
-        //employee.add(this);
-    }
 
     public void setSignature(String signature) throws Exception {
         if (signatures.contains(signature))
@@ -70,11 +66,22 @@ public class Team extends ObjectPlus {
         msg += "Team leader: " + leader + "\n";
 
         if (teamSize != 0) {
-            for (Employee e : teamMembers) {
+            for (Employee e : regEmps) {
                 msg += "      - " + e;
                 msg += "\n";
             }
         }
         return msg;
+    }
+
+    // for RegularEmployee-Team association
+    void addEmployee(Employee newRegularEmployee) {
+        if(!regEmps.contains(newRegularEmployee)){
+            regEmps.add(newRegularEmployee);
+            this.teamSize = regEmps.size();
+
+        // add reverse connection
+            newRegularEmployee.setTeam(this);
+        }
     }
 }

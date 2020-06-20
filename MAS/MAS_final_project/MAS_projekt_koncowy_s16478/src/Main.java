@@ -77,7 +77,7 @@ public class Main {
         Team t = new Team("grupa");
 
 
-        Employee e1 = new Validator("j53",  "Jan", "Kowalski", "jan.kowalski@gmail.com");
+        Employee e1 = new RegularEmployee("j53",  "Jan", "Kowalski", "jan.kowalski@gmail.com");
         Employee e2 = new RegularEmployee("ad05",  "Adam", "Nowak", "adam.nowak@gmail.com");
         Employee e3 = new RegularEmployee("ad07",  "Adrian", "Wasilewski", "adrian.wasilewski@gmail.com");
         Employee e4 = new RegularEmployee("an23",  "Anna", "Smith", "anna.smith@gmail.com");
@@ -135,6 +135,12 @@ public class Main {
         System.out.println("Manager extent");
         ObjectPlus.showExtent(Manager.class);
 
+
+        System.out.println();
+
+        System.out.println("+++++++++++++++++++++++++++++");
+        System.out.println("RegularEmployee extent");
+        ObjectPlus.showExtent(RegularEmployee.class);
         //Persistence.save();
     }
 }

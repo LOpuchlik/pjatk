@@ -20,7 +20,7 @@ public class Gui extends Application {
     Label teamSignature = new Label();
     Stage window;
     Scene scene1, scene2, scene3;
-    static ObservableList<Employee> allEmployees = FXCollections.observableArrayList();
+    static ObservableList<RegularEmployee> allEmployees = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) {
@@ -38,6 +38,7 @@ public class Gui extends Application {
             teamSignature.setText(signature.getText());
             // metoda tworzaca nowy zespol
             t = Team.addTeam(signature.getText()); // tworzy nowy zespol o podanej sygnaturze
+            signature.setText("");
             window.setScene(scene2);
 
         });
@@ -50,11 +51,11 @@ public class Gui extends Application {
 
 //---------------------------------------------------------------------
 // okienko 2
-        TableView<Employee> table = new TableView<>();
+        TableView<RegularEmployee> table = new TableView<>();
 
-        TableColumn<Employee, String> employeeColumn = new TableColumn<>("Employee");
+        TableColumn<RegularEmployee, String> employeeColumn = new TableColumn<>("Employee");
         employeeColumn.setMinWidth(200);
-        employeeColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        employeeColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         table.setItems(allEmployees);
 
 
@@ -64,7 +65,7 @@ public class Gui extends Application {
             // tworzenie asocjacji pomiedzy wybranym pracownikiem i aktualnym zespolem
 
             if (table.getSelectionModel().getSelectedItem() != null) {
-                Employee selectedEmployee = table.getSelectionModel().getSelectedItem();
+                RegularEmployee selectedEmployee = table.getSelectionModel().getSelectedItem();
 
                 //Team.teamMembers.add(selectedEmployee);
                 t.addEmployee(selectedEmployee);
@@ -99,7 +100,9 @@ public class Gui extends Application {
         teamMembersArea.setEditable(false);
         teamMembersArea.setMaxWidth(100);
         //teamMembersArea.setText(String.valueOf(t.getTeamMembers());
-
+        Button gotToScene1Button = new Button("GCreate another team");
+        GridPane.setConstraints(gotToScene1Button, 0,3);
+        gotToScene1Button.setOnAction(evnt -> window.setScene(scene1));
 
         Button closeButton = new Button("Close");
         GridPane.setConstraints(closeButton, 1,3);
@@ -110,7 +113,7 @@ public class Gui extends Application {
         summaryGridPane.setVgap(5);
         summaryGridPane.setHgap(5);
         summaryGridPane.setPadding(new Insets(15));
-        summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, teamMembersArea, closeButton);
+        summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, teamMembersArea,  gotToScene1Button, closeButton);
         //summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, numberOfEmployees, numberOfEmployeesField, closeButton);
         scene3 = new Scene(summaryGridPane, 300, 200);
 

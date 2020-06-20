@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Employee extends ObjectPlus {
+    Team team;
 
     Leader l = null;
     RegularEmployee re = null;
@@ -120,4 +121,13 @@ public class Employee extends ObjectPlus {
     public String getFullName () {
         return lastName + " " + firstName;
     }
+
+    // for RegularEmployee-Team association
+    void setTeam (Team newTeam){
+        team = newTeam;
+
+        //add reverse connction
+        newTeam.addEmployee(this);
+    }
+
 }
