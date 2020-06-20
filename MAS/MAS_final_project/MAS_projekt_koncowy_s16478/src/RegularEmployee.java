@@ -5,12 +5,12 @@ public class RegularEmployee extends Employee{
     private static final long serialVersionUID = 2L;
 
     // for RegularEmployee-Team association
-    Team team;
+    private Team team;
 
     // for association between Regular Employee and Task
-    List<Task> taskList = new ArrayList<>();
+    private List<Task> taskList = new ArrayList<>();
 
-    List<String> skills;
+    private List<String> skills;
 
     public RegularEmployee(String login,  String firstName, String lastName, String email) {
         super(login, firstName, lastName, email);
@@ -26,12 +26,33 @@ public class RegularEmployee extends Employee{
         }
     }
 
-    /*@Override
-    public String toString() {
-        String info = "";
-        for (Task t : taskList)
-            info += "         - "+t + "\n";
 
-        return info;
-    }*/
+    // getters setters
+
+
+    @Override
+    public Team getTeam() {
+        return team;
+    }
+
+    @Override
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
 }

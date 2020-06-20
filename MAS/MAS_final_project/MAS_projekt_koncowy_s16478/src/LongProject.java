@@ -10,18 +10,11 @@ class LongProject extends Project {
         setMinDuration(181);
     }
 
-
+// getters setters
     public static int getMinDuration() {
         return minDuration;
     }
 
-
-    /**
-     *
-     * @param minDuration
-     * Setter is needed because the definition of minDuration can change in the future
-     *  e.g. long time projects can be those that have 1-year duration and short time projects below 1 year
-     */
     public static void setMinDuration(int minDuration) {
         LongProject.minDuration = minDuration;
     }

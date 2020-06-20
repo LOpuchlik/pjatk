@@ -1,6 +1,3 @@
-// task_validator
-// set_exercise
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,16 +7,16 @@ import java.util.Map;
 
 public class Task_Validator implements Serializable {
     private static final long serialVersionUID = 2L;
-    //todo add attributes --> they also go to the constructor
+
     private Validator validator;
     private Task task;
 
-    // atrybuty walidacji
-    String validationCode;
-    LocalDate validationDate;
-    List<String> bugs = new ArrayList<>();
-    Map<String, String> bugDescription = new HashMap<>();
-    String validatorsLogin;
+    // atributes for Validation class
+    private String validationCode;
+    private LocalDate validationDate;
+    private List<String> bugs = new ArrayList<>();
+    private Map<String, String> bugDescription = new HashMap<>();
+    private String validatorsLogin;
 
 
 
@@ -53,11 +50,13 @@ public class Task_Validator implements Serializable {
         if (this.task == null || this.validator == null) {
             return "Association has been removed!\n" + "Current task state: " + this.task + "\nCurrent validator state: " + this.validator;
         }
-        return "Validation - connecting validator with the task:\n" + this.validator.firstName
-                + " " + this.validator.lastName
+        return "Validation - connecting validator with the task:\n" + this.validator.getFirstName()
+                + " " + this.validator.getLastName()
                 + "\ntask name: " + this.task.getName();
 
     }
+
+    // getters and setters
 
     public Validator getValidator() {
         return validator;
@@ -73,5 +72,45 @@ public class Task_Validator implements Serializable {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public String getValidationCode() {
+        return validationCode;
+    }
+
+    public void setValidationCode(String validationCode) {
+        this.validationCode = validationCode;
+    }
+
+    public LocalDate getValidationDate() {
+        return validationDate;
+    }
+
+    public void setValidationDate(LocalDate validationDate) {
+        this.validationDate = validationDate;
+    }
+
+    public List<String> getBugs() {
+        return bugs;
+    }
+
+    public void setBugs(List<String> bugs) {
+        this.bugs = bugs;
+    }
+
+    public Map<String, String> getBugDescription() {
+        return bugDescription;
+    }
+
+    public void setBugDescription(Map<String, String> bugDescription) {
+        this.bugDescription = bugDescription;
+    }
+
+    public String getValidatorsLogin() {
+        return validatorsLogin;
+    }
+
+    public void setValidatorsLogin(String validatorsLogin) {
+        this.validatorsLogin = validatorsLogin;
     }
 }

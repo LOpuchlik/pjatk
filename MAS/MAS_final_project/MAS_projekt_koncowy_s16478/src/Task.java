@@ -5,9 +5,9 @@ public class Task extends  ObjectPlus {
     private static final long serialVersionUID = 2L;
 
     // for association between Regular Employee and Task
-    List<RegularEmployee> regularEmployeeList = new ArrayList<>();
+    private List<RegularEmployee> regularEmployeeList = new ArrayList<>();
 
-    static List<Task> tasks = new ArrayList<>();
+    private static List<Task> tasks = new ArrayList<>();
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
 
     private Project projectAsWhole;
@@ -41,19 +41,6 @@ public class Task extends  ObjectPlus {
         projectAsWhole.addTask(task);
 
         return task;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getTaskNumber() {
-        return taskNumber;
-    }
-
-    // do automatycznego ustawiania numeru zadania na koeljna liczbe
-    public void setTaskNumber() {
-        this.taskNumber = projectAsWhole.getTasks().size()+1;
     }
 
 
@@ -90,6 +77,84 @@ public class Task extends  ObjectPlus {
 
         // add reverse connection
         newRegularEmployee.addTask(this);
+    }
+
+
+
+    // getters setters
+
+    public List<RegularEmployee> getRegularEmployeeList() {
+        return regularEmployeeList;
+    }
+
+    public void setRegularEmployeeList(List<RegularEmployee> regularEmployeeList) {
+        this.regularEmployeeList = regularEmployeeList;
+    }
+
+    public static List<Task> getTasks() {
+        return tasks;
+    }
+
+    public static void setTasks(List<Task> tasks) {
+        Task.tasks = tasks;
+    }
+
+    public List<Task_Validator> getTaskValidators() {
+        return taskValidators;
+    }
+
+    public void setTaskValidators(List<Task_Validator> taskValidators) {
+        this.taskValidators = taskValidators;
+    }
+
+    public Project getProjectAsWhole() {
+        return projectAsWhole;
+    }
+
+    public void setProjectAsWhole(Project projectAsWhole) {
+        this.projectAsWhole = projectAsWhole;
+    }
+
+    public int getTaskNumber() {
+        return taskNumber;
+    }
+
+    // for automatic setting the task number for following number
+    public void setTaskNumber() {
+        this.taskNumber = projectAsWhole.getTasks().size()+1;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
 }

@@ -5,26 +5,26 @@ import java.util.List;
 
 public class Employee extends ObjectPlus {
     private static final long serialVersionUID = 2L;
-    Team team;
+    private Team team;
 
-    Leader l = null;
-    RegularEmployee re = null;
+    private Leader l = null;
+    private RegularEmployee re = null;
 
 
-    String login;
-    String password;
-    String firstName;
-    String lastName;
-    LocalDate dateOfBirth;
-    String address;
-    String phoneNo;
-    String email;
-    transient int generalWorkExperience; // in months
-    List<String> formalEducation;
-    double numberOfWorkHoursInAMonth;
-    double workRate;
-    transient double salary;
-    int isLeader;
+    private String login;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private String address;
+    private String phoneNo;
+    private String email;
+    private transient int generalWorkExperience; // in months
+    private List<String> formalEducation;
+    private double numberOfWorkHoursInAMonth;
+    private double workRate;
+    private transient double salary;
+    private int isLeader;
 
 
     public Employee(String login, String firstName, String lastName, String email) {
@@ -88,6 +88,7 @@ public class Employee extends ObjectPlus {
     }
 
     class Leader implements Serializable {
+        public double maxBonus;
         double maxLeaderBonus;
         double grantedLeaderBonus;
 
@@ -105,6 +106,62 @@ public class Employee extends ObjectPlus {
     }
 
 
+
+    // for displaying in table view
+    public String getFullName () {
+        return lastName + " " + firstName;
+    }
+
+    // for RegularEmployee-Team association
+    void setTeam (Team newTeam){
+        team = newTeam;
+
+        //add reverse connction
+        newTeam.addEmployee(this);
+    }
+
+
+
+
+    // getters setters
+
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public Leader getL() {
+        return l;
+    }
+
+    public void setL(Leader l) {
+        this.l = l;
+    }
+
+    public RegularEmployee getRe() {
+        return re;
+    }
+
+    public void setRe(RegularEmployee re) {
+        this.re = re;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -121,17 +178,83 @@ public class Employee extends ObjectPlus {
         this.lastName = lastName;
     }
 
-    // for displaying in table view
-    public String getFullName () {
-        return lastName + " " + firstName;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    // for RegularEmployee-Team association
-    void setTeam (Team newTeam){
-        team = newTeam;
-
-        //add reverse connction
-        newTeam.addEmployee(this);
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getGeneralWorkExperience() {
+        return generalWorkExperience;
+    }
+
+    public void setGeneralWorkExperience(int generalWorkExperience) {
+        this.generalWorkExperience = generalWorkExperience;
+    }
+
+    public List<String> getFormalEducation() {
+        return formalEducation;
+    }
+
+    public void setFormalEducation(List<String> formalEducation) {
+        this.formalEducation = formalEducation;
+    }
+
+    public double getNumberOfWorkHoursInAMonth() {
+        return numberOfWorkHoursInAMonth;
+    }
+
+    public void setNumberOfWorkHoursInAMonth(double numberOfWorkHoursInAMonth) {
+        this.numberOfWorkHoursInAMonth = numberOfWorkHoursInAMonth;
+    }
+
+    public double getWorkRate() {
+        return workRate;
+    }
+
+    public void setWorkRate(double workRate) {
+        this.workRate = workRate;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public int getIsLeader() {
+        return isLeader;
+    }
+
+    public void setIsLeader(int isLeader) {
+        this.isLeader = isLeader;
+    }
 }

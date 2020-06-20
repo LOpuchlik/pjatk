@@ -5,11 +5,11 @@ public class Manager  extends Employee {
     private static final long serialVersionUID = 2L;
 
     // do asocjacji 1-* Manager-Projekt
-    public List<Project> projects = new ArrayList<>();
+    private List<Project> projects = new ArrayList<>();
 
-    static double maxBonus = 5000; // in PLN
-    double grantedBonus; // optional
-    double baseSalary;
+    private static double maxBonus = 5000; // in PLN
+    private double grantedBonus; // optional
+    private double baseSalary;
 
     public Manager(String login, String firstName, String lastName, String email) {
         super(login, firstName, lastName, email);
@@ -31,11 +31,44 @@ public class Manager  extends Employee {
     @Override
     public String toString() {
         String info= "";
-        info+= "Manager: "+ firstName + " " + lastName + " nadzoruje projekt: \n";
+        info+= "Manager: "+ getFirstName() + " " + getLastName() + " nadzoruje projekt: \n";
         for (Project p : projects)
             info += "         - " + p.getName();
         return info;
     }
 
 
+
+    // getters setters
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public static double getMaxBonus() {
+        return maxBonus;
+    }
+
+    public static void setMaxBonus(double maxBonus) {
+        Manager.maxBonus = maxBonus;
+    }
+
+    public double getGrantedBonus() {
+        return grantedBonus;
+    }
+
+    public void setGrantedBonus(double grantedBonus) {
+        this.grantedBonus = grantedBonus;
+    }
+
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+
+    public void setBaseSalary(double baseSalary) {
+        this.baseSalary = baseSalary;
+    }
 }

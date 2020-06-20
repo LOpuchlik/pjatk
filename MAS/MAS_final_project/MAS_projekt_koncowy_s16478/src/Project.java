@@ -6,7 +6,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 public abstract class Project extends ObjectPlus {
     private static final long serialVersionUID = 2L;
     // do asocjacji 1-* Manager-Projekt
-    Manager manager;
+    private Manager manager;
 
 
 

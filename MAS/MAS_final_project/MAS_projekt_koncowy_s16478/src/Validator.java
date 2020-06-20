@@ -6,7 +6,7 @@ public class Validator extends Employee {
 
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
 
-    int totalNumberOfFoundBugs;
+    private int totalNumberOfFoundBugs;
 
     public Validator(String login, String firstName, String lastName, String email) {
         super(login,  firstName, lastName, email);
@@ -35,5 +35,24 @@ public class Validator extends Employee {
             info += tv.toString() + " \n";
         }
         return info;
+    }
+
+
+    // getters setters
+
+    public List<Task_Validator> getTaskValidators() {
+        return taskValidators;
+    }
+
+    public void setTaskValidators(List<Task_Validator> taskValidators) {
+        this.taskValidators = taskValidators;
+    }
+
+    public int getTotalNumberOfFoundBugs() {
+        return totalNumberOfFoundBugs;
+    }
+
+    public void setTotalNumberOfFoundBugs(int totalNumberOfFoundBugs) {
+        this.totalNumberOfFoundBugs = totalNumberOfFoundBugs;
     }
 }

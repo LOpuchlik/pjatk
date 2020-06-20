@@ -6,13 +6,13 @@ import java.util.Set;
 public class Team extends ObjectPlus {
     private static final long serialVersionUID = 2L;
     // for RegularEmployee-Team association
-    List<Employee> regEmps;
+    private List<Employee> regEmps;
 
-    static Set<String> signatures = new HashSet<>();
+    private static Set<String> signatures = new HashSet<>();
 
-    String signature;
-    Employee leader;
-    int teamSize = 0;
+    private String signature;
+    private Employee leader;
+    private int teamSize = 0;
 
     public Team(String signature) {
         super();
@@ -74,5 +74,42 @@ public class Team extends ObjectPlus {
         // add reverse connection
             newRegularEmployee.setTeam(this);
         }
+    }
+
+
+
+    // getters setters
+
+
+    public List<Employee> getRegEmps() {
+        return regEmps;
+    }
+
+    public void setRegEmps(List<Employee> regEmps) {
+        this.regEmps = regEmps;
+    }
+
+    public static Set<String> getSignatures() {
+        return signatures;
+    }
+
+    public static void setSignatures(Set<String> signatures) {
+        Team.signatures = signatures;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public Employee getLeader() {
+        return leader;
+    }
+
+    public int getTeamSize() {
+        return teamSize;
+    }
+
+    public void setTeamSize(int teamSize) {
+        this.teamSize = teamSize;
     }
 }

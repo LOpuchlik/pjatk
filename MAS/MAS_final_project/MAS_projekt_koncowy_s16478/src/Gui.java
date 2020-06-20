@@ -41,7 +41,7 @@ public class Gui extends Application {
         createTeamButton.setOnAction(evnt -> {
             teamSignature.setText(signature.getText());
             // metoda tworzaca nowy zespol i sprawdzajaca sygnature czy juz istnieje
-            if (Team.signatures.contains(signature.getText()))
+            if (Team.getSignatures().contains(signature.getText()))
                 try {
                     throw new Exception ("This signature already exists");
                 } catch (Exception e) {
@@ -133,8 +133,6 @@ public class Gui extends Application {
         summaryGridPane.setHgap(5);
         summaryGridPane.setPadding(new Insets(15));
         summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, teamMembersArea,  gotToScene1Button, closeButton);
-        //summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature,  gotToScene1Button, closeButton);
-
         scene3 = new Scene(summaryGridPane, 400, 250);
 
 //---------------------------------------------------------------------
