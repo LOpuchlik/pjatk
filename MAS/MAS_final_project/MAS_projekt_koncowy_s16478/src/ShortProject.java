@@ -3,6 +3,7 @@ import java.time.LocalDate;
 
 
 class ShortProject extends Project {
+    private static final long serialVersionUID = 2L;
     private static int maxDuration; // in days
 
     public ShortProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate) {

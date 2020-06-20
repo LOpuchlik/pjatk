@@ -1,13 +1,15 @@
 // task_validator
 // set_exercise
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Task_Validator {
+public class Task_Validator implements Serializable {
+    private static final long serialVersionUID = 2L;
     //todo add attributes --> they also go to the constructor
     private Validator validator;
     private Task task;
@@ -22,7 +24,7 @@ public class Task_Validator {
 
 
     public Task_Validator(Validator validator, Task task) {
-
+        super();
         this.validator = validator;
         this.task = task;
 

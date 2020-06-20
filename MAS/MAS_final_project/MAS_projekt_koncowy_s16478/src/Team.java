@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Team extends ObjectPlus {
-
+    private static final long serialVersionUID = 2L;
     // for RegularEmployee-Team association
     List<Employee> regEmps;
 
@@ -15,6 +15,7 @@ public class Team extends ObjectPlus {
     int teamSize = 0;
 
     public Team(String signature) {
+        super();
         try {
             setSignature(signature);
         } catch (Exception e) {

@@ -20,14 +20,14 @@ public class Main {
 
         Project lp = new LongProject("tworzenie logiki aplikacje","wykonanie projekowarchotektury systemu bla bla bla itd", LocalDate.of(2020, 5, 30), LocalDate.of(2021, 4, 30));
 
-/*
+
         System.out.println("-----------------------------------------------------------------");
         System.out.println(sp);
         System.out.println("-----------------------------------------------------------------");
         System.out.println(mp);
         System.out.println("-----------------------------------------------------------------");
         System.out.println(lp);
-        System.out.println("-----------------------------------------------------------------");*/
+        System.out.println("-----------------------------------------------------------------");
 
 
         System.out.println("================================================================================================");
@@ -61,11 +61,11 @@ public class Main {
         //p2.addTask(t2);  // t2 jest juz czescia p1 - nie mozna dodac :D
 
 
-/*      System.out.println("Projekt 1");
+      System.out.println("Projekt 1");
         System.out.println(p1.toString());
         System.out.println();
         System.out.println("Projekt 2");
-        System.out.println(p2.toString());*/
+        System.out.println(p2.toString());
 
 
 // OVERLAPPING BETWEEN REGULAR EMPLOYEE AND LEADER - check
@@ -113,34 +113,44 @@ public class Main {
 
         System.out.println(tv.toString());
 
+        System.out.println();
 
-// OVERLAPPING TEST
-// ----------------------------------------------------------------------------
-        System.out.println("=============================================================");
-/*        Employee emp = new Employee("st8273","pass9283", "Stefan", "Batory", "stefan.batory@gmail.com");
-        emp.isRegularEmployee(List.of("Java8", "Spring", "Hibernate"));
-        emp.isLeader(0.05);
-        System.out.println(emp);*/
+ // checking Task-Regular Employee associacion
+        Task task1 = Task.createTask(p2, "task1", "some task", Priority.low);
+        RegularEmployee emp1 = new RegularEmployee("logemp1", "Rachel", "Weisz", "rachel.weisz@gmail.com");
+        RegularEmployee emp2 = new RegularEmployee("logemkd1", "Daniel", "Craig", "daniel.craig@gmail.com");
+
+        emp1.addTask(task1);
+        emp2.addTask(task1);
+
+
+
 
 //--------------
         System.out.println("Teams extent");
         ObjectPlus.showExtent(Team.class);
 
-       /* System.out.println("+++++++++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Short project extent");
-        ObjectPlus.showExtent(ShortProject.class);*/
+        ObjectPlus.showExtent(ShortProject.class);
 
 
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Manager extent");
         ObjectPlus.showExtent(Manager.class);
 
-
         System.out.println();
 
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("RegularEmployee extent");
         ObjectPlus.showExtent(RegularEmployee.class);
+
+        System.out.println();
+
+        System.out.println("+++++++++++++++++++++++++++++");
+        System.out.println("Task extent");
+        ObjectPlus.showExtent(Task.class);
+
         //Persistence.save();
     }
 }

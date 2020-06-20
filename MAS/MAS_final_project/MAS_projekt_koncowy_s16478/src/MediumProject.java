@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 
 public class MediumProject extends Project{
+    private static final long serialVersionUID = 2L;
 
     private static int minDuration = 91; // dni
     private static int maxDuration = 180; // dni

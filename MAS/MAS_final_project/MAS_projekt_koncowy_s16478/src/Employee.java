@@ -1,7 +1,10 @@
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Employee extends ObjectPlus {
+    private static final long serialVersionUID = 2L;
     Team team;
 
     Leader l = null;
@@ -25,6 +28,7 @@ public class Employee extends ObjectPlus {
 
 
     public Employee(String login, String firstName, String lastName, String email) {
+        super();
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -65,8 +69,8 @@ public class Employee extends ObjectPlus {
         return info;
     }
 
-    class RegularEmployee{
-        List<String> skills;
+    class RegularEmployee implements Serializable {
+        transient List<String> skills;
 
         public RegularEmployee(List<String> skills) {
             this.skills = skills;
@@ -83,7 +87,7 @@ public class Employee extends ObjectPlus {
         }
     }
 
-    class Leader {
+    class Leader implements Serializable {
         double maxLeaderBonus;
         double grantedLeaderBonus;
 

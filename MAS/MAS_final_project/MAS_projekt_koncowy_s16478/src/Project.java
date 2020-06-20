@@ -4,11 +4,11 @@ import java.util.*;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public abstract class Project extends ObjectPlus {
-
+    private static final long serialVersionUID = 2L;
     // do asocjacji 1-* Manager-Projekt
     Manager manager;
 
-    private static final long serialVersionUID = 2L;
+
 
     private List<Task> tasks = new ArrayList<>();
     private static Set<Task> allTasks = new HashSet<>();
@@ -27,6 +27,7 @@ public abstract class Project extends ObjectPlus {
 
 
     public Project(String name, String description, LocalDate startDate, LocalDate desiredEndDate) {
+        super();
         this.name = name;
         this.description = description;
         this.startDate = startDate;

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Gui extends Application {
+    private static final long serialVersionUID = 2L;
 
     static Team t;
     TextArea teamMembersArea = new TextArea();

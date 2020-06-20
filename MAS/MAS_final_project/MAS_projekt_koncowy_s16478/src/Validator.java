@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Validator extends Employee {
+    private static final long serialVersionUID = 2L;
 
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
 

@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task extends  ObjectPlus {
+    private static final long serialVersionUID = 2L;
+
+    // for association between Regular Employee and Task
+    List<RegularEmployee> regularEmployeeList = new ArrayList<>();
 
     static List<Task> tasks = new ArrayList<>();
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
@@ -15,6 +19,7 @@ public class Task extends  ObjectPlus {
 
     // konstruktor jest prywatny
     public Task(Project projectAsWhole, String name, String description, Priority priority) throws Exception {
+        super();
         this.projectAsWhole = projectAsWhole;
         setTaskNumber();
         this.name = name;
@@ -72,7 +77,19 @@ public class Task extends  ObjectPlus {
         for (Task_Validator tv: taskValidators) {
             info += tv.toString() + " \n";
         }
+        for (RegularEmployee re: regularEmployeeList) {
+            info += "from RegularEmployee-Task associaton: " + re.toString() + ", task name: " + name + "\n";
+        }
         return info;
+    }
+
+    // for association between Regular Employee and Task
+    void addRegularEmployee (RegularEmployee newRegularEmployee) {
+        if (!regularEmployeeList.contains(newRegularEmployee))
+            regularEmployeeList.add(newRegularEmployee);
+
+        // add reverse connection
+        newRegularEmployee.addTask(this);
     }
 
 }

@@ -2,6 +2,7 @@ import java.time.LocalDate;
 
 
 class LongProject extends Project {
+    private static final long serialVersionUID = 2L;
     private static int minDuration; // in days
 
     public LongProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate) {

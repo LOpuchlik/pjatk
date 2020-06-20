@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Manager  extends Employee {
+    private static final long serialVersionUID = 2L;
 
     // do asocjacji 1-* Manager-Projekt
     public List<Project> projects = new ArrayList<>();
