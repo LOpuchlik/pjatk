@@ -5,8 +5,8 @@ import java.time.LocalDate;
 class ShortProject extends Project {
     private static int maxDuration; // in days
 
-    public ShortProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate, int totalNumberOfTasks) {
-        super(name, description, startDate, desiredEndDate,  totalNumberOfTasks);
+    public ShortProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate) {
+        super(name, description, startDate, desiredEndDate);
         setMaxDuration(90);
     }
 

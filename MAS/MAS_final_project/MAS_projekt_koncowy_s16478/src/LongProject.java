@@ -4,8 +4,8 @@ import java.time.LocalDate;
 class LongProject extends Project {
     private static int minDuration; // in days
 
-    public LongProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate, int totalNumberOfTasks) {
-        super(name, description, startDate, desiredEndDate, totalNumberOfTasks);
+    public LongProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate) {
+        super(name, description, startDate, desiredEndDate);
         setMinDuration(181);
     }
 

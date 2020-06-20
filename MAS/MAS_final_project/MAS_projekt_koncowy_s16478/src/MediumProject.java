@@ -5,8 +5,8 @@ public class MediumProject extends Project{
     private static int minDuration = 91; // dni
     private static int maxDuration = 180; // dni
 
-    public MediumProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate, int totalNumberOfTasks) {
-        super(name, description, startDate, desiredEndDate, totalNumberOfTasks);
+    public MediumProject(String name, String description, LocalDate startDate, LocalDate desiredEndDate) {
+        super(name, description, startDate, desiredEndDate);
         setMinDuration(91);
         setMaxDuration(180);
     }

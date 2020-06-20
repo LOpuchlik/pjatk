@@ -1,16 +1,14 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public abstract class Project extends ObjectPlus {
 
-    private static final long serialVersionUID = 2L;
+    // do asocjacji 1-* Manager-Projekt
+    Manager manager;
 
-    List<String> projectNames = new ArrayList<>();
+    private static final long serialVersionUID = 2L;
 
     private List<Task> tasks = new ArrayList<>();
     private static Set<Task> allTasks = new HashSet<>();
@@ -28,17 +26,15 @@ public abstract class Project extends ObjectPlus {
     private transient double progress; // wyliczalny jako numberOfFinishedTasks divided by total number of tasks
 
 
-    public Project(String name, String description, LocalDate startDate, LocalDate desiredEndDate, int totalNumberOfTasks) {
-        setName(name);
+    public Project(String name, String description, LocalDate startDate, LocalDate desiredEndDate) {
+        this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.desiredEndDate = desiredEndDate;
-        this.totalNumberOfTasks = totalNumberOfTasks;
+        this.totalNumberOfTasks = tasks.size();
         getDuration();
-
-        // dodanie nazwy projektu do listy nazw, zeby potem sprawdzac, czy juz jest projekt o takiej nazwie
-        projectNames.add(name);
     }
+
 
 
     // dodanie czesc ze sprawdzeniem czy dana czesc nie jest juz polaczona z jakas caloscia
@@ -65,12 +61,7 @@ public abstract class Project extends ObjectPlus {
         return name;
     }
 
-    public void setName(String name) {
-        if (!projectNames.contains(name))
-            this.name = name;
-        else
-            System.out.println("You cannot give a name that has already been used");
-    }
+
 
     public int getDuration() {
         this.duration = (int) DAYS.between(startDate, LocalDate.now());
@@ -138,6 +129,19 @@ public abstract class Project extends ObjectPlus {
     public void setTotalNumberOfTasks() {
         this.totalNumberOfTasks = tasks.size();
     }
+
+
+    // do asocjacji 1-* Manager-Projekt -- po stronie 1 setManager
+    public void setManager (Manager newManager) {
+        if (manager != null){
+            // TODO remove istniejace polaczenie
+        } else {
+            manager = newManager;
+        }
+
+        newManager.addProject(this);
+    }
+
 
     @Override
     public String toString() {
