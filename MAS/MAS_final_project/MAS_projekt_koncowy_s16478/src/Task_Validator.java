@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Task_Validator extends ObjectPlus {
+public class Task_Validator {
     //todo add attributes --> they also go to the constructor
     private Validator validator;
     private Task task;
@@ -22,7 +22,7 @@ public class Task_Validator extends ObjectPlus {
 
 
     public Task_Validator(Validator validator, Task task) {
-        super();
+
         this.validator = validator;
         this.task = task;
 
@@ -52,8 +52,8 @@ public class Task_Validator extends ObjectPlus {
             return "Association has been removed!\n" + "Current task state: " + this.task + "\nCurrent validator state: " + this.validator;
         }
         return "Validation - connecting validator with the task:\n" + this.validator.firstName
-                + " " + this.validator.lastName + ", total number of found bugs: " + this.validator.totalNumberOfFoundBugs
-                + "\ntask in validation: " + this.task.getName();
+                + " " + this.validator.lastName
+                + "\ntask name: " + this.task.getName();
 
     }
 

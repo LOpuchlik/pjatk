@@ -29,7 +29,6 @@ public abstract class Project extends ObjectPlus {
 
 
     public Project(String name, String description, LocalDate startDate, LocalDate desiredEndDate, int totalNumberOfTasks) {
-        super();
         setName(name);
         this.description = description;
         this.startDate = startDate;

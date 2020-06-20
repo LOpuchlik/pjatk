@@ -36,4 +36,3 @@ class ShortProject extends Project {
     }
 }
 
-

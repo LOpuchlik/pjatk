@@ -9,18 +9,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Gui extends Application {
 
     Team t = null;
-    static List<Employee> thisTeamsEmployees;
 
     static String teamToDisplay="";
     static TextField signature;
     Label teamSignature = new Label();
-    //Label teamSizeLabel = new Label();
     Stage window;
     Scene scene1, scene2, scene3;
     static ObservableList<Employee> allEmployees = FXCollections.observableArrayList();
@@ -39,7 +34,7 @@ public class Gui extends Application {
         Button createTeamButton = new Button("Create team");
         createTeamButton.setOnAction(evnt -> {
             teamSignature.setText(signature.getText());
-      // metoda tworzaca nowy zespol
+            // metoda tworzaca nowy zespol
             t = Team.addTeam(signature.getText()); // tworzy nowy zespol o podanej sygnaturze
             window.setScene(scene2);
 
@@ -49,13 +44,13 @@ public class Gui extends Application {
         VBox vBoxLayout = new VBox(20); // all the objects are on top of each other
         vBoxLayout.setPadding(new Insets(15));
         vBoxLayout.getChildren().addAll(label, signature, createTeamButton);
-        scene1 = new Scene(vBoxLayout, 300, 150);
+        scene1 = new Scene(vBoxLayout, 300, 200);
 
 //---------------------------------------------------------------------
 // okienko 2
         TableView<Employee> table = new TableView<>();
 
-        TableColumn<Employee, String> employeeColumn = new TableColumn<>("Regular employee");
+        TableColumn<Employee, String> employeeColumn = new TableColumn<>("Employee");
         employeeColumn.setMinWidth(200);
         employeeColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         table.setItems(allEmployees);
@@ -64,15 +59,16 @@ public class Gui extends Application {
         table.getColumns().addAll(employeeColumn);
         Button addEmployeeButton = new Button("Add employee");
         addEmployeeButton.setOnAction(evnt -> {
-        // tworzenie asocjacji pomiedzy wybranym pracownikiem i aktualnym zespolem
-thisTeamsEmployees = new ArrayList<>();
+            // tworzenie asocjacji pomiedzy wybranym pracownikiem i aktualnym zespolem
+
             if (table.getSelectionModel().getSelectedItem() != null) {
                 Employee selectedEmployee = table.getSelectionModel().getSelectedItem();
 
+                //Team.teamMembers.add(selectedEmployee);
                 t.addEmployee(selectedEmployee);
                 System.out.println(selectedEmployee.toString());
             }
-         });
+        });
 
 
         Button nextButton = new Button("Next");
@@ -81,7 +77,7 @@ thisTeamsEmployees = new ArrayList<>();
         VBox vBox = new VBox(10);
         vBox.setPadding(new Insets(15));
         vBox.getChildren().addAll(table ,addEmployeeButton, nextButton);
-        scene2 = new Scene(vBox, 233, 400);
+        scene2 = new Scene(vBox, 250, 400);
 
 
 // -----------------------------------------------------------------------
@@ -94,26 +90,25 @@ thisTeamsEmployees = new ArrayList<>();
         GridPane.setConstraints(teamSignatureLabel,0,1);
 
         GridPane.setConstraints(teamSignature,1,1);
-        //teamSignature.setText(teamToDisplay);
+        teamSignature.setText(teamToDisplay);
 
         Label numberOfEmployees = new Label("Number of employees: ");
         GridPane.setConstraints(numberOfEmployees,0,2);
         Label numberOfEmployeesField = new Label();
         GridPane.setConstraints(numberOfEmployeesField,1,2);
-        numberOfEmployeesField.setText(String.valueOf(Team.teamSize)); // jakos wziac team size tu wyciagnac
-       // numberOfEmployeesField.setText(String.valueOf(thisTeamsEmployees.size())); // jakos wziac team size tu wyciagnac
+        numberOfEmployeesField.setText(String.valueOf(Team.teamMembers.size())); // jakos wziac team size tu wyciagnac
 
         Button closeButton = new Button("Close");
         GridPane.setConstraints(closeButton, 1,3);
         closeButton.setOnAction(evnt -> {
-        window.close();
+            window.close();
         });
         GridPane summaryGridPane = new GridPane();
         summaryGridPane.setVgap(5);
         summaryGridPane.setHgap(5);
         summaryGridPane.setPadding(new Insets(15));
         summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, numberOfEmployees, numberOfEmployeesField, closeButton);
-        scene3 = new Scene(summaryGridPane, 250, 125);
+        scene3 = new Scene(summaryGridPane, 300, 200);
 
 //---------------------------------------------------------------------
         window.setScene(scene1);

@@ -7,9 +7,8 @@ public class Validator extends Employee {
 
     int totalNumberOfFoundBugs;
 
-    public Validator(String login, String password, String firstName, String lastName, String email, int totalNumberOfFoundBugs) {
+    public Validator(String login, String password, String firstName, String lastName, String email) {
         super(login, password, firstName, lastName, email);
-        this.totalNumberOfFoundBugs = totalNumberOfFoundBugs;
     }
 
 

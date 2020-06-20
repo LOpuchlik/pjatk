@@ -24,7 +24,6 @@ public class Employee extends ObjectPlus {
 
 
     public Employee(String login, String password, String firstName, String lastName, String email) {
-        super();
         this.login = login;
         this.password = password;
         this.firstName = firstName;
@@ -57,7 +56,7 @@ public class Employee extends ObjectPlus {
             info+= firstName + " " + lastName;
             info += " (" + this.getClass() + ")";
             info += "\n" + l;
-            }else {
+        }else {
             info+= firstName + " " + lastName;
             info += " (" + this.getClass() + ")";
             info+="\n" + l;
