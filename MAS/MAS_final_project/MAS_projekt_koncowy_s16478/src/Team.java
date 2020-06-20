@@ -4,14 +4,15 @@ import java.util.List;
 public class Team extends ObjectPlus {
 
     static List<Employee> teamMembers;
-    static List<String> signatures = new ArrayList<>();
+    private List<String> signatures = new ArrayList<>();
 
 
     String signature;
     Employee leader;
-    int teamSize = 0;
+    static int teamSize = 0;
 
     public Team(String signature) {
+        super();
         try {
             setSignature(signature);
         } catch (Exception e) {

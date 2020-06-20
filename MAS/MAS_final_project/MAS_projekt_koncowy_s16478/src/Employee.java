@@ -24,6 +24,7 @@ public class Employee extends ObjectPlus {
 
 
     public Employee(String login, String password, String firstName, String lastName, String email) {
+        super();
         this.login = login;
         this.password = password;
         this.firstName = firstName;

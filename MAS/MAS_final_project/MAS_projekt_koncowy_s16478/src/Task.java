@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task extends  ObjectPlus {
+public class Task extends ObjectPlus {
 
     static List<Task> tasks = new ArrayList<>();
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
@@ -15,6 +15,7 @@ public class Task extends  ObjectPlus {
 
     // konstruktor jest prywatny
     public Task(Project projectAsWhole, String name, String description, Priority priority) throws Exception {
+        super();
         this.projectAsWhole = projectAsWhole;
         setTaskNumber();
         this.name = name;
