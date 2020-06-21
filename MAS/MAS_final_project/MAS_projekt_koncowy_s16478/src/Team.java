@@ -11,10 +11,13 @@ public class Team extends ObjectPlus {
     // for Task-Team association
     private List<Task> tasksForTeamsList = new ArrayList<>();
 
+    // for composition - Team-Leader
+    private static Set <Employee.Leader> allLeaders = new HashSet<>();
+
     private static Set<String> signatures = new HashSet<>();
 
     private String signature;
-    private Employee leader;
+    private Employee.Leader leader;
     private int teamSize = 0;
 
     public Team(String signature) {
@@ -43,9 +46,25 @@ public class Team extends ObjectPlus {
     }
 
 
-    public void setLeader(Employee leader) {
+    // for composition Team - Leader
+    // adding part to whole with checking if this part is not already added to another whole
+    void addLeader(Employee.Leader leader) throws Exception {
+        if (this.leader == null) {
+            // check if this part is already a part of some whole
+            if(allLeaders.contains(leader)) {
+                throw new Exception("Leader (part) is already connected to some whole)");
+            }
+            this.leader = leader;
+            // adding to allTasks list
+            allLeaders.add(leader);
+        }
+    }
+
+
+    public void setLeader(Employee.Leader leader) {
         this.leader = leader;
     }
+
 
     @Override
     public String toString() {
@@ -124,7 +143,7 @@ public class Team extends ObjectPlus {
         return signature;
     }
 
-    public Employee getLeader() {
+    public Employee.Leader getLeader() {
         return leader;
     }
 

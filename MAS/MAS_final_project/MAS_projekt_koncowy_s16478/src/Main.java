@@ -95,7 +95,7 @@ public class Main {
         t.addEmployee(e1);
         t.addEmployee(e2);
         t.addEmployee(emp);
-        t.setLeader(emp);
+      
         // employee 1 and 2 are already used
 
         System.out.println(t.toString());

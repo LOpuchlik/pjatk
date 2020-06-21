@@ -14,14 +14,14 @@ public class Task extends  ObjectPlus {
     private List<Task_Validator> taskValidators = new ArrayList<>(); // from association with attribute
 
     private Project projectAsWhole;
-    private int taskNumber; // unique -- numery zadaniom są automatycznie nadawane przez zwiekszanie countera
+    private int taskNumber; // numbers of Tasks are incremented automatically
     private String name;
     private String description;
     private transient Priority priority;
     private transient Status status;
 
-    // konstruktor jest prywatny
-    public Task(Project projectAsWhole, String name, String description, Priority priority) throws Exception {
+    // private constructor
+    private Task(Project projectAsWhole, String name, String description, Priority priority) throws Exception {
         super();
         this.projectAsWhole = projectAsWhole;
         setTaskNumber();

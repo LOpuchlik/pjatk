@@ -122,7 +122,9 @@ public class Employee extends ObjectPlus {
     }
 
 
-    class Leader implements Serializable {
+    static class Leader implements Serializable {
+        Team team;
+
         public double maxBonus;
         double maxLeaderBonus;
         double grantedLeaderBonus;
@@ -132,6 +134,33 @@ public class Employee extends ObjectPlus {
             this.maxLeaderBonus = 0.1;
             this.grantedLeaderBonus = grantedLeaderBonus;
         }
+
+
+// for composition Leader-Team with Team as Whole
+        // private constructor
+        private Leader(Team teamAsWhole, double grantedLeaderBonus) throws Exception {
+            this.team = teamAsWhole;
+            this.maxLeaderBonus = 0.1;
+            this.grantedLeaderBonus = grantedLeaderBonus;
+        }
+
+
+        public static Leader createLeader (Team teamAsWhole, double grantedLeaderBonus) throws Exception {
+            // sprawdzanie czy calosc istnieje
+            if (teamAsWhole == null) {
+                throw new Exception("The whole (project) does not exist, therefore you cannot create a part for it");
+            }
+            //stworzenie nowej czesci
+            Leader leader = new Leader (teamAsWhole, grantedLeaderBonus);
+
+            // dodanie czesci do calosci
+            teamAsWhole.addLeader(leader);
+
+            return leader;
+        }
+
+
+
 
         @Override
         public String toString() {
@@ -146,9 +175,6 @@ public class Employee extends ObjectPlus {
     public String getFullName () {
         return lastName + " " + firstName;
     }
-
-
-
 
 
 
