@@ -160,22 +160,17 @@ public class Employee extends ObjectPlus {
         }
 
 
-
-
         @Override
         public String toString() {
-            return "                  as leader" +
-                    ", max leader bonus: " + maxLeaderBonus;
+            return "                  as leader";
         }
     }
-
 
 
     // for displaying in table view
     public String getFullName () {
         return lastName + " " + firstName;
     }
-
 
 
     // getters setters

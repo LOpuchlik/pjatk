@@ -10,7 +10,7 @@ public class Main {
        //Persistence.load();
 
 // checking correctness of regular inheritance between Project and ShortProject, MediumProject, LongProject classes
-        ShortProject sp = new ShortProject("implementacja gui","implementacja interfejsu graficznego do obsługi.....", LocalDate.of(2020, 5, 30), LocalDate.of(2020, 6, 14));
+        Project sp = new ShortProject("implementacja gui","implementacja interfejsu graficznego do obsługi.....", LocalDate.of(2020, 5, 30), LocalDate.of(2020, 6, 14));
 
         Manager m = new Manager("man1", "Andrzej", "Zarzycki", "andrzej.zarzycki@gmail.com");
 
@@ -72,10 +72,13 @@ public class Main {
         Employee emp = new Employee("st8273", "Stefan", "Batory", "stefan.batory@gmail.com");
         emp.isRegularEmployee(List.of("Java8", "Spring", "Hibernate"));
         emp.isLeader(0.05);
-        //System.out.println(emp);
+        System.out.println();
+        System.out.println("------------------ Testing overlapping ------------------");
+        System.out.println(emp);
+        System.out.println();
 
 
-        Team t = new Team("grupa");
+        //Team t = new Team("grupa");
 
         Employee e1 = new Employee("j53",  "Robert", "Kubica", "jan.kowalski@gmail.com");
         e1.isRegularEmployee(List.of("Spring", "Java8", "Python"));
@@ -89,22 +92,22 @@ public class Main {
         e5.isRegularEmployee(List.of("HTML", "JavaScript"));
         Employee e6 = new Employee("g8362",  "Grzegorz", "Klima", "grzegorz.klima@gmail.com");
         e6.isRegularEmployee(List.of("CSS", "HTML"));
-        Employee e7 = new Employee("kr8463", "Krystian", "Marek", "krystian.marek@gmail.com");
-        e7.isRegularEmployee(List.of("R", "Ruby"));
 
-        t.addEmployee(e1);
-        t.addEmployee(e2);
-        t.addEmployee(emp);
-      
-        // employee 1 and 2 are already used
 
-        System.out.println(t.toString());
+        //t.addEmployee(e1);
+        //t.addEmployee(e2);
+        //t.addEmployee(emp);
+
+
+
+
+        //System.out.println(t.toString());
         System.out.println();
 
 
 // gui launching
         ObjectPlus.getExtent(Employee.class).forEach(item-> {
-            Gui.allEmployees.add(item);
+            Gui.allEmployees.add(item); // for filling TableView
         });
         Application.launch(Gui.class, args);
 

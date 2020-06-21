@@ -17,6 +17,7 @@ public class Team extends ObjectPlus {
     private static Set<String> signatures = new HashSet<>();
 
     private String signature;
+    //private Employee.Leader leader;
     private Employee.Leader leader;
     private int teamSize = 0;
 
@@ -29,6 +30,9 @@ public class Team extends ObjectPlus {
         }
         this.teamSize = 0;
         regEmps = new ArrayList<>();
+        /*Employee e7 = new Employee("kr8463", "Krystian", "Marek", "krystian.marek@gmail.com");
+        e7.isRegularEmployee(com.sun.tools.javac.util.List.of("R", "Ruby"));
+        this.addEmployee(e7);*/
     }
 
     static Team addTeam(String signature) {

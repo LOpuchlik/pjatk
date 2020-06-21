@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Gui extends Application {
@@ -49,7 +50,7 @@ public class Gui extends Application {
                     signature.setText("");
                 }
             else {
-                t = Team.addTeam(signature.getText()); // tworzy nowy zespol o podanej sygnaturze
+                t = Team.addTeam(signature.getText()); // creates new team with given signature
                 signature.setText("");
                 window.setScene(scene2);
             }
@@ -83,7 +84,7 @@ public class Gui extends Application {
                 squad.add(selectedEmployee);
                 allEmployees.remove(selectedEmployee);
                 table.setItems(allEmployees);
-                teamMembersArea.setText(squad.toString().replace(", "," ").replace("[","").replace("]",""));
+                teamMembersArea.setText("Added employees:\n" + squad.toString().replace(", "," ").replace("[","").replace("]",""));
             }
 
 
@@ -133,7 +134,7 @@ public class Gui extends Application {
         summaryGridPane.setHgap(5);
         summaryGridPane.setPadding(new Insets(15));
         summaryGridPane.getChildren().addAll(teamCreated, teamSignatureLabel, teamSignature, teamMembersArea,  gotToScene1Button, closeButton);
-        scene3 = new Scene(summaryGridPane, 400, 250);
+        scene3 = new Scene(summaryGridPane, 350, 250);
 
 //---------------------------------------------------------------------
         window.setScene(scene1);
