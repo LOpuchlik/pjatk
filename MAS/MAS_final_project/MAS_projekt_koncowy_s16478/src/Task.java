@@ -5,7 +5,7 @@ public class Task extends  ObjectPlus {
     private static final long serialVersionUID = 2L;
 
     // for association between Regular Employee and Task
-    private List<RegularEmployee> regularEmployeeList = new ArrayList<>();
+    private List<Employee.RegularEmployee> regularEmployeeList = new ArrayList<>();
 
     //for association between Team and Task
     private Team team;
@@ -67,7 +67,7 @@ public class Task extends  ObjectPlus {
         for (Task_Validator tv: taskValidators) {
             info += tv.toString() + " \n";
         }
-        for (RegularEmployee re: regularEmployeeList) {
+        for (Employee.RegularEmployee re: regularEmployeeList) {
             info += "from RegularEmployee-Task associaton: " + re.toString() + ", task name: " + name + "\n";
         }
 
@@ -75,7 +75,7 @@ public class Task extends  ObjectPlus {
     }
 
     // for association between Regular Employee and Task
-    void addRegularEmployee (RegularEmployee newRegularEmployee) {
+    void addRegularEmployee (Employee.RegularEmployee newRegularEmployee) {
         if (!regularEmployeeList.contains(newRegularEmployee))
             regularEmployeeList.add(newRegularEmployee);
 
@@ -97,11 +97,11 @@ public class Task extends  ObjectPlus {
 
     // getters setters
 
-    public List<RegularEmployee> getRegularEmployeeList() {
+    public List<Employee.RegularEmployee> getRegularEmployeeList() {
         return regularEmployeeList;
     }
 
-    public void setRegularEmployeeList(List<RegularEmployee> regularEmployeeList) {
+    public void setRegularEmployeeList(List<Employee.RegularEmployee> regularEmployeeList) {
         this.regularEmployeeList = regularEmployeeList;
     }
 

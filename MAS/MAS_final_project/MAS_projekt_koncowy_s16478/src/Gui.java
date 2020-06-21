@@ -17,14 +17,14 @@ public class Gui extends Application {
 
     static Team t;
     TextArea teamMembersArea = new TextArea();
-    List<RegularEmployee> squad = new ArrayList<>();
+    List<Employee> squad = new ArrayList<>();
 
     static String teamToDisplay="";
     static TextField signature;
     Label teamSignature = new Label();
     Stage window;
     Scene scene1, scene2, scene3;
-    static ObservableList<RegularEmployee> allEmployees = FXCollections.observableArrayList();
+    static ObservableList<Employee> allEmployees = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage primaryStage) {
@@ -64,9 +64,9 @@ public class Gui extends Application {
 
 //---------------------------------------------------------------------
 // okienko 2
-        TableView<RegularEmployee> table = new TableView<>();
+        TableView<Employee> table = new TableView<>();
 
-        TableColumn<RegularEmployee, String> employeeColumn = new TableColumn<>("Regular Employees");
+        TableColumn<Employee, String> employeeColumn = new TableColumn<>("Regular Employees");
         employeeColumn.setMinWidth(200);
         employeeColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         table.setItems(allEmployees);
@@ -78,7 +78,7 @@ public class Gui extends Application {
             // tworzenie asocjacji pomiedzy wybranym pracownikiem i aktualnym zespolem
 
             if (table.getSelectionModel().getSelectedItem() != null) {
-                RegularEmployee selectedEmployee = table.getSelectionModel().getSelectedItem();
+                Employee selectedEmployee = table.getSelectionModel().getSelectedItem();
                 t.addEmployee(selectedEmployee);
                 squad.add(selectedEmployee);
                 allEmployees.remove(selectedEmployee);

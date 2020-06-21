@@ -7,9 +7,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Persistence.load();
+       //Persistence.load();
 
-/*
 // checking correctness of regular inheritance between Project and ShortProject, MediumProject, LongProject classes
         ShortProject sp = new ShortProject("implementacja gui","implementacja interfejsu graficznego do obsługi.....", LocalDate.of(2020, 5, 30), LocalDate.of(2020, 6, 14));
 
@@ -31,7 +30,7 @@ public class Main {
         System.out.println("-----------------------------------------------------------------");
 
 
-        System.out.println("================================================================================================");
+        System.out.println();
 
 
 //Checking correct formation of composition between Project and Task classes
@@ -78,13 +77,20 @@ public class Main {
 
         Team t = new Team("grupa");
 
-        Employee e1 = new RegularEmployee("j53",  "Robert", "Kubica", "jan.kowalski@gmail.com");
-        Employee e2 = new RegularEmployee("ad05",  "Adam", "Nowak", "adam.nowak@gmail.com");
-        Employee e3 = new RegularEmployee("ad07",  "Adrian", "Wasilewski", "adrian.wasilewski@gmail.com");
-        Employee e4 = new RegularEmployee("an23",  "Anna", "Smith", "anna.smith@gmail.com");
-        Employee e5 = new RegularEmployee("p12",  "Piotr", "Guminski", "piotr.guminski@gmail.com");
-        Employee e6 = new RegularEmployee("g8362",  "Grzegorz", "Klima", "grzegorz.klima@gmail.com");
-        Employee e7 = new RegularEmployee("kr8463", "Krystian", "Marek", "krystian.marek@gmail.com");
+        Employee e1 = new Employee("j53",  "Robert", "Kubica", "jan.kowalski@gmail.com");
+        e1.isRegularEmployee(List.of("Spring", "Java8", "Python"));
+        Employee e2 = new Employee("ad05",  "Adam", "Nowak", "adam.nowak@gmail.com");
+        e2.isRegularEmployee(List.of("JUnit5", "Groovy"));
+        Employee e3 = new Employee("ad07",  "Adrian", "Wasilewski", "adrian.wasilewski@gmail.com");
+        e3.isRegularEmployee(List.of("Scala", "C#"));
+        Employee e4 = new Employee("an23",  "Anna", "Smith", "anna.smith@gmail.com");
+        e4.isRegularEmployee(List.of("MatLAB", "Groovy"));
+        Employee e5 = new Employee("p12",  "Piotr", "Guminski", "piotr.guminski@gmail.com");
+        e5.isRegularEmployee(List.of("HTML", "JavaScript"));
+        Employee e6 = new Employee("g8362",  "Grzegorz", "Klima", "grzegorz.klima@gmail.com");
+        e6.isRegularEmployee(List.of("CSS", "HTML"));
+        Employee e7 = new Employee("kr8463", "Krystian", "Marek", "krystian.marek@gmail.com");
+        e7.isRegularEmployee(List.of("R", "Ruby"));
 
         t.addEmployee(e1);
         t.addEmployee(e2);
@@ -97,7 +103,7 @@ public class Main {
 
 
 // gui launching
-        ObjectPlus.getExtent(RegularEmployee.class).forEach(item-> {
+        ObjectPlus.getExtent(Employee.class).forEach(item-> {
             Gui.allEmployees.add(item);
         });
         Application.launch(Gui.class, args);
@@ -118,13 +124,15 @@ public class Main {
 
  // checking Task-Regular Employee associacion
         Task task1 = Task.createTask(p2, "task1", "some task", Priority.low);
-        RegularEmployee emp1 = new RegularEmployee("logemp1", "Rachel", "Weisz", "rachel.weisz@gmail.com");
-        RegularEmployee emp2 = new RegularEmployee("logemkd1", "Daniel", "Craig", "daniel.craig@gmail.com");
+        Employee.RegularEmployee emp1 = new Employee.RegularEmployee(List.of("Java8", "Spring"));
+        Employee.RegularEmployee emp2 = new Employee.RegularEmployee(List.of("Java8", "Spring"));
 
         emp1.addTask(task1);
         emp2.addTask(task1);
 
 // task and team association check
+System.out.println();
+//System.out.println("-------------- Task-Team association test --------------");
         Project project = new MediumProject("project", "some other project", LocalDate.of(2020,6,19), LocalDate.of(2020,11,10));
 
         Task taskForTeam = Task.createTask(project, "taskName", "task to be done", Priority.medium);
@@ -133,42 +141,37 @@ public class Main {
 
         taskForTeam.setTeamForTask(teamforTask);
 
-*/
 
 
 //--------------
 
-/*
         System.out.println();
 
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Short project extent");
         ObjectPlus.showExtent(ShortProject.class);
 
-
-
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Manager extent");
         ObjectPlus.showExtent(Manager.class);
-*/
 
-
-
-/*      System.out.println("Teams extent");
-        ObjectPlus.showExtent(Team.class);*/
-
-
-/*      System.out.println();
+        System.out.println();
 
         System.out.println("+++++++++++++++++++++++++++++");
-        System.out.println("RegularEmployee extent");
-        ObjectPlus.showExtent(RegularEmployee.class);
+        System.out.println("Teams extent");
+        ObjectPlus.showExtent(Team.class);
+
+        System.out.println();
+
+        System.out.println("+++++++++++++++++++++++++++++");
+        System.out.println("Employee extent");
+        ObjectPlus.showExtent(Employee.class);
 
         System.out.println();
 
         System.out.println("+++++++++++++++++++++++++++++");
         System.out.println("Task extent");
-        ObjectPlus.showExtent(Task.class);*/
+        ObjectPlus.showExtent(Task.class);
 
         //Persistence.save();
     }

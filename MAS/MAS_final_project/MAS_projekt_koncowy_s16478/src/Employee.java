@@ -1,6 +1,7 @@
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee extends ObjectPlus {
@@ -69,23 +70,57 @@ public class Employee extends ObjectPlus {
         return info;
     }
 
-    class RegularEmployee implements Serializable {
-        transient List<String> skills;
+    static class RegularEmployee implements Serializable {
+        //transient List<String> skills;
+
+        // for RegularEmployee-Team association
+        private Team team;
+
+        // for association between Regular Employee and Task
+        private List<Task> taskList = new ArrayList<>();
+
+        private transient List<String> skills;
+
+
 
         public RegularEmployee(List<String> skills) {
             this.skills = skills;
         }
 
+        // for association between Regular Employee and Task
+        void addTask(Task newTask) {
+            if(!taskList.contains(newTask)){
+                taskList.add(newTask);
+
+                // add reverse connction
+                newTask.addRegularEmployee(this);
+            }
+        }
+
+
+
 
         @Override
         public String toString() {
             String info = "";
-            info += "                  as regular employee, skills: ";
-            for (String skill : skills)
-                info += skill + " ";
+            //info += "                  as regular employee, skills: ";
+            info += "                  as regular employee";
+           /* for (String skill : skills)
+                info += skill + " ";*/
             return info;
         }
     }
+
+
+
+    // for RegularEmployee-Team association
+    void setTeam (Team newTeam){
+        team = newTeam;
+
+        //add reverse connction
+        newTeam.addEmployee(this);
+    }
+
 
     class Leader implements Serializable {
         public double maxBonus;
@@ -112,13 +147,7 @@ public class Employee extends ObjectPlus {
         return lastName + " " + firstName;
     }
 
-    // for RegularEmployee-Team association
-    void setTeam (Team newTeam){
-        team = newTeam;
 
-        //add reverse connction
-        newTeam.addEmployee(this);
-    }
 
 
 
