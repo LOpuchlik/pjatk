@@ -5,8 +5,18 @@ public class Car {
     private String model;
     private int year;
     private String engine;
-    private double consumption;
 
+    public Car() {
+
+    }
+
+    public Car(String type, String brand, String model, int year, String engine) {
+        this.type = type;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.engine = engine;
+    }
 
     public String getType() {
         return type;
@@ -48,13 +58,6 @@ public class Car {
         this.engine = engine;
     }
 
-    public double getConsumption() {
-        return consumption;
-    }
-
-    public void setConsumption(double consumption) {
-        this.consumption = consumption;
-    }
 
 
     @Override
@@ -65,7 +68,6 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", year=" + year +
                 ", engine='" + engine + '\'' +
-                ", consumption=" + consumption +
                 '}';
     }
 }
