@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class Employee {
@@ -45,7 +46,17 @@ public class Employee {
         return info;
     }
 
-    public static Set<Employee> getAllEmployees() {
+    static Set<Employee> getAllEmployees() {
         return allEmployees;
     }
+
+    /*
+    public void fillWorkingTimeForm (LocalDate date, float numberOfHours){
+        // code - cannot be implemented because the part of scheme that I've chosen to implements does not allow it due to lack of necessary variables and classes etc.
+    }
+    public void requestLeave (LocalDate dateFrom, LocalDate dateTo, String type){
+        // code - cannot be implemented because the part of scheme that I've chosen to implements does not allow it due to lack of necessary variables and classes etc.
+    }
+    */
+
 }
