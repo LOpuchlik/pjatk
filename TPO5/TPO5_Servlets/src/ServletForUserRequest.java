@@ -1,3 +1,4 @@
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @WebServlet("/request")
 public class ServletForUserRequest extends HttpServlet {
-    List<Car>matchingCars = new ArrayList<>();
+    public static List<Car>matchingCars = new ArrayList<>();
 
     String requestType;
     String requestBrand;
@@ -52,15 +53,12 @@ public class ServletForUserRequest extends HttpServlet {
 
         BufferedReader br = null;
         br = new BufferedReader(new FileReader("/Users/jagoodka/Desktop/IntelliJ/TPO5_Servlets/carsInfo.txt"));
-        //br = new BufferedReader(new FileReader("carsInfo.txt"));
         String line = "";
 
         while ((line = br.readLine()) != null) {
             String[] readContent = line.split(",");
 
-//TODO ten condition jest zly
-            // jak podam jeden condition to jest ok
-            // jak podam dwa conditiony, to bierze pojedynczo wpisy co maja jeden a potem co maja drugi
+
             if (requestType.equals(readContent[0]) || requestBrand.equals(readContent[1]) || requestModel.equals(readContent[2]) || yearString.equals(readContent[3]) || requestEngine.equals(readContent[4])) {
                 c = new Car();
                 c.setType(readContent[0]);
@@ -72,20 +70,9 @@ public class ServletForUserRequest extends HttpServlet {
                 matchingCars.add(c);
             }
         }
+// passing everything to another Servlet at /response
+        RequestDispatcher rd = request.getRequestDispatcher("/response");
+        rd.forward(request, response);
 
-        PrintWriter out = response.getWriter();
-        out.println("<!DOCTYPE html>");
-        out.println("<html><head>");
-        out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-        out.println("<title>t</title></head>");
-        out.println("<body><h2>Your results</h2>");
-
-
-        out.println(matchingCars.toString());
-      /*  for(Car car : matchingCars) {
-            out.println(car);
-        }*/
-        out.println("</body></html>");
-    // TODO przesylas rsponse do kolejnego servletu,ktory ubierze ladnie dane
     }
 }

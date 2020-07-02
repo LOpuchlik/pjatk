@@ -2,12 +2,12 @@
   <artifact type="exploded-war" name="TPO5_Servlets:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/TPO5_Servlets_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="TPO5_Servlets/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="TPO5_Servlets" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="TPO5_Servlets/web/Web" />
     </root>
   </artifact>
 </component>

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Index</title>
     <style>
       fieldset {
         display: inline-block;
@@ -18,7 +18,7 @@
   <body>
 <h2> </h2>
   <!-- ==========    form    ========= -->
-  <h2>Choose 1 and only 1 sorting attribute !!!!!</h2>
+  <h2>CHOOSE ONE OF THE FILTERS</h2>
 <br>
   <form method="get" action="request">
     <fieldset>
@@ -102,7 +102,7 @@
 
 
     <fieldset>
-      <legend>Type of engine</legend>
+      <legend>Type of fuel</legend>
       <select name = "engine">
         <option value="null"></option>
         <option value="diesel">diesel</option>
@@ -111,9 +111,6 @@
     </fieldset>
 
 
-<!--
-    <a href='/request'>BACK</a>
-    -->
     <input type="submit" value="SEND" />
     <input type="reset" value="CLEAR" />
   </form>
