@@ -33,8 +33,8 @@ public class ProcessingServlet extends HttpServlet {
         requestType = request.getParameter("type");
         request.setAttribute("type", requestType);
 
-        requestManufacturer = request.getParameter("brand");
-        request.setAttribute("brand", requestManufacturer);
+        requestManufacturer = request.getParameter("manufacturer");
+        request.setAttribute("manufacturer", requestManufacturer);
 
         requestModel = request.getParameter("model");
         request.setAttribute("model", requestModel);

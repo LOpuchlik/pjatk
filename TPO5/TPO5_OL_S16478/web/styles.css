@@ -1,0 +1,41 @@
+h2 {
+    color: #4CAF50;
+}
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
+
+}
+thead {
+    height: 100px;
+    background-color: #4CAF50;
+    color: white;
+}
+tr {
+    border-bottom: 1px solid black;
+}
+
+td {
+    line-height: 30px;
+}
+
+fieldset {
+    width: 200px;
+    display: inline-block;
+}
+
+input[type=submit] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+input[type=reset] {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+}

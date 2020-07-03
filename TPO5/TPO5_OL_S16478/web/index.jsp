@@ -4,22 +4,16 @@
 <html>
 <head>
     <title>Index</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.css" rel="stylesheet" media="screen">
-     <style>
-      fieldset {
-        display: inline-block;
-      }
-    </style>
-
+    <link rel='stylesheet' type='text/css' href='styles.css'>
 </head>
 <body>
 
 <div align="center">
     <h2>Welcome to car parlour</h2>
     <form action="request" method="get">
-    <fieldset></fieldset>
+        <fieldset>
+            <legend>Type</legend>
         <div>
-            Select car type:&nbsp;
             <select name="type">
                 <option value="none"></option>
                 <c:forEach items="${types}" var="type">
@@ -30,12 +24,12 @@
             </select>
             <br/><br/>
         </div>
-    </fieldset>
+        </fieldset>
 
-    </fieldset>
+        <fieldset>
+            <legend>Manufacturer</legend>
         <div>
-            Select manufacturer:&nbsp;
-            <select name="brand">
+            <select name="manufacturer">
                 <option value="none"></option>
                 <c:forEach items="${manufacturers}" var="manufacturer">
                     <option value="${manufacturer}"  >
@@ -45,11 +39,11 @@
             </select>
             <br/><br/>
         </div>
-    </fieldset>
+        </fieldset>
 
-    </fieldset>
+        <fieldset>
+            <legend>Model</legend>
         <div>
-            Select model:&nbsp;
             <select name="model">
                 <option value="none"></option>
                 <c:forEach items="${models}" var="model">
@@ -60,11 +54,11 @@
             </select>
             <br/><br/>
         </div>
-    </fieldset>
+        </fieldset>
 
-    </fieldset>
+        <fieldset>
+            <legend>Fuel type</legend>
         <div>
-            Select fuel type:&nbsp;
             <select name="engine">
                 <option value="none"></option>
                 <c:forEach items="${engines}" var="engine">
@@ -75,38 +69,39 @@
             </select>
             <br/><br/>
         </div>
-    </fieldset>
+        </fieldset>
+        <br/><br/>
+
 
         <input type="submit" value="SEND" />
         <input type="reset" value="CLEAR" />
+
 
     </form>
 
 </div>
 
-<div align="center">
-<TABLE class="table">
-
-    <thead>
-    <tr>
-        <td>type</td>
-        <td>manufacturer</td>
-        <td>model</td>
-        <td>engine</td>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${cars}" var="car">
-    <tr>
-        <td><c:out value="${car.type}"/></td>
-        <td><c:out value="${car.manufacturer}"/></td>
-        <td><c:out value="${car.model}"/></td>
-        <td><c:out value="${car.engine}"/></td>
-    </tr>
-    </c:forEach>
-    </tbody>
-</TABLE>
+<div style="overflow-x:auto;">
+    <table>
+        <thead>
+        <tr>
+            <td>type</td>
+            <td>manufacturer</td>
+            <td>model</td>
+            <td>engine</td>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${cars}" var="car">
+            <tr>
+                <td><c:out value="${car.type}"/></td>
+                <td><c:out value="${car.manufacturer}"/></td>
+                <td><c:out value="${car.model}"/></td>
+                <td><c:out value="${car.engine}"/></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
 </body>
-
 </html>

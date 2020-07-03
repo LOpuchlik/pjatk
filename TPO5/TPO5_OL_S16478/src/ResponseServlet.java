@@ -20,11 +20,11 @@ public class ResponseServlet extends HttpServlet {
         out.println("<head>");
         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' >");
         out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-        out.println("<link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.css\" rel=\"stylesheet\" media=\"screen\">");
+        out.println("<link rel='stylesheet' type='text/css' href='styles.css'>");
         out.println("<title>Response for user's request</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h2>Matching results</h2>");
+        out.println("<div align=\"center\"><h2>Matching results</h2></div>");
 
 
         out.println("<table class=\"table\">");
