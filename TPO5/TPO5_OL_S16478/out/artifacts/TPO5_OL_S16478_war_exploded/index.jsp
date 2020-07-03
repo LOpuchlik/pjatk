@@ -85,10 +85,10 @@
     <table>
         <thead>
         <tr>
-            <td>type</td>
-            <td>manufacturer</td>
-            <td>model</td>
-            <td>engine</td>
+            <td>TYPE</td>
+            <td>MANUFACTURER</td>
+            <td>MODEL</td>
+            <td>ENGINE</td>
         </tr>
         </thead>
         <tbody>

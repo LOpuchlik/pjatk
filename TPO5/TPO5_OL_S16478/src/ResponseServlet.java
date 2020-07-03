@@ -32,7 +32,7 @@ public class ResponseServlet extends HttpServlet {
             out.println("<thead>");
                 out.println("<tr>");
                     out.println("<th>TYPE</th>");
-                    out.println("<th>BRAND</th>");
+                    out.println("<th>MANUFACTURER</th>");
                     out.println("<th>MODEL</th>");
                     out.println("<th>FUEL TYPE</th>");
                 out.println("</tr>");
