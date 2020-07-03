@@ -49,7 +49,7 @@ public class ProcessingServlet extends HttpServlet {
         Car c = null;
 
         BufferedReader br = null;
-        br = new BufferedReader(new FileReader("/Users/jagoodka/Desktop/TPO5_OL_S16478/src/carsInfo.txt"));
+        br = new BufferedReader(new FileReader("/Users/jagoodka/Dropbox/Jagoda/my_github/pjatk/TPO5/TPO5_OL_S16478/src/carsInfo.txt"));
         String line = "";
 
         while ((line = br.readLine()) != null) {
