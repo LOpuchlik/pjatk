@@ -67,8 +67,9 @@ public class ProcessingServlet extends HttpServlet {
             }
         }
 // passing everything to another Servlet at /response
-        RequestDispatcher rd = request.getRequestDispatcher("/response");
-        rd.forward(request, response);
+        /*RequestDispatcher rd = request.getRequestDispatcher("/response");
+        rd.forward(request, response);*/
+        response.sendRedirect("/TPO5_OL_S16478_war_exploded/response");
 
     }
 }
