@@ -15,9 +15,7 @@ public class ProcessingServlet extends HttpServlet {
     String requestType;
     String requestManufacturer;
     String requestModel;
-    int requestYear;
     String requestEngine;
-    String yearString;
 
 
     @Override
