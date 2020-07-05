@@ -39,7 +39,7 @@ public class ProcessingServlet extends HttpServlet {
 
         BufferedReader br = null;
         br = new BufferedReader(new FileReader("/Users/jagoodka/Dropbox/Jagoda/my_github/pjatk/TPO5/TPO5_OL_S16478/src/carsInfo.txt"));
-        String line = "";
+        String line;
 
         while ((line = br.readLine()) != null) {
             String[] readContent = line.split(",");
