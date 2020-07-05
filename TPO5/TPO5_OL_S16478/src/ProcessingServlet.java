@@ -29,18 +29,9 @@ public class ProcessingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         requestType = request.getParameter("type");
-        request.setAttribute("type", requestType);
-
         requestManufacturer = request.getParameter("manufacturer");
-        request.setAttribute("manufacturer", requestManufacturer);
-
         requestModel = request.getParameter("model");
-        request.setAttribute("model", requestModel);
-
         requestEngine = request.getParameter("engine");
-        request.setAttribute("engine", requestEngine);
-
-
 
 
 // building list with cars matching the search
