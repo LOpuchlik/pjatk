@@ -9,12 +9,12 @@ passengerCar,vw,passat,2008,gasoline
 pickUpTruck,chevrolet,D-Max,1999,diesel
 pickUpTruck,chevrolet,colorado,2019,diesel
 pickUpTruck,chevrolet,silverado,2008,diesel
-pickUpTruck,ford,ranger,2018,diesel
+pickUpTruck,ford,ranger,2018,gasoline
 pickUpTruck,ford,ranger,2019,diesel
 pickUpTruck,mitsubishi,triton,2005,diesel
 pickUpTruck,ford,raptor,2015,diesel
 cabrio,ford,mustang,2019,gasoline
-cabrio,mazda,mx5,2018,gasoline
+cabrio,mazda,mx5,2018,diesel
 cabrio,mazda,mx5,2015,gasoline
 cabrio,audi,a5,2016,gasoline
 offroad,jeep,wrangler,2010,gasoline

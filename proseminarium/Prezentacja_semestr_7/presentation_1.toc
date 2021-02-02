@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{Pytanie nr 8}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Twierdzenie Bayesa.}{3}{0}{1}
+\beamer@sectionintoc {2}{Pytanie nr 22}{9}{0}{2}
+\beamer@subsectionintoc {2}{1}{Najważniejsze algorytmy wyszukiwania i sortowania.}{9}{0}{2}
+\beamer@subsubsectionintoc {2}{1}{1}{Wyszukiwanie}{9}{0}{2}
+\beamer@subsubsectionintoc {2}{1}{2}{Sortowanie}{9}{0}{2}
+\beamer@sectionintoc {3}{Pytanie nr 34}{33}{0}{3}
+\beamer@subsectionintoc {3}{1}{Przetwarzanie strumieniowe (środki pakietu java.util.stream).}{33}{0}{3}
