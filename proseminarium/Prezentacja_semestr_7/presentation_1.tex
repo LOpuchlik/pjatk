@@ -477,8 +477,8 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 
 \begin{frame}
 	\frametitle{Sortowanie przez scalanie}
-	\begin{block}{Na czym polega??}
-	Kroki
+	\begin{block}{Algorytm}
+	Wynaleziony w 1945 roku przez Johna von Neumanna algorytm sortowania przez scalanie jest algorytmem rekurencyjnym. Wykorzystuje zasadę dziel i zwyciężaj, która polega na podziale zadania głównego na zadania mniejsze dotąd, aż rozwiązanie stanie się oczywiste. Algorytm sortujący dzieli porządkowany zbiór na kolejne połowy dopóki taki podział jest możliwy (tzn. podzbiór zawiera co najmniej dwa elementy). Następnie uzyskane w ten sposób części zbioru rekurencyjnie sortuje tym samym algorytmem. Posortowane części łączy ze sobą za pomocą scalania tak, aby wynikowy zbiór był posortowany.
 	\end{block}
 	\begin{itemize}
 		\item Uwagi
@@ -514,12 +514,24 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 
 \begin{frame}
 	\frametitle{Sortowanie szybkie}
-	\begin{block}{Na czym polega??}
-		Kroki
+	\begin{block}{Algorytm}
+{\footnotesize 		\begin{enumerate}
+%			\item Wybierany jest 1 element -- tzw. piwot.*
+%			\item W zależności od wartości piwota dzieli się wyjściową strukturę na podstruktury w ten sposób, że elementy po lewej są mniejsze a po prawej większe od piwota.**
+%			\item Pozycjonuje się piwot w odpowiednią pozycję, żeby poprawnie oddzielał te dwie podstruktury.
+%			\item Powyższe kroki stosuję się rekursywnie na obu podstrukturach aż do całkowitego posortowania.
+\item Określa się pierwszy element listy jako piwot.
+\item Definiuje się dwie zmienne pomocnicze -- np. i oraz j -- i ustawia się je odpowiednio na pierwszym i ostatnim elemencie listy.
+\item Inkrementuje się i dopóki element lista[i] $>$ piwota.
+\item Dekrementuje się j dopóki element lista[j] $<$ piwota.
+\item Gdy i $<$ j wtedy zamienia się miejscami elementy lista[i] i lista[j].
+\item Powtarza się kroki 3, 4, 5 dopóki i $>$ j.
+\item Zamienia się miejscami piwot z elementem lista[j].
+\item Kontunuuje się na prawej i lewej podstrukturze aż wszystkie lementy będą na swoich miejscach docelowych.
+		\end{enumerate}}
+	\bigskip
+{\scriptsize 	*wartości równe piwotowi idą na arbitralnie ustalaną stronę \\}
 	\end{block}
-	\begin{itemize}
-		\item Uwagi
-	\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -542,13 +554,12 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 		\end{minipage}
 		\hspace{0.5cm}
 		\begin{minipage}{0.45\textwidth}
-%			\begin{figure}
-%			\includegraphics[width=1\textwidth]{quicksort}
-%			\caption{{\tiny Sortowanie szybkie.}}
-%		\end{figure}
-Tu nie będzie obrazka - tu będzie raczej opis jego zastosowań. \\
-Animacja obrazująca quicksort: \\
-\underline{\href{http://algorytmy.ency.pl/tutorial/quicksort}{Click}}
+	\begin{itemize}
+	\item wydajny algorytm sortowania -- dobrze zaimplemetowany może być nawet 2-3x szybszy od sortowania przez scalanie czy sortowania z użyciem sterty
+	\item najczęściej stosowany algorytm sortowania
+	\item link do animacji: \underline{\href{http://algorytmy.ency.pl/tutorial/quicksort}{click}}
+\end{itemize}
+
 
 		\end{minipage}
 \end{frame}
@@ -557,10 +568,15 @@ Animacja obrazująca quicksort: \\
 \begin{frame}
 	\frametitle{Sortowanie przez wstawianie}
 	\begin{block}{Algorytm}
-		
+			\begin{enumerate}
+			\item Począwszy od drugiego elementu (wskaźnik na drugiej pozycji), wybieramy dany element i porównujemy go z każdym elementem z lewej strony (we wstępnie posortowanej części).
+			\item Przesuwamy i wstawiamy go na odpowiednie miejsce.
+			\item Powtarzamy działanie dla kolejnych elementów ciągu (wskaźnik zawsze przesuwa się o 1 dalej) aż wszystkie elementy będą na swoim miejscu.
+		\end{enumerate}
 	\end{block}
 	\begin{itemize}
-		\item element od razu ma wylądować na swojej docelowej pozycji
+		\item algorytm wydajny do sortowania małych struktur
+		\item jest bardziej wydajny niż pozostałe algorytmy posiadające złożoność kwadratową
 	\end{itemize}
 \end{frame}
 
@@ -593,12 +609,17 @@ Animacja obrazująca quicksort: \\
 
 \begin{frame}
 	\frametitle{Sortowanie zliczeniowe}
-	\begin{block}{Na czym polega??}
+	\begin{block}{Algorytm}
 		
-	\end{block}
-	\begin{itemize}
-		\item 
-	\end{itemize}
+	
+{\footnotesize 	\begin{enumerate}
+		\item Dla każdej wartości w zbiorze przygotowujemy licznik.
+		\item Przeglądamy kolejne elementy zbioru i zliczamy ich wystąpienia w odpowiednich licznikach.
+		\item Poczynając od drugiego licznika sumujemy zawartość licznika oraz jego poprzednika*.
+		\item Przeglądamy jeszcze raz zbiór wejściowy idąc od ostatniego elementu do pierwszego. Każdy element umieszczamy w zbiorze wynikowym na pozycji równej zawartości licznika dla tego elementu. Po wykonaniu tej operacji licznik zmniejszamy o 1. Dzięki temu następna taka wartość trafi na wcześniejszą pozycję.
+	\end{enumerate}}
+{\scriptsize * w każdym liczniku otrzymaliśmy ilość wartości mniejszych lub równych numerowi licznika.}
+\end{block}
 \end{frame}
 
 \begin{frame}
