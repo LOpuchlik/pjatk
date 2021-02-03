@@ -179,7 +179,7 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 			\includegraphics[width=0.7\textwidth]{bayes}
 				\caption{{\tiny Iloczyn zbiorów A i B.}}
 		\end{figure}
-	Z definicji: \\	
+	Z użyciem prawdopodobieństwa łączonego (joint probability): \\	
 	\begin{center}
 		$P (A|B) = \dfrac{P (A \cap B)}{P (B)}  \Leftrightarrow P (A \cap B) = P (A|B) \cdot P (B)$\\
 		\bigskip
@@ -241,10 +241,15 @@ Intuicyjnie nasuwa się, że prawdopodobieństwo wynosi 0.95. Jest to jednak bł
 
 \textbf{P(pozytywny)} -- prawdopodobieństwo, że testowana osoba będzie miała wynik pozytywny. Może być tak, że test da prawidłowy wynik (true positive) lub zakłamany wynik (false positive). \\}
 \end{frame}
+
 \begin{frame}
+		\frametitle{Nieco bardziej złożony przykład c. d.}
+	\textbf{	Rozwiązanie:} \\
+	\bigskip
 	\begin{center}
 		$P (choroba|pozytywny) = \dfrac{0.95 \cdot 0.01}{(0.01\cdot 0.95) + (0.99 \cdot 0.05)} = $
 		\bigskip
+
 		$= \dfrac{0.0095}{0.0095 + 0.0495} = \dfrac{0.0095}{0.059} = 0.1610169… = 16~\%$  \\
 	\end{center}
 Jaki to ma sens? Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę.\\
