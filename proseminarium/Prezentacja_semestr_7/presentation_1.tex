@@ -147,7 +147,7 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 \begin{frame}
 	\frametitle{Twierdzenie Bayesa}
 	\begin{enumerate}
-		\item Thomas Bayes.
+		\item Thomas Bayes, presbiteriański pastor, statystyk, filozof w 18-wiecznej Anglii.
 		\item Mówi o \textbf{prawdopodobieństwie warunkowym}. Pozwala określić prawdopodobieństwo zajścia jakiegoś zdarzenia, o ile zaszło jakieś inne zdarzenie. \\ 
 	\end{enumerate}
 	
@@ -203,11 +203,6 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 {\tiny \bigskip *dowód dla wiekszej liczby zdarzeń jest dużo bardziej skomplikowany}
 \end{frame}
 
-\begin{frame}
-	\frametitle{W czym  przydatne jest twierdzenie Bayesa?}
-
-\end{frame}
-
 %% ---- PRZYKLAD
 
 \begin{frame}
@@ -221,9 +216,43 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 \begin{center}
 		$P (grypa|goraczka) = \dfrac{P (goraczka|grypa) \cdot P (grypa)}{P (goraczka)} $  \\
 	\bigskip
-	$P (grypa|goraczka) = \dfrac{0.7 \cdot 0.1}{0.2} = \textbf{0.35}$ \\
+		$P (grypa|goraczka) = \dfrac{0.7 \cdot 0.1}{0.2} = \textbf{0.35}$ \\
 \end{center}
+\end{frame}
 
+
+\begin{frame}
+	\frametitle{Nieco bardziej złożony przykład}
+{\footnotesize Klasyczny przykład zastosowania twierdzenia Bayesa, to przypadek testowania na dosyć rzadką chorobę. Szukamy jakie jest prawdopodobieństwo, że osoba jest chora, jeżeli wyszedł jej pozytywny wynik testu. Precyzja testu to 95~\%. \\
+Intuicyjnie nasuwa się, że prawdopodobieństwo wynosi 0.95. Jest to jednak błędne myślenie. \\
+\bigskip
+{\small \textbf{Analiza: \\}}
+
+\begin{center}
+		$P (choroba|pozytywny) = \dfrac{P (pozytywny|choroba) \cdot P (choroba)}{P (pozytywny)} $  \\
+\end{center}
+\bigskip
+}
+{\scriptsize \textbf{P(choroba$|$pozytywny)} -- prawdopodobieństwo, że osoba ma chorobę bazując na tym, że test wyszedł pozytywny. \\
+
+\textbf{P(pozytywny$|$choroba)} -- prawdopodobieństwo, że test wyszedł pozytywnie jeżeli rzeczywiście jest zdiagnozowana choroba. Mówi ono o czułości testu — true positive (95~\%) oraz specyficzności testu — true negative (95~\%). \\
+
+\textbf{P(choroba)} -- prawdopodobieństwo wystąpienia choroby u danej osoby. Załóżmy, że choruje 1/100 osób; P = 0.01. \\
+
+\textbf{P(pozytywny)} -- prawdopodobieństwo, że testowana osoba będzie miała wynik pozytywny. Może być tak, że test da prawidłowy wynik (true positive) lub zakłamany wynik (false positive). \\}
+\end{frame}
+\begin{frame}
+	\begin{center}
+		$P (choroba|pozytywny) = \dfrac{0.95 \cdot 0.01}{(0.01\cdot 0.95) + (0.99 \cdot 0.05)} = $
+		\bigskip
+		$= \dfrac{0.0095}{0.0095 + 0.0495} = \dfrac{0.0095}{0.059} = 0.1610169… = 16~\%$  \\
+	\end{center}
+Jaki to ma sens? Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę.\\
+\end{frame}
+
+\begin{frame}
+	\frametitle{W czym  przydatne jest twierdzenie Bayesa?}
+	
 \end{frame}
 
 
