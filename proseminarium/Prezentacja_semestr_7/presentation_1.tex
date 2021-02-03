@@ -478,11 +478,18 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 \begin{frame}
 	\frametitle{Sortowanie przez scalanie}
 	\begin{block}{Algorytm}
-	Wynaleziony w 1945 roku przez Johna von Neumanna algorytm sortowania przez scalanie jest algorytmem rekurencyjnym. Wykorzystuje zasadę dziel i zwyciężaj, która polega na podziale zadania głównego na zadania mniejsze dotąd, aż rozwiązanie stanie się oczywiste. Algorytm sortujący dzieli porządkowany zbiór na kolejne połowy dopóki taki podział jest możliwy (tzn. podzbiór zawiera co najmniej dwa elementy). Następnie uzyskane w ten sposób części zbioru rekurencyjnie sortuje tym samym algorytmem. Posortowane części łączy ze sobą za pomocą scalania tak, aby wynikowy zbiór był posortowany.
+{\footnotesize 		\begin{enumerate}
+	 \item Dzieli się początkowy zbiór na kolejne "połowy" dopóki taki podział jest możliwy (tzn. podzbiór zawiera co najmniej dwa elementy).
+	 \item Następnie dla każdych dwóch łączonych na danym poziomie podzbiorów definiuje się wskaźniki i porównuje się elementy przez nie wskazywane.
+	 \item Elementy łączy się (przenosi na kolejny poziom drzewa) w odpowiedniej kolejności. Przy tym inkrementowany jest wskaźnik tego podzbioru, którego element trafił do podzbioru kolejnego poziomu, po czym wykonuje się następne porównanie na tym samym podzbiorze.
+	 \item Porównywanie powtarza się na każdym z poziomów aż do całkowitego posortowania zbioru wyjściowego.
+	 \end{enumerate}}
 	\end{block}
-	\begin{itemize}
-		\item Uwagi
-	\end{itemize}
+{\footnotesize 	\begin{itemize}
+		\item John von Neumann, 1945
+		\item "dziel i rządź"* -- algorytm rekurencyjny
+	\end{itemize}}
+{\scriptsize *polega na podziale zadania głównego na zadania mniejsze dotąd, aż rozwiązanie stanie się oczywiste\\}
 \end{frame}
 
 \begin{frame}
