@@ -6,3 +6,5 @@
 \beamer@subsubsectionintoc {2}{1}{2}{Sortowanie}{11}{0}{2}
 \beamer@sectionintoc {3}{Pytanie nr 34}{36}{0}{3}
 \beamer@subsectionintoc {3}{1}{Przetwarzanie strumieniowe (środki pakietu java.util.stream).}{36}{0}{3}
+\beamer@sectionintoc {4}{Źródła}{44}{0}{4}
+\beamer@subsectionintoc {4}{1}{Najważniejsze źródła i odnośniki.}{44}{0}{4}

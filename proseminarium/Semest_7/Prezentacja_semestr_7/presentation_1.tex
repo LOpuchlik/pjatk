@@ -202,7 +202,7 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 				\bigskip
 				$\boxed{P (A|B) = \dfrac{P (B|A) \cdot P (A)}{P (B)}}$
 		\end{center}
-{\tiny \bigskip *dowód dla wiekszej liczby zdarzeń jest dużo bardziej skomplikowany}
+{\tiny \bigskip *dowód dla większej liczby zdarzeń jest dużo bardziej skomplikowany}
 \end{frame}
 
 %% ---- PRZYKLAD
@@ -225,8 +225,8 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 
 \begin{frame}
 	\frametitle{Nieco bardziej złożony przykład}
-{\footnotesize Klasyczny przykład zastosowania twierdzenia Bayesa, to przypadek testowania na dosyć rzadką chorobę. Szukamy jakie jest prawdopodobieństwo, że osoba jest chora, jeżeli wyszedł jej pozytywny wynik testu. Precyzja testu to 95~\%. \\
-Intuicyjnie nasuwa się, że prawdopodobieństwo wynosi 0.95. Jest to jednak błędne myślenie. \\
+{\footnotesize Klasyczny przykład zastosowania twierdzenia Bayesa, to przypadek testowania na dosyć rzadką chorobę. Szukamy jakie jest prawdopodobieństwo, że osoba jest chora, jeżeli wyszedł jej pozytywny wynik testu. Załóżmy, że recyzja testu to 95~\%,  choruje 1/100 osób.\\
+Intuicyjnie nasuwa się, że prawdopodobieństwo powinno być dosyć wysokie. Jest to jednak błędne myślenie. \\
 \bigskip
 {\small \textbf{Analiza: \\}}
 
@@ -239,22 +239,25 @@ Intuicyjnie nasuwa się, że prawdopodobieństwo wynosi 0.95. Jest to jednak bł
 
 \textbf{P(pozytywny$|$choroba)} -- prawdopodobieństwo, że test wyszedł pozytywnie jeżeli rzeczywiście jest zdiagnozowana choroba. Mówi ono o czułości testu — true positive (95~\%) oraz specyficzności testu — true negative (95~\%). \\
 
-\textbf{P(choroba)} -- prawdopodobieństwo wystąpienia choroby u danej osoby. Załóżmy, że choruje 1/100 osób; P = 0.01. \\
+\textbf{P(choroba)} -- prawdopodobieństwo wystąpienia choroby u danej osoby. P = 0.01. \\
 
 \textbf{P(pozytywny)} -- prawdopodobieństwo, że testowana osoba będzie miała wynik pozytywny. Może być tak, że test da prawidłowy wynik (true positive) lub zakłamany wynik (false positive). \\}
 \end{frame}
 
 \begin{frame}
 		\frametitle{Nieco bardziej złożony przykład c. d.}
+		\begin{center}
+			$P (choroba|pozytywny) = \dfrac{P (pozytywny|choroba) \cdot P (choroba)}{P (pozytywny)} $  \\
+		\end{center}
 	\textbf{	Rozwiązanie:} \\
-	\bigskip
 	\begin{center}
 		$P (choroba|pozytywny) = \dfrac{0.95 \cdot 0.01}{(0.01\cdot 0.95) + (0.99 \cdot 0.05)} = $
 		\bigskip
 
-		$= \dfrac{0.0095}{0.0095 + 0.0495} = \dfrac{0.0095}{0.059} = 0.1610169… = 16~\%$  \\
+		$= \dfrac{0.0095}{0.0095 + 0.0495} = \dfrac{0.0095}{0.059} = 0.1610169 = \textbf{0.16}$  \\
 	\end{center}
-Jaki to ma sens? Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę.\\
+\bigskip
+Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę, a więc otrzymując wynik testu dużo bardziej prawdopodobne jest to, że test wyszedł fałszywie pozytywny, niż to, że osoba jest chora -- w końcu zachorowalność to tylko 1~\%.
 \end{frame}
 
 \begin{frame}
@@ -262,10 +265,13 @@ Jaki to ma sens? Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę.\\
 	\begin{enumerate}
 		\item stosowane do lepszego zrozumienia danych
 		\item ułatwia zrozumienie i interpretację wyników testów A/B
-		\item w machine learningu -- algorytmy -- Naive Bayes, Optymalny Klasyfikator Bayesowski, optymalizacja Bayesowska, Bayesowskie sieci przekonań (Bayesian Belief Networks)
-		
+		\item wykorzystywane przez  algorytmy machine learningu
+		\begin{itemize}
+			\item Naive Bayes,
+			\item Optymalny Klasyfikator Bayesowski,
+			\item Bayesowskie Sieci Przekonań (Bayesian Belief Networks)		
+		\end{itemize}
 	\end{enumerate}
-	
 \end{frame}
 
 
@@ -330,7 +336,7 @@ Jaki to ma sens? Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę.\\
 
 		Polega na odszukaniu elementu o danej wartości (klucza) w nieposortowanej lub posortowanej strukturze danych (tablicy lub liście) i zwrócenie indeksu, pod którym znaleziony element się znajduje*. Jeżeli element nie zostanie znaleziony, wyświetlany jest stosowny komunikat (często wartość -1). \\
 		\bigskip
-		{\tiny *Jeżeli jest kilka takich samych elementów w ciągu, to zwracany jest indeks pierwszego napotkanego. \\
+		{\scriptsize *jeżeli jest kilka takich samych elementów w ciągu, to zwracany jest indeks pierwszego napotkanego\\
 		** klucz i indeksy są liczbami całkowitymi\\
 		}
 \end{frame}
@@ -351,10 +357,10 @@ Jaki to ma sens? Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę.\\
 	\frametitle{Wyszukiwanie binarne}
 		\begin{block}{Na czym polega??}
 		1. W posortowanym ciągu porównuje się wartość klucza z wartością środkowego elementu. Jeżeli są takie same, zwracany jest indeks. \\
-		2a. Jeżeli klucz $<$ środkowy element, to ogranicza się dalsze przeszukiwanie do lewego podciągu. \\
-		2b. Jeżeli klucz $>$ środkowy element, to ogranicza się dalsze przeszukiwanie do prawego podciągu. \\
-		3. Powtarza się kroki od punktu 1. \\
-		4. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\
+		2. Jeżeli klucz $<$ środkowy element, to ogranicza się dalsze przeszukiwanie do lewego podciągu. \\
+		3. Jeżeli klucz $>$ środkowy element, to ogranicza się dalsze przeszukiwanie do prawego podciągu. \\
+		4. Powtarza się kroki od punktu 1. \\
+		5. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\
 	\end{block}
 	\begin{itemize}
 		\item struktura danych \textbf{musi }być posortowana
@@ -364,12 +370,12 @@ Jaki to ma sens? Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę.\\
 \end{frame}
 
 \begin{frame}
-	\frametitle{Wyszukiwanie poprzez skoki co k-ty element}
+	\frametitle{Wyszukiwanie poprzez skok co k-ty element}
 			\begin{block}{Na czym polega??}
 		1. W posortowanym ciągu przeskakuje się co k elementów i porównuje się wartość bieżącego elementu z wartością klucza. \\
-		2a. Gdy element jest mniejszy niż klucz, przeskakuje się o następne k elementów. \\
-		2b. Gdy element jest większy niż wartość klucza, to należy sprawdzić już tylko k-1 ostatnio przeskoczonych elementów. \\
-		3. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\
+		2. Gdy element jest mniejszy niż klucz, przeskakuje się o następne k elementów. \\
+		3. Gdy element jest większy niż wartość klucza, to należy się cofnąć i sprawdzić już tylko k-1 ostatnio przeskoczonych elementów. \\
+		4. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\
 	\end{block}
 	\begin{itemize}
 		\item struktura danych \textbf{musi} być posortowana
@@ -773,22 +779,19 @@ Posiadają one wbudowane moduły wyszukiwania i sortowania żeby ułatwić użyt
 \begin{frame}
 	\frametitle{Jak działa strumień?}
 	\begin{enumerate}
-		\item Tworzenie strumienia — dokładnie jedna metoda tworząca
-		\item przetwarzanie danych wewnątrz strumienia — przez dowolną liczbę operacji
-		\item zakończenie strumienia — dokładnie jedna metoda kończąca
+		\item utworzenie strumienia -- dokładnie jedna metoda tworząca
+		\item przetwarzanie danych wewnątrz strumienia -- przez dowolną liczbę operacji
+		\item zakończenie strumienia -- dokładnie jedna metoda kończąca
 	\end{enumerate}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Operacje}
-	\begin{enumerate}
+	\bigskip
+	\textbf{Operacje: \\}
+	\begin{itemize}
 		\item operacja nie może posiadać stanu
 		\item operacja nie może modyfikować źródła danych
-		\item dozwolonych operacji jest bardzo dużo (kompletna wiedza w tym temacie w dokumentacji interfejsu Stream)
-	\end{enumerate}
-	
+		\item dozwolonych operacji jest bardzo dużo (kompletna wiedza w tym temacie w \underline{\href{https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/stream/package-summary.html}{dokumentacji interfejsu Stream}})
+	\end{itemize}
 \end{frame}
+
 
 
 
@@ -802,6 +805,7 @@ Posiadają one wbudowane moduły wyszukiwania i sortowania żeby ułatwić użyt
 	\item forEach -- wykonuje jakąś operację dla każdego elementu strumienia
 	\item count -- zwraca liczbę elementów w strumieniu
 	\item collect -- pozwala na stworzenie nowego typu na podstawie strumienia, np. listy
+	\item findFirst, findAny
 \end{itemize}
 \end{frame}
 
@@ -811,12 +815,11 @@ Posiadają one wbudowane moduły wyszukiwania i sortowania żeby ułatwić użyt
 \begin{frame}
 	\frametitle{Dobre praktyki}
 	\begin{itemize}
-		\item filtrowanie na początku — warto na samym początku ograniczyć liczbę elementów, a zatem czas wykonania operacji
-		\item unikanie skomplikowanych wyrażeń lambda — kwestie czytelności kodu
-		\item używanie strumieni w określonych przypadkach — nie nadużywanie ich (np. przypadki gdy trzeba użyć słowa kluczowego break wykluczają zastosowanie strumienia)
-		\item strumienie nie służą do przechowywania danych — nie są strukturą danych
+		\item filtrowanie na początku -- warto na samym początku ograniczyć liczbę elementów, a zatem czas wykonania operacji
+		\item unikanie skomplikowanych wyrażeń lambda -- kwestie czytelności kodu
+		\item używanie strumieni w określonych przypadkach -- nie nadużywanie ich (np. przypadki gdy trzeba użyć słowa kluczowego break wykluczają zastosowanie strumienia)
+		\item strumienie nie służą do przechowywania danych -- nie są strukturą danych
 	\end{itemize}
-	
 \end{frame}
 
 
@@ -854,6 +857,27 @@ Załóżmy, że chcemy otrzymać tylko osoby, które mają major computer scienc
 	\end{itemize}
 \end{frame}
 
+
+ %--------------   REFERENCES   ---------------------------
+
+\section{Źródła}
+\subsection{Najważniejsze źródła i odnośniki.} 
+
+\begin{frame}
+	\frametitle{Źródła i linki}
+	\begin{itemize}
+		{\small \item \underline{\href{https://towardsdatascience.com/bayes-theorem-475ab96b019f}{Towards Data Science -- Twierdzenie Bayesa}}
+		\item \underline{\href{https://machinelearningmastery.com/bayes-theorem-for-machine-learning/}{Machine Learning Mastery -- Twierdzenie Bayesa}} \\
+		\bigskip
+		\item Sedgewick, R., Wayne, K., \textit{Algorytmy. Wydanie IV}, Helion, 2012, ISBN: 978-83-283-3710-7
+		\item Bhargava, A., \textit{Algorytmy. Ilustrowany przewodnik}, Helion, 2017, ISBN: 978-83-283-3445-8
+		\item \underline{\href{http://algorytmy.ency.pl/tutorial/quicksort}{Algorytm quicksort}} \\
+		\bigskip
+		\item Horstmann, C. S., \textit{Java. Techniki zaawansowane. Wydanie X}, Helion, 2017, ISBN: 978-83-283-3480-9
+		\item Bloch, J., \textit{Java. Efektywne programowanie. Wydanie III}, Helion, 2018, ISBN: 978-83-283-4576-8
+		\item \underline{\href{https://www.samouczekprogramisty.pl/strumienie-w-jezyku-java/}{Samouczek programisty -- Java Streams}}}
+	\end{itemize}
+\end{frame}
 %------------------------------------------------
 %
 %\begin{frame}

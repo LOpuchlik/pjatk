@@ -101,10 +101,15 @@
 \headcommand {\beamer@framepages {42}{42}}
 \headcommand {\slideentry {3}{1}{8}{43/43}{Przetwarzanie strumieniowe (środki pakietu java.util.stream).}{0}}
 \headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {3}{1}{9}{44/44}{Przetwarzanie strumieniowe (środki pakietu java.util.stream).}{0}}
+\headcommand {\beamer@sectionpages {36}{43}}
+\headcommand {\beamer@subsectionpages {36}{43}}
+\headcommand {\sectionentry {4}{Źródła}{44}{Źródła}{0}}
+\headcommand {\beamer@subsectionpages {44}{43}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{44}{Najważniejsze źródła i odnośniki.}}
+\headcommand {\slideentry {4}{1}{1}{44/44}{Najważniejsze źródła i odnośniki.}{0}}
 \headcommand {\beamer@framepages {44}{44}}
 \headcommand {\beamer@partpages {1}{44}}
-\headcommand {\beamer@subsectionpages {36}{44}}
-\headcommand {\beamer@sectionpages {36}{44}}
+\headcommand {\beamer@subsectionpages {44}{44}}
+\headcommand {\beamer@sectionpages {44}{44}}
 \headcommand {\beamer@documentpages {44}}
 \headcommand {\gdef \inserttotalframenumber {44}}
