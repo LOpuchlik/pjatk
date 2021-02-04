@@ -83,6 +83,8 @@
 \usepackage{xmpmulti}
 \usepackage{animate}
 \usepackage{array}
+\usepackage{verbatim}
+\usepackage{listings}
 
 
 
@@ -755,8 +757,101 @@ Posiadają one wbudowane moduły wyszukiwania i sortowania żeby ułatwić użyt
 
 
 \begin{frame}
-\frametitle{Pakiet java.util.stream}
+\frametitle{Strumień}
+\begin{itemize}
+	\item Java Stream to interfejs dostępny od wersji 8 
+	\item Interfejs Stream jest interfejsem generycznym.  (Przechowuje on informację o typie, który aktualnie znajduje się w danym strumieniu)
+	\item służy do przetwarzania kolekcji danych
+	\item pozwala w łatwy sposób zrównoleglić pracę na danych — przetwarzanie dużych zbiorów danych może być dużo szybsze
+	\item kładzie nacisk na operacje jakie należy przeprowadzić na danych
+	\item wykorzystuje interfejsy funkcyjne, wyrażenia lambda referencje do metod
+	\item może być przetwarzany sekwencyjnie bądź równolegle. Metoda stream tworzy sekwencyjny strumień danych. Metoda parallelStream tworzy strumień, który jest uruchamiany jednocześnie na kilku wątkach
+\end{itemize}
+\end{frame}
 
+
+\begin{frame}
+	\frametitle{Jak działa strumień?}
+	\begin{enumerate}
+		\item Tworzenie strumienia — dokładnie jedna metoda tworząca
+		\item przetwarzanie danych wewnątrz strumienia — przez dowolną liczbę operacji
+		\item zakończenie strumienia — dokładnie jedna metoda kończąca
+	\end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Operacje}
+	\begin{enumerate}
+		\item operacja nie może posiadać stanu
+		\item operacja nie może modyfikować źródła danych
+		\item dozwolonych operacji jest bardzo dużo (kompletna wiedza w tym temacie w dokumentacji interfejsu Stream)
+	\end{enumerate}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Przydatne/popularne operacje}
+	\begin{itemize}
+	\item filter -- filtruje dane na podstawie jakiegoś warunku
+	\item distinct -- wybiera unikalne wartości
+	\item map -- przekształca dane w określony sposób
+	\item limit -- zwraca strumień ograniczony do zadanej liczby elementów
+	\item forEach -- wykonuje jakąś operację dla każdego elementu strumienia
+	\item count -- zwraca liczbę elementów w strumieniu
+	\item collect -- pozwala na stworzenie nowego typu na podstawie strumienia, np. listy
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Dobre praktyki}
+	\begin{itemize}
+		\item filtrowanie na początku — warto na samym początku ograniczyć liczbę elementów, a zatem czas wykonania operacji
+		\item unikanie skomplikowanych wyrażeń lambda — kwestie czytelności kodu
+		\item używanie strumieni w określonych przypadkach — nie nadużywanie ich (np. przypadki gdy trzeba użyć słowa kluczowego break wykluczają zastosowanie strumienia)
+		\item strumienie nie służą do przechowywania danych — nie są strukturą danych
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Przykład}
+	{\tiny \lstinputlisting[language=Java]{Student.java}}
+{\tiny 	*gpa -- grade-point average}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Przykład c. d.}
+		\bigskip
+	{\tiny 	\lstinputlisting[language=Java]{Instances.java}}
+	\bigskip
+Załóżmy, że chcemy otrzymać tylko osoby, które mają major computer science i gpa powyzej 3.50 oraz major ma byc pisany caly wielkimi literami. Wyniki chcemy wydrukować w konsoli. \\
+	\smallskip
+	Opcja 1: można by użyć zagnieżdżonych pętli, w których sprawdzane byłyby kolejne warunki. \\
+	\smallskip
+	Opcja 2: lepsza -- przetworzenie tej kolekcji z użyciem strumieni. \\
+\bigskip
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Przykład c. d.}
+		{\tiny 	\lstinputlisting[language=Java]{Stream.java}}
+	Analiza: \\
+	\begin{itemize}
+	{\footnotesize 	\item Utworzenie strumienia z listy z użyciem metody stream() -- jest to metoda domyślna zaimplementowaną w interfejsie Collection. \\
+	\item Przy każdym przekształceniu (filter, map) tworzona jest nowa instancja strumienia -- każdy strumień można by przypisać oddzielnie do zmiennej typu Stream. \\
+	\item W tym przypadku wynik drukowany jest w konsoli przy użyciu referencji do metody println, ale mógłby też on być zwracany, np. w postaci nowej listy zawierającej tylko odfiltrowane i przekształcone elementy. \\
+	\item Operacje na strumieniach wykorzystują wzorzec łączenia metod (ang. method chaining), zwany także płynnym interfejsem (ang. fluent interface).\\
+	}
+	\end{itemize}
 \end{frame}
 
 %------------------------------------------------
