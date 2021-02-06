@@ -343,44 +343,73 @@ Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę, a więc otrzymując wynik
 
 \begin{frame}
 	\frametitle{Wyszukiwanie liniowe}
-	\begin{block}{Na czym polega??}
-	1. Wartości kolejnych elementów ciągu zaczynając od tego pod indeksem 0 a kończąc na n-1 porównuje się z wartością klucza.\\
-	2. Zwraca się indeks znalezionego elementu, bądź -1 w przypadku gdy nie został on znaleziony.
-\end{block}
-	\begin{itemize}
-	\item struktura danych \textbf{nie musi} być posortowana
-	\item pesymistyczna złożoność O(n)
-\end{itemize}
+		\begin{block}{Na czym polega??}
+		1. Wartości kolejnych elementów ciągu zaczynając od tego pod indeksem 0 a kończąc na n-1 porównuje się z wartością klucza.\\
+		2. Zwraca się indeks znalezionego elementu, bądź -1 w przypadku gdy nie został on znaleziony.
+	\end{block}
+	\begin{minipage}{0.35\textwidth}
+		\begin{itemize}
+			\item struktura danych \textbf{nie musi} być posortowana
+			\item pesymistyczna złożoność O(n)
+		\end{itemize}
+	\end{minipage}
+	\hspace{0.1cm}
+	\begin{minipage}{0.55\textwidth}
+		\begin{figure}
+			\includegraphics[width=0.8\textwidth]{linear}
+			\caption{{\tiny Wyszukiwanie liniowe.}}
+		\end{figure}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Wyszukiwanie binarne}
-		\begin{block}{Na czym polega??}
-		1. W posortowanym ciągu porównuje się wartość klucza z wartością środkowego elementu. Jeżeli są takie same, zwracany jest indeks. \\
-		2. Jeżeli klucz $<$ środkowy element, to ogranicza się dalsze przeszukiwanie do lewego podciągu. \\
-		3. Jeżeli klucz $>$ środkowy element, to ogranicza się dalsze przeszukiwanie do prawego podciągu. \\
-		4. Powtarza się kroki od punktu 1. \\
-		5. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\
-	\end{block}
-	\begin{itemize}
-		\item struktura danych \textbf{musi }być posortowana
-		\item wykorzystywany jest algorytm "dziel i rządź"
-		\item pesymistyczna złożoność O(logn)
-	\end{itemize}
+			\begin{block}{Na czym polega??}
+{\tiny 			1. W posortowanym ciągu porównuje się wartość klucza z wartością środkowego elementu. Jeżeli są takie same, zwracany jest indeks. \\
+			2. Jeżeli klucz $<$ środkowy element, to ogranicza się dalsze przeszukiwanie do lewego podciągu. \\
+			3. Jeżeli klucz $>$ środkowy element, to ogranicza się dalsze przeszukiwanie do prawego podciągu. \\
+			4. Powtarza się kroki od punktu 1. \\
+			5. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\}
+		\end{block}
+	\begin{minipage}{0.35\textwidth}
+		\begin{itemize}
+			\item struktura danych \textbf{musi }być posortowana
+			\item wykorzystywany jest algorytm "dziel i rządź"
+			\item pesymistyczna złożoność O(logn)
+		\end{itemize}
+	\end{minipage}
+	\hspace{0.1cm}
+	\begin{minipage}{0.55\textwidth}
+		\begin{figure}
+			\includegraphics[width=0.7\textwidth]{binary_search}
+			\caption{{\tiny Wyszukiwanie binarne.}}
+		\end{figure}
+	\end{minipage}
+	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Wyszukiwanie poprzez skok co k-ty element}
-			\begin{block}{Na czym polega??}
-		1. W posortowanym ciągu przeskakuje się co k elementów i porównuje się wartość bieżącego elementu z wartością klucza. \\
-		2. Gdy element jest mniejszy niż klucz, przeskakuje się o następne k elementów. \\
-		3. Gdy element jest większy niż wartość klucza, to należy się cofnąć i sprawdzić już tylko k-1 ostatnio przeskoczonych elementów. \\
-		4. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\
-	\end{block}
-	\begin{itemize}
-		\item struktura danych \textbf{musi} być posortowana
-		\item algorytm jest k razy szybszy niż algorytm liniowy
-	\end{itemize}
+				\begin{block}{Na czym polega??}
+{\scriptsize 			1. W posortowanym ciągu przeskakuje się co k elementów i porównuje się wartość bieżącego elementu z wartością klucza. \\
+			2. Gdy element jest mniejszy niż klucz, przeskakuje się o następne k elementów. \\
+			3. Gdy element jest większy niż wartość klucza, to należy się cofnąć i sprawdzić już tylko k-1 ostatnio przeskoczonych elementów. \\
+			4. Zwraca się indeks pasującego elementu lub -1, gdy nie został znaleziony. \\}
+		\end{block}
+
+	\begin{minipage}{0.35\textwidth}
+		\begin{itemize}
+			\item struktura danych \textbf{musi} być posortowana
+			\item algorytm jest k razy szybszy niż algorytm liniowy
+		\end{itemize}
+	\end{minipage}
+	\hspace{0.1cm}
+	\begin{minipage}{0.55\textwidth}
+		\begin{figure}
+			\includegraphics[width=0.75\textwidth]{skok}
+			\caption{{\tiny Wyszukiwanie co k-ty element.}}
+		\end{figure}
+	\end{minipage}
 \end{frame}
 
 
