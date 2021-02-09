@@ -225,7 +225,7 @@ Polsko -- Japońska Akademia Technk Komputerowych \\ % Your institution for the 
 
 \begin{frame}
 	\frametitle{Nieco bardziej złożony przykład}
-{\footnotesize Klasyczny przykład zastosowania twierdzenia Bayesa, to przypadek testowania na dosyć rzadką chorobę. Szukamy jakie jest prawdopodobieństwo, że osoba jest chora, jeżeli wyszedł jej pozytywny wynik testu. Załóżmy, że recyzja testu to 95~\%,  choruje 1/100 osób.\\
+{\footnotesize Klasyczny przykład zastosowania twierdzenia Bayesa, to przypadek testowania na dosyć rzadką chorobę. Szukamy jakie jest prawdopodobieństwo, że osoba jest chora, jeżeli wyszedł jej pozytywny wynik testu. Załóżmy, że precyzja testu to 95~\%,  choruje 1/100 osób.\\
 Intuicyjnie nasuwa się, że prawdopodobieństwo powinno być dosyć wysokie. Jest to jednak błędne myślenie. \\
 \bigskip
 {\small \textbf{Analiza: \\}}
@@ -237,7 +237,7 @@ Intuicyjnie nasuwa się, że prawdopodobieństwo powinno być dosyć wysokie. Je
 }
 {\scriptsize \textbf{P(choroba$|$pozytywny)} -- prawdopodobieństwo, że osoba ma chorobę bazując na tym, że test wyszedł pozytywny. \\
 
-\textbf{P(pozytywny$|$choroba)} -- prawdopodobieństwo, że test wyszedł pozytywnie jeżeli rzeczywiście jest zdiagnozowana choroba. Mówi ono o czułości testu — true positive (95~\%) oraz specyficzności testu — true negative (95~\%). \\
+\textbf{P(pozytywny$|$choroba)} -- prawdopodobieństwo, że test wyszedł pozytywnie jeżeli rzeczywiście jest zdiagnozowana choroba. Mówi ono o czułości testu -- true positive (95~\%) oraz specyficzności testu -- true negative (95~\%). \\
 
 \textbf{P(choroba)} -- prawdopodobieństwo wystąpienia choroby u danej osoby. P = 0.01. \\
 
@@ -334,7 +334,7 @@ Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę, a więc otrzymując wynik
 \begin{frame}
 	\frametitle{Wyszukiwanie -- na czym polega?}
 
-		Polega na odszukaniu elementu o danej wartości (klucza) w nieposortowanej lub posortowanej strukturze danych (tablicy lub liście) i zwrócenie indeksu, pod którym znaleziony element się znajduje*. Jeżeli element nie zostanie znaleziony, wyświetlany jest stosowny komunikat (często wartość -1). \\
+		Polega na odszukaniu elementu o danej wartości (tzw. klucza) w nieposortowanej lub posortowanej strukturze danych (tablicy lub liście) i zwrócenie indeksu, pod którym znaleziony element się znajduje*. Jeżeli element nie zostanie znaleziony, wyświetlany jest stosowny komunikat (często wartość -1). \\
 		\bigskip
 		{\scriptsize *jeżeli jest kilka takich samych elementów w ciągu, to zwracany jest indeks pierwszego napotkanego\\
 		** klucz i indeksy są liczbami całkowitymi\\
@@ -451,8 +451,8 @@ Jedynie 16~\% osób z wynikiem pozytywnym ma chorobę, a więc otrzymując wynik
 \begin{frame}
 	\frametitle{Sortowanie -- kilka przydatnych pojęć c.d.}
 	\begin{block}{Stabilność}
-		Mówi o tym, czy elementy o jednakowej wartości występują w niezmienionej kolejności w strukturze poczatkowej i po przeprowadzeniu algorytmu sortowania. \\
-		Stabilne: np. bąbelkowe, przez scalanie, posiada O(1) space complexity. \\
+		Mówi o tym, czy elementy o jednakowej wartości występują w niezmienionej kolejności w strukturze początkowej i po przeprowadzeniu algorytmu sortowania. \\
+		Stabilne: np. bąbelkowe, przez scalanie.\\
 		Niestabilne: np. szybkie.
 	\end{block}
 	
@@ -795,11 +795,11 @@ Posiadają one wbudowane moduły wyszukiwania i sortowania żeby ułatwić użyt
 \frametitle{Strumień}
 \begin{itemize}
 	\item Java Stream to interfejs dostępny od wersji 8 
-	\item Interfejs Stream jest interfejsem generycznym.  (Przechowuje on informację o typie, który aktualnie znajduje się w danym strumieniu)
+	\item Interfejs Stream jest interfejsem generycznym (przechowuje on informację o typie, który aktualnie znajduje się w danym strumieniu).
 	\item służy do przetwarzania kolekcji danych
-	\item pozwala w łatwy sposób zrównoleglić pracę na danych — przetwarzanie dużych zbiorów danych może być dużo szybsze
+	\item pozwala w łatwy sposób zrównoleglić pracę na danych -- przetwarzanie dużych zbiorów danych może być dużo szybsze
 	\item kładzie nacisk na operacje jakie należy przeprowadzić na danych
-	\item wykorzystuje interfejsy funkcyjne, wyrażenia lambda referencje do metod
+	\item wykorzystuje interfejsy funkcyjne, wyrażenia lambda oraz referencje do metod
 	\item może być przetwarzany sekwencyjnie bądź równolegle. Metoda stream tworzy sekwencyjny strumień danych. Metoda parallelStream tworzy strumień, który jest uruchamiany jednocześnie na kilku wątkach
 \end{itemize}
 \end{frame}
@@ -833,7 +833,7 @@ Posiadają one wbudowane moduły wyszukiwania i sortowania żeby ułatwić użyt
 	\item limit -- zwraca strumień ograniczony do zadanej liczby elementów
 	\item forEach -- wykonuje jakąś operację dla każdego elementu strumienia
 	\item count -- zwraca liczbę elementów w strumieniu
-	\item collect -- pozwala na stworzenie nowego typu na podstawie strumienia, np. listy
+	\item collect -- pozwala na stworzenie nowego typu na podstawie strumienia, np. tablicy
 	\item findFirst, findAny
 \end{itemize}
 \end{frame}
@@ -864,7 +864,7 @@ Posiadają one wbudowane moduły wyszukiwania i sortowania żeby ułatwić użyt
 		\bigskip
 	{\tiny 	\lstinputlisting[language=Java]{Instances.java}}
 	\bigskip
-Załóżmy, że chcemy otrzymać tylko osoby, które mają major computer science i gpa powyzej 3.50 oraz major ma byc pisany caly wielkimi literami. Wyniki chcemy wydrukować w konsoli. \\
+Załóżmy, że chcemy otrzymać tylko osoby, które mają major computer science i gpa powyzej 3.25 oraz major ma być pisany cały wielkimi literami. Wyniki chcemy wydrukować w konsoli. \\
 	\smallskip
 	Opcja 1: można by użyć zagnieżdżonych pętli, w których sprawdzane byłyby kolejne warunki. \\
 	\smallskip
@@ -878,7 +878,7 @@ Załóżmy, że chcemy otrzymać tylko osoby, które mają major computer scienc
 		{\tiny 	\lstinputlisting[language=Java]{Stream.java}}
 	Analiza: \\
 	\begin{itemize}
-	{\footnotesize 	\item Utworzenie strumienia z listy z użyciem metody stream() -- jest to metoda domyślna zaimplementowaną w interfejsie Collection. \\
+	{\footnotesize 	\item Utworzenie strumienia z listy z użyciem metody stream() -- jest to metoda domyślna zaimplementowana w interfejsie Collection. \\
 	\item Przy każdym przekształceniu (filter, map) tworzona jest nowa instancja strumienia -- każdy strumień można by przypisać oddzielnie do zmiennej typu Stream. \\
 	\item W tym przypadku wynik drukowany jest w konsoli przy użyciu referencji do metody println, ale mógłby też on być zwracany, np. w postaci nowej listy zawierającej tylko odfiltrowane i przekształcone elementy. \\
 	\item Operacje na strumieniach wykorzystują wzorzec łączenia metod (ang. method chaining), zwany także płynnym interfejsem (ang. fluent interface).\\
