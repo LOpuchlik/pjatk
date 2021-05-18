@@ -1,5 +1,13 @@
+import argparse
 import cv2
 import numpy as np
+
+
+# to run this type in PyCharm's Edit Configurations -> -i "liberty1.jpeg liberty3.jpeg" -> as parameters
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Reads in an image')
+    parser.add_argument('-i', '--input_images', type=str, required=True, help='Inputs images that will be processes')
+    return parser.parse_args()
 
 
 def rescale(img, scale_percent):
@@ -10,32 +18,38 @@ def rescale(img, scale_percent):
     return img
 
 
-# loaded images put into a gray-scale
-img1 = cv2.imread('liberty1.jpeg', cv2.IMREAD_GRAYSCALE)
-img1 = rescale(img1, 20)
+def main(args):
+    # loaded images put into a gray-scale
+    img1 = cv2.imread(str(args.input_images.split(" ")[0]), cv2.IMREAD_GRAYSCALE)
+    img1 = rescale(img1, 20)
 
-img2 = cv2.imread('liberty3.jpeg', cv2.IMREAD_GRAYSCALE)
-img2 = rescale(img2, 50)
+    img2 = cv2.imread(str(args.input_images.split(" ")[1]), cv2.IMREAD_GRAYSCALE)
+    img2 = rescale(img2, 50)
+
+    sift = cv2.xfeatures2d.SIFT_create()  # creating a SIFT object
+
+    # finding key points on both images
+    key_points_1, descriptors_1 = sift.detectAndCompute(img1, None)
+    key_points_2, descriptors_2 = sift.detectAndCompute(img2, None)
+
+    img1 = cv2.drawKeypoints(img1, key_points_1, None)
+    img2 = cv2.drawKeypoints(img2, key_points_2, None)
+
+    # feature matching
+    bf = cv2.BFMatcher(cv2.NORM_L1, crossCheck=True)
+    matches = bf.match(descriptors_1, descriptors_2)
+
+    cv2.namedWindow('image1', cv2.WINDOW_NORMAL)
+    cv2.moveWindow('image1', 10, 0)
+    cv2.imshow('image1', img1)
+
+    cv2.namedWindow('image2', cv2.WINDOW_NORMAL)
+    cv2.moveWindow('image2', 300, 0)
+    cv2.imshow('image2', img2)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
-sift = cv2.xfeatures2d.SIFT_create() # creating a SIFT object
-
-# finding key points both images
-key_points_1, descriptors_1 = sift.detectAndCompute(img1, None)
-key_points_2, descriptors_2 = sift.detectAndCompute(img2, None)
-
-img1 = cv2.drawKeypoints(img1, key_points_1, None)
-img2 = cv2.drawKeypoints(img2, key_points_2, None)
-
-# feature matching
-bf = cv2.BFMatcher(cv2.NORM_L1, crossCheck=True)
-matches = bf.match(descriptors_1, descriptors_2)
-
-cv2.imshow('image1', img1)
-cv2.imshow('image2', img2)
-
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-
+if __name__ == "__main__":
+    main(parse_arguments())
