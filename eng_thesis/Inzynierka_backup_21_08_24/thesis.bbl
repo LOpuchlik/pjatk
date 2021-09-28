@@ -1,0 +1,209 @@
+\begin{thebibliography}{10}
+
+\bibitem{aizerman1964theoretical}
+Mark~A Aizerman.
+\newblock Theoretical foundations of the potential function method in pattern
+  recognition learning.
+\newblock {\em Automation and remote control}, 25:821--837, 1964.
+
+\bibitem{albawi2017understanding}
+Saad Albawi, Tareq~Abed Mohammed, and Saad Al-Zawi.
+\newblock Understanding of a convolutional neural network.
+\newblock In {\em 2017 International Conference on Engineering and Technology
+  (ICET)}, pages 1--6. Ieee, 2017.
+
+\bibitem{website}
+Algolytics.
+\newblock Analityka predykcyjna dla początkujących --- część 1.
+
+\bibitem{Statista}
+Arne~Holst at~Statista.
+\newblock Volume of data/information created, captured, copied, and consumed
+  worldwide from 2010 to 2025, 2021.
+
+\bibitem{breiman1996bagging}
+Leo Breiman.
+\newblock Bagging predictors.
+\newblock {\em Machine learning}, 24(2):123--140, 1996.
+
+\bibitem{chauhan2018convolutional}
+Rahul Chauhan, Kamal~Kumar Ghanshala, and RC~Joshi.
+\newblock Convolutional neural network (cnn) for image detection and
+  recognition.
+\newblock In {\em 2018 First International Conference on Secure Cyber Computing
+  and Communication (ICSCCC)}, pages 278--282. IEEE, 2018.
+
+\bibitem{cichosz2000}
+Paweł Cichosz.
+\newblock {\em Systemy uczące się}.
+\newblock WNT Wydawnictwa Naukowo-Techniczne, 2007.
+
+\bibitem{cortes1995support}
+Corinna Cortes and Vladimir Vapnik.
+\newblock Support-vector networks.
+\newblock {\em Machine learning}, 20(3):273--297, 1995.
+
+\bibitem{turingtesttimeline}
+Daniel Crevier.
+\newblock {\em Ai: The Tumultuous History Of The Search For Artificial
+  Intelligence}.
+\newblock Basic Books, 1993.
+
+\bibitem{countVectorizer}
+Scikit~Learn Documentation.
+\newblock Count vectorizer.
+
+\bibitem{normalizacja}
+Kavita Ganesan.
+\newblock https://kavita-ganesan.com/text-preprocessing-tutorial/.
+
+\bibitem{stopwords}
+Kavita Ganesan.
+\newblock https://kavita-ganesan.com/what-are-stop-words/.
+
+\bibitem{goodfellow2016deep}
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville.
+\newblock {\em Deep learning}.
+\newblock MIT press, 2016.
+
+\bibitem{gurney2013introduction}
+Kevin Gurney.
+\newblock {\em An introduction to neural networks}.
+\newblock ROUTLEDGE, 2013.
+
+\bibitem{geron}
+Aurélien Géron.
+\newblock {\em Uczenie maszynowe z użyciem Scikit-Learn i TensorFlow. Wydanie
+  II}.
+\newblock O'Reilly, 2020.
+
+\bibitem{ho2002data}
+Tin~Kam Ho.
+\newblock A data complexity analysis of comparative advantages of decision
+  forest constructors.
+\newblock {\em Pattern Analysis \& Applications}, 5(2):102--112, 2002.
+
+\bibitem{hochreiter1997long}
+Sepp Hochreiter and J{\"u}rgen Schmidhuber.
+\newblock Long short-term memory.
+\newblock {\em Neural computation}, 9(8):1735--1780, 1997.
+
+\bibitem{KAPLAN2019}
+Andreas Kaplan and Michael Haenlein.
+\newblock Siri, siri, in my hand: Who’s the fairest in the land? on the
+  interpretations, illustrations, and implications of artificial intelligence.
+\newblock {\em Business Horizons}, 62(1):15--25, 2019.
+
+\bibitem{wikipediaNLgeneration}
+Wikipedia:~Natural language generation.
+\newblock https://tinyurl.com/wikipedia-nl-generation.
+
+\bibitem{mamczur}
+Mirosław Mamczur.
+\newblock Czym są hiperparametry i jak je dobrać?
+
+\bibitem{siecisemantyczne}
+Margaret Masterman.
+\newblock Semantic message detection for machine translation, using an
+  interlingua.
+\newblock {\em International Conference on Machine Translation of Languages and
+  Applied Language Analysis}, Conference Paper, 1961.
+
+\bibitem{mikolov2013efficient}
+Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{minaee2019deep}
+Shervin Minaee, Elham Azimi, and AmirAli Abdolrashidi.
+\newblock Deep-sentiment: Sentiment analysis using ensemble of cnn and bi-lstm
+  models.
+\newblock {\em arXiv preprint arXiv:1904.04206}, 2019.
+
+\bibitem{wikipediaTM}
+Wikipedia:~Text mining.
+\newblock https://tinyurl.com/wikipedia-text-mining.
+
+\bibitem{mitchell}
+Tom~M. Mitchell.
+\newblock {\em Machine learning}.
+\newblock McGraw-Hill, 1997.
+
+\bibitem{wikipediaNLP}
+Wikipedia: Przetwarzanie~Języka Naturalnego.
+\newblock https://tinyurl.com/eng-nlp.
+
+\bibitem{andrewng}
+Andrew Ng.
+\newblock Machine learning course on coursera.
+
+\bibitem{opitz1999popular}
+David Opitz and Richard Maclin.
+\newblock Popular ensemble methods: An empirical study.
+\newblock {\em Journal of artificial intelligence research}, 11:169--198, 1999.
+
+\bibitem{o2015introduction}
+Keiron O'Shea and Ryan Nash.
+\newblock An introduction to convolutional neural networks.
+\newblock {\em arXiv preprint arXiv:1511.08458}, 2015.
+
+\bibitem{jeopardy}
+Youtube:~IBM Research.
+\newblock https://www.statista.com/statistics/871513/worldwide-data-created/.
+
+\bibitem{rokach2007data}
+Lior Rokach and Oded~Z Maimon.
+\newblock {\em Data mining with decision trees: theory and applications},
+  volume~69.
+\newblock World scientific, 2007.
+
+\bibitem{samuel1959}
+Arthur~L. Samuel.
+\newblock Some studies in machine learning using the game of checkers.
+\newblock {\em IBM Journal of Research and Development}, 3(3):210--229, 1959.
+
+\bibitem{raschka}
+Vahid~Mirjalili Sebastian~Raschka.
+\newblock {\em Python. Uczenie maszynowe. Wydanie II}.
+\newblock Packt Publishing, 2019.
+
+\bibitem{sharma2017activation}
+Sagar Sharma and Simone Sharma.
+\newblock Activation functions in neural networks.
+\newblock {\em Towards Data Science}, 6(12):310--316, 2017.
+
+\bibitem{srivastava2014dropout}
+Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan
+  Salakhutdinov.
+\newblock Dropout: a simple way to prevent neural networks from overfitting.
+\newblock {\em The journal of machine learning research}, 15(1):1929--1958,
+  2014.
+
+\bibitem{paramC}
+StackExchange.
+\newblock
+  https://stats.stackexchange.com/questions/31066/what-is-the-influence-of-c-in-svms-with-linear-kernel.
+
+\bibitem{turing}
+Alan L.~Selman Steven~Homer.
+\newblock {\em Computability and Complexity Theory}.
+\newblock Springer Verlag, 2001.
+
+\bibitem{tangirala2020evaluating}
+Suryakanthi Tangirala.
+\newblock Evaluating the impact of gini index and information gain on
+  classification using decision tree classifier algorithm.
+\newblock {\em International Journal of Advanced Computer Science and
+  Applications}, 11(2):612--619, 2020.
+
+\bibitem{eliza}
+Joseph Weizenbaum.
+\newblock Eliza—a computer program for the study of natural language
+  communication between man and machine.
+\newblock {\em Commun. ACM}, 9(1):36–45, January 1966.
+
+\bibitem{overfitting}
+Wikipedia.
+\newblock Przeuczenie (overfitting).
+
+\end{thebibliography}

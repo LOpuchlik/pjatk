@@ -1,0 +1,18 @@
+\chapter{Podsumowanie}
+
+Celem ninejszej pracy było stworzenie i zbadanie przydatności klasycznych modeli machine learningowych oraz modeli wykorzystujących sieci neuronowe umożliwiających analizę sentymentu --- klasyfikację czy dana recenzja ma pozytywny czy negatywny wydźwięk --- recenzji filmowych z portalu IMDB (Internet Movie DataBase).
+Cel został przez nas osiągnięty. Zoptymalizowałyśmy, wytrenowałyśmy i wykonałyśmy predykcję dla 5 modeli klasyfikacyjnych: (1) Lasu losowego z głębokością drzew 32 (RF),
+	(2) Lasu losowego z głębokością drzew 64 (RF),
+	(3) Maszyny Wektorów Nośnych (SVM),
+	(4) Konwolucyjnej sieci neuronowej (CNN),
+	(5) Rekurencyjnej sieci neuronowej (LSTM). Ponadto zasymulowałyśmy równeż działanie modelu powstałego z połączenia konwolucyjnej oraz rekurencyjnej sieci neuronowej (CNN--LSTM Ensemble) z sukcesem odtwarzając wyniki opisane w publikacji naukowej pod tytułem \textit{Deep-sentiment: Sentiment analysis using ensemble of cnn and bi-lstm models} z 2019 roku \cite{minaee2019deep}. \\
+
+\bigskip 
+\noindent W wyniku przeprowadzonych przez nas analiz oraz symulacji okazało się, że ze względu na precyzję predykcji, najlepszy rezultat otrzymałyśmy dla połączenia sieci neuronowych CNN--LSTM, natomiast najniższą precyzję uzyskałyśmy dla klasyfikatora wykorzystującego las losowy z drzewami o głębokości 32. Z kolei biorąc pod uwagę czas potrzebny do wytrenowania modelu, najlepszy okazał się model klasyfikacyjny wykorzystujący maszynę wektorów nośnych, a najdłużej zajęło trenowanie dwóch sieci neuronowych dla połączenia CNN--LSTM (obie po 11 milionów trenowanych parametrów).\\
+Całościowo, biorąc pod uwagę oba czynniki, zdecydowanym faworytem okazał się klasyfikator SVM --- model liniowy, bardzo prosty, o małej liczbie parametrów. Osiągnął on precyzję aż 89.44\%, podczas, gdy czas jego trenowania wyniósł zaledwie 1 sekundę.\\
+
+\bigskip
+\noindent Wyraźnie widać, że nie zawsze model najmniej mylący się w predykcjach, jest najlepszy, ponieważ, czas jego trenowania może być zbyt długi i mało korzystny w połączeniu z wynikami osiąganymi przez model. Należy jeszcze podkreślić, że im większy jest wejściowy zbiór danych, tym dłuższe są czasy trenowania modeli, a co za tym idzie również różnice w czasach trenowania pomiędzy poszczególnymi modelami rosną. Gdy z kolei zależy nam na łatwej interpretowalności modelu, to dobrym algorytmem jest np. las losowy, który jest przejrzysty i zawsze można podejrzeć kryteria podziału zbiorów na poszczególne klasy. W naszym przypadku, modele zbudowane z jego pomocą dawały co prawda nieco gorsze rezultaty, ale były to wartości gorsze o kilka procent. \\
+
+\bigskip
+\noindent Podsumowując, nie ma rozwiązania idealnego. Żeby osiągać optymalne wyniki, trzeba prawie zawsze iść na kompromis. Należy też zawsze podejmować próby optymalizacji hiperparametrów, gdyż czynność ta może mieć kluczowe znaczenie w dostarczeniu dobrego lub chociazby optymalnego rozwiązania. Ponadto, ważnym faktem, który zawsze trzeba wziąć pod uwagę, jest to, że niektóre algorytmy ulegają łatwemu przetrenowaniu. Wysokie wyniki predykcji modelu, ale fałszywe wyniki nie wnoszą dużo wartości dodanej, a wręcz prowadzą do tego, że wyciągami nieprawidłowe wnioski. Na koniec --- warto pamiętać, że każdy model trzeba okresowo testować i dostosowywać jego działanie, gdyż dane, którymi model jest karmiony mogą się zmieniać, a wtedy może się zdarzyć, że model pogorszy swoje działanie, a w skrajnym przypadku straci swoją przydatność.

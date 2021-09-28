@@ -1,0 +1,18 @@
+\chapter{Środowisko obliczeniowe}
+
+Wszystkie obliczenia opisane w ramach niniejszej pracy wykonano w środowisku Google Collab na instancji [TODO ile RAMU ile procesora - google nie udostępnia tych danych !!!!!!], za pomocą interaktywnego narzędzia Notebook. Użyto języka Python w wersji 3.6.8 wraz z następującymi bibliotekami:
+\begin{itemize}
+	\item numpy w wersji 1.19.5 - biblioteka do efektywnych obliczeń naukowych
+	\item pandas w wersji 1.1.5 [TODO] - [TODO co to]
+	\item … [TODO]
+\end{itemize}
+
+\section{Dane}
+\subsection{Dane wejściowe}
+
+Wejściowy zbiór danych pochodzi z serwisu \href{https://ai.stanford.edu/~amaas/data/sentiment/}{IMDB (imdb.com)}. Jest to popularny zbiór danych wykorzystywany jako benchmark wielu technik przetwarzania języka naturalnego [TODO odniesienia do publikacji / artykułów gdzie jest wykorzystywany ?]. Składa się z pięćdziesięciu tysięcy recenzji różnych filmów. Każda recenzja jest oznaczona jako pozytywna bądź negatywna. Stosunek recenzji pozytywnych do negatywnych wynosi 1:1. Plik wejściowy ma format CSV z dwiema kolumnami: review - zawiera fragment HTML z tekstem recenzji, oraz sentiment - odpowiednio positive lub negative.
+[Opcjonalnie wrzucić screen z kilkoma pierwszymi wierszami]
+
+\subsection{Przygotowanie danych wejściowych}
+
+Zbiór danych wejściowych został wczytany do obiektu typu pandas.Dataframe. Kolumna sentiment została zamieniona na wartości liczbowe - odpowiednio 0-negative oraz 1-positive. Z kolumny reviews, z formatu HTML za pomocą narzędzia BeautifulSoup został wyekstraktowany tekst recenzji. Dane zostały podzielone w sposób losowy na zbiór treningowy oraz testowy w stosunku 4:1. W dalszych krokach, jedynie zbiór treningowy był wykorzystywany do stworzenia modeli predykcyjnych, natomiast zbiór testowy został wykorzystany do ostatecznej walidacji i porównania otrzymanych modeli.

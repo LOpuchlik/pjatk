@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{chronosys}
+
+\definecolor{darkerBlue}{rgb}{0.01 ,0.2, 0.55}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\begin{document}
+	
+%	\begin{chronology}[5]{1983}{2010}{3ex}[\textwidth]
+%		\event{1984}{one}
+%		\event[1985]{1986}{two}
+%		\event{\decimaldate{25}{12}{2001}}{three}
+%	\end{chronology}
+\startchronology
+[
+align=left, 
+startyear=1950,
+stopyear=2021, 
+startdate=false, 
+stopdate=false, 
+dateselevation=0pt, 
+arrow=true,
+arrowcolor=red, 
+box=true
+]
+\chronoperiode[color=darkerBlue]{1950}{1960}{}
+\chronoperiode[color=babyblueeyes]{1960}{1970}{}
+\chronoperiode[color=darkerBlue]{1970}{1980}{}
+\chronoperiode[color=babyblueeyes]{1980}{1990}{}
+\chronoperiode[color=darkerBlue]{1990}{2000}{}
+\chronoperiode[color=babyblueeyes]{2000}{2010}{}
+\chronoperiode[color=darkerBlue]{2010}{2020}{}
+\chronoperiode[color=babyblueeyes]{2020}{2030}{}
+%\chronoevent[markdepth=-23pt]{1992}{Event 2}
+\chronoevent[markdepth=130pt, textwidth=1.5cm]{1957}{Some event}
+\chronoevent[markdepth=90pt]{1956}{Event 1b}
+\chronoevent[markdepth=-50pt]{1954}{Event 1aa}
+\chronoevent[markdepth=50pt]{1954}{Event 1a}
+\chronoevent[colorbox=white, markdepth=10pt]{1952}{Event 1}
+%\chronoevent{1959}{first steps on the Moon}
+\stopchronology
+
+
+\end{document}

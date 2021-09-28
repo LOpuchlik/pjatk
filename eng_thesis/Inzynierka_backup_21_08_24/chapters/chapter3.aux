@@ -1,0 +1,136 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Analiza i modelowanie}{32}{chapter.3}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Wstępne przygotowanie zbioru danych}{32}{section.3.1}\protected@file@percent }
+\newlabel{code:readData}{{3.1}{32}{Wczytywanie surowych danych z Dysku Google do pandas.DataFrame'a}{lstlisting.3.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Wczytywanie surowych danych z Dysku Google do pandas.DataFrame'a.}{32}{lstlisting.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Przykładowe próbki z surowego zbioru danych recenzji filmowych IMDB.}}{33}{figure.3.1}\protected@file@percent }
+\newlabel{fig:rawDataset}{{3.1}{33}{Przykładowe próbki z surowego zbioru danych recenzji filmowych IMDB}{figure.3.1}{}}
+\newlabel{code:labelChange}{{3.2}{33}{Zmiana etykiet z typu obiekt na typ liczbowy}{lstlisting.3.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Zmiana etykiet z typu obiekt na typ liczbowy.}{33}{lstlisting.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Przykładowa recenzja przed usunięciem tagów HTML (surowa) oraz po usunięciu tagów.}}{33}{figure.3.2}\protected@file@percent }
+\newlabel{fig:cleaned}{{3.2}{33}{Przykładowa recenzja przed usunięciem tagów HTML (surowa) oraz po usunięciu tagów}{figure.3.2}{}}
+\newlabel{code:split}{{3.3}{34}{Podział danych na zbiór treningowy i testowy}{lstlisting.3.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}Podział danych na zbiór treningowy i testowy.}{34}{lstlisting.3.3}\protected@file@percent }
+\newlabel{code:vectorization}{{3.4}{34}{Wektoryzacja zbiorów danych --- treningowego i testowego}{lstlisting.3.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}Wektoryzacja zbiorów danych --- treningowego i testowego.}{34}{lstlisting.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Modelowanie}{34}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Las losowy}{34}{subsection.3.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Wyniki optymalizacji dla dwóch najlepszych iteracji --- z głębokością drzewa 16 i 64.}}{35}{table.3.1}\protected@file@percent }
+\newlabel{code:rf-hiper}{{3.5}{35}{Modelowanie SVM\_1 (RandomizedSearchCV)}{lstlisting.3.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}Modelowanie SVM\_1 (RandomizedSearchCV).}{35}{lstlisting.3.5}\protected@file@percent }
+\newlabel{code:rf-train}{{3.6}{35}{Trenowanie modelu lasu losowego dla 1000 estymatorów i głębokości 64}{lstlisting.3.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}Trenowanie modelu lasu losowego dla 1000 estymatorów i głębokości 64.}{35}{lstlisting.3.6}\protected@file@percent }
+\newlabel{code:rf-pred}{{3.7}{36}{Predykcja z użyciem wytrenowanego modelu lasu losowego}{lstlisting.3.7}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}Predykcja z użyciem wytrenowanego modelu lasu losowego.}{36}{lstlisting.3.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Wyniki klasyfikacji z użyciem lasu losowego dla n\_estimators=1000 i max\_depth=64. Trening modelu zajął 13.8 minuty.}}{36}{figure.3.3}\protected@file@percent }
+\newlabel{fig:macierz-rf}{{3.3}{36}{Wyniki klasyfikacji z użyciem lasu losowego dla n\_estimators=1000 i max\_depth=64. Trening modelu zajął 13.8 minuty}{figure.3.3}{}}
+\newlabel{code:rf-prior}{{3.8}{37}{Metoda do wyznaczania i wizualizacji priorytetu cech dla drzewa decyzyjnego}{lstlisting.3.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}Metoda do wyznaczania i wizualizacji priorytetu cech dla drzewa decyzyjnego.}{37}{lstlisting.3.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Ważność cech w drzewach decyzyjnych.}}{38}{figure.3.4}\protected@file@percent }
+\newlabel{fig:rf-fi}{{3.4}{38}{Ważność cech w drzewach decyzyjnych}{figure.3.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Wykres LIME wydźwięków kluczowych słów dla przykładowej recenzji pozytywnej (góra) oraz negatywnej (dół).}}{38}{figure.3.5}\protected@file@percent }
+\newlabel{fig:rf-lime}{{3.5}{38}{Wykres LIME wydźwięków kluczowych słów dla przykładowej recenzji pozytywnej (góra) oraz negatywnej (dół)}{figure.3.5}{}}
+\citation{paramC}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}SVM}{39}{subsection.3.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Idea obrazująca parametr 'C' --- płaszczyzny dla małej (lewy) i dużej (prawy) wartości parametru 'C'.}}{39}{figure.3.6}\protected@file@percent }
+\newlabel{fig:param-C}{{3.6}{39}{Idea obrazująca parametr 'C' --- płaszczyzny dla małej (lewy) i dużej (prawy) wartości parametru 'C'}{figure.3.6}{}}
+\newlabel{code:svm}{{3.9}{39}{Modelowanie SVM\_1 (RandomizedSearchCV)}{lstlisting.3.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}Modelowanie SVM\_1 (RandomizedSearchCV).}{39}{lstlisting.3.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Wyniki optymalizacji dla najlepszych iteracji RandomizedSearchCV.}}{40}{table.3.2}\protected@file@percent }
+\newlabel{code:svm1}{{3.10}{40}{Modelowanie SVM\_2 (GridSearchCV)}{lstlisting.3.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.10}Modelowanie SVM\_2 (GridSearchCV).}{40}{lstlisting.3.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Wyniki optymalizacji dla najlepszych iteracji GridSearchCV.}}{40}{table.3.3}\protected@file@percent }
+\newlabel{code:svc-train}{{3.11}{41}{Trening SVC dla C 0.003003003003003003}{lstlisting.3.11}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.11}Trening SVC dla C 0.003003003003003003.}{41}{lstlisting.3.11}\protected@file@percent }
+\newlabel{code:svc-pred}{{3.12}{41}{Predykcja SVC dla C 0.003003003003003003}{lstlisting.3.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.12}Predykcja SVC dla C 0.003003003003003003.}{41}{lstlisting.3.12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Wyniki klasyfikacji z użyciem maszyny wektorów nośnych dla parametru C $\approx $ 0.003.}}{42}{figure.3.7}\protected@file@percent }
+\newlabel{fig:macierz-svc}{{3.7}{42}{Wyniki klasyfikacji z użyciem maszyny wektorów nośnych dla parametru C $\approx $ 0.003}{figure.3.7}{}}
+\newlabel{code:svc-visual}{{3.13}{42}{Wizualizacja po SVC}{lstlisting.3.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.13}Wizualizacja po SVC.}{42}{lstlisting.3.13}\protected@file@percent }
+\citation{mikolov2013efficient}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Wizualizacja wydźwięku pozytywnego lub negatywnego wyrazów (SVC).}}{43}{figure.3.8}\protected@file@percent }
+\newlabel{fig:visual-svc}{{3.8}{43}{Wizualizacja wydźwięku pozytywnego lub negatywnego wyrazów (SVC)}{figure.3.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Sieci neuronowe}{43}{subsection.3.2.3}\protected@file@percent }
+\newlabel{code:w2v-wordlist}{{3.14}{44}{Stworzenie listy słów dla modelu Word2Vec}{lstlisting.3.14}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.14}Stworzenie listy słów dla modelu Word2Vec.}{44}{lstlisting.3.14}\protected@file@percent }
+\newlabel{code:w2v}{{3.15}{44}{Trenowanie modelu Word2vec}{lstlisting.3.15}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.15}Trenowanie modelu Word2vec.}{44}{lstlisting.3.15}\protected@file@percent }
+\newlabel{code:similar-different}{{3.16}{44}{Znajdowanie najbardziej zbliżonych i niepasujących słów}{lstlisting.3.16}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.16}Znajdowanie najbardziej zbliżonych i niepasujących słów.}{44}{lstlisting.3.16}\protected@file@percent }
+\newlabel{code:w2v-results}{{3.17}{45}{Generacja wektora słów --- model Word2Vec}{lstlisting.3.17}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.17}Generacja wektora słów --- model Word2Vec.}{45}{lstlisting.3.17}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.9}{\ignorespaces Wyniki modelu Word2Vec --- wektory słów, dla size=150.}}{45}{figure.3.9}\protected@file@percent }
+\newlabel{fig:w2v-dframe}{{3.9}{45}{Wyniki modelu Word2Vec --- wektory słów, dla size=150}{figure.3.9}{}}
+\newlabel{code:tsne}{{3.18}{45}{Zmniejszenie wymiarowości wektorów słów do punktów}{lstlisting.3.18}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.18}Zmniejszenie wymiarowości wektorów słów do punktów.}{45}{lstlisting.3.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.10}{\ignorespaces Wizualizacja W2V}}{46}{figure.3.10}\protected@file@percent }
+\newlabel{fig:w2v-kropki}{{3.10}{46}{Wizualizacja W2V}{figure.3.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.11}{\ignorespaces Wizualizacja rozkładu liczby słów w recenzjach.}}{47}{figure.3.11}\protected@file@percent }
+\newlabel{fig:w2v-percentyle}{{3.11}{47}{Wizualizacja rozkładu liczby słów w recenzjach}{figure.3.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Konwolucyjna sieć neuronowa}{47}{subsection.3.2.4}\protected@file@percent }
+\newlabel{code:cnn}{{3.19}{48}{Model CNN}{lstlisting.3.19}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.19}Model CNN.}{48}{lstlisting.3.19}\protected@file@percent }
+\newlabel{code:cnn-trening}{{3.20}{49}{Trening modelu CNN}{lstlisting.3.20}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.20}Trening modelu CNN.}{49}{lstlisting.3.20}\protected@file@percent }
+\newlabel{code:cnn-pred}{{3.21}{49}{Predykcja z użyciem modelu CNN}{lstlisting.3.21}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.21}Predykcja z użyciem modelu CNN.}{49}{lstlisting.3.21}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.12}{\ignorespaces Wyniki klasyfikacji z użyciem konwolucyjnej sieci neuronowej.}}{50}{figure.3.12}\protected@file@percent }
+\newlabel{fig:cnn-macierz}{{3.12}{50}{Wyniki klasyfikacji z użyciem konwolucyjnej sieci neuronowej}{figure.3.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}LSTM}{50}{subsection.3.2.5}\protected@file@percent }
+\newlabel{code:lstm}{{3.22}{50}{Model LSTM}{lstlisting.3.22}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.22}Model LSTM.}{50}{lstlisting.3.22}\protected@file@percent }
+\newlabel{code:lstm-trening}{{3.23}{51}{Trening modelu LSTM}{lstlisting.3.23}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.23}Trening modelu LSTM.}{51}{lstlisting.3.23}\protected@file@percent }
+\newlabel{code:lstm-pred}{{3.24}{51}{Predykcja z użyciem modelu LSTM}{lstlisting.3.24}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.24}Predykcja z użyciem modelu LSTM.}{51}{lstlisting.3.24}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.13}{\ignorespaces Wyniki klasyfikacji z użyciem sieci LSTM.}}{52}{figure.3.13}\protected@file@percent }
+\newlabel{fig:lstm-macierz}{{3.13}{52}{Wyniki klasyfikacji z użyciem sieci LSTM}{figure.3.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.6}CNN--LSTM Ensemble}{52}{subsection.3.2.6}\protected@file@percent }
+\newlabel{code:cnn-lstm}{{3.25}{52}{Model stworzony przez połączenie CCN z LSTM}{lstlisting.3.25}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.25}Model stworzony przez połączenie CCN z LSTM.}{52}{lstlisting.3.25}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.14}{\ignorespaces Wyniki połączenia modeli CNN i LSTM.}}{53}{figure.3.14}\protected@file@percent }
+\newlabel{fig:cnn-lstm}{{3.14}{53}{Wyniki połączenia modeli CNN i LSTM}{figure.3.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.15}{\ignorespaces Macierz omyłek dla wyników z połączonych modeli CNN i LSTM.}}{53}{figure.3.15}\protected@file@percent }
+\newlabel{fig:cnn-lstm-macierz}{{3.15}{53}{Macierz omyłek dla wyników z połączonych modeli CNN i LSTM}{figure.3.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Porównanie wyników dla wszystkich modeli}{54}{section.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Porównanie czasów trenowania i precyzji wszystkich 5 modeli.}}{54}{table.3.4}\protected@file@percent }
+\newlabel{tab:porównanie}{{3.4}{54}{Porównanie czasów trenowania i precyzji wszystkich 5 modeli}{table.3.4}{}}
+\newlabel{RF1}{55}
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Porównanie jednogłośności algorytmów.}}{55}{table.3.5}\protected@file@percent }
+\newlabel{tab:porownanie-przyklady}{{3.5}{55}{Porównanie jednogłośności algorytmów}{table.3.5}{}}
+\citation{minaee2019deep}
+\citation{minaee2019deep}
+\citation{minaee2019deep}
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces Wyniki naszego modelowania vs. wyniki opublikowane przez Minaee et al. \cite  {minaee2019deep}. Parametrem porównywanym jest precyzja.}}{56}{table.3.6}\protected@file@percent }
+\@setckpt{chapters/chapter3}{
+\setcounter{page}{57}
+\setcounter{equation}{0}
+\setcounter{enumi}{2}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{3}
+\setcounter{section}{3}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{15}
+\setcounter{table}{6}
+\setcounter{Item}{14}
+\setcounter{Hfootnote}{0}
+\setcounter{bookmark@seq@number}{70}
+\setcounter{float@type}{8}
+\setcounter{lstnumber}{6}
+\setcounter{FancyVerbLine}{8}
+\setcounter{r@tfl@t}{1}
+\setcounter{section@level}{1}
+\setcounter{lstlisting}{25}
+}

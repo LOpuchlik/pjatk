@@ -1,0 +1,81 @@
+\babel@toc {polish}{}
+\contentsline {section}{Spis rysunków}{v}{chapter*.3}%
+\contentsline {section}{Spis tablic}{vi}{chapter*.4}%
+\contentsline {section}{Spis listingów}{vii}{chapter*.5}%
+\contentsline {chapter}{Wstęp}{}{chapter*.5}%
+\contentsline {section}{Cel pracy}{}{section*.6}%
+\contentsline {section}{Słowa kluczowe}{}{section*.6}%
+\contentsline {section}{Streszczenie}{}{section*.6}%
+\contentsline {chapter}{\numberline {1}Sztuczna inteligencja}{}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Przetwarzanie języka naturalnego}{}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Do czego wykorzystywane jest NLP? }{}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Operacje na danych tekstowych}{}{subsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.2.1}Tokenizacja}{}{subsubsection.1.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.1.2.2}Normalizacja}{}{subsubsection.1.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.1.2.3}Usuwanie słów-stopów}{}{subsubsection.1.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.1.2.4}Inne przekształcenia}{}{subsubsection.1.1.2.4}%
+\contentsline {subsubsection}{\numberline {1.1.2.5}Tworzenie N-gramów}{}{subsubsection.1.1.2.5}%
+\contentsline {subsubsection}{\numberline {1.1.2.6}Stemming}{}{subsubsection.1.1.2.6}%
+\contentsline {subsubsection}{\numberline {1.1.2.7}Lematyzacja}{}{subsubsection.1.1.2.7}%
+\contentsline {subsubsection}{\numberline {1.1.2.8}Rozpoznawanie części mowy}{}{subsubsection.1.1.2.8}%
+\contentsline {subsubsection}{\numberline {1.1.2.9}Rozpoznawanie bytów nazwanych}{}{subsubsection.1.1.2.9}%
+\contentsline {subsubsection}{\numberline {1.1.2.10}Parsowanie}{}{subsubsection.1.1.2.10}%
+\contentsline {paragraph}{Parsowanie płytkie}{}{section*.11}%
+\contentsline {paragraph}{Parsowanie głębokie}{}{section*.12}%
+\contentsline {section}{\numberline {1.2}Podstawy modelowania}{}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Definicje}{}{subsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.1.1}Uczenie maszynowe}{}{subsubsection.1.2.1.1}%
+\contentsline {subsubsection}{\numberline {1.2.1.2}Model predykcyjny}{}{subsubsection.1.2.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1.3}Klasa}{}{subsubsection.1.2.1.3}%
+\contentsline {subsubsection}{\numberline {1.2.1.4}Klasyfikacja binarna}{}{subsubsection.1.2.1.4}%
+\contentsline {subsubsection}{\numberline {1.2.1.5}Algorytm trenujący}{}{subsubsection.1.2.1.5}%
+\contentsline {subsubsection}{\numberline {1.2.1.6}Próbka}{}{subsubsection.1.2.1.6}%
+\contentsline {subsubsection}{\numberline {1.2.1.7}Atrybut}{}{subsubsection.1.2.1.7}%
+\contentsline {subsubsection}{\numberline {1.2.1.8}Zbiór treningowy}{}{subsubsection.1.2.1.8}%
+\contentsline {subsubsection}{\numberline {1.2.1.9}Zbiór testowy}{}{subsubsection.1.2.1.9}%
+\contentsline {subsubsection}{\numberline {1.2.1.10}Hiperparametry}{}{subsubsection.1.2.1.10}%
+\contentsline {subsubsection}{\numberline {1.2.1.11}Funkcja kosztu (straty)}{}{subsubsection.1.2.1.11}%
+\contentsline {subsubsection}{\numberline {1.2.1.12}Błąd}{}{subsubsection.1.2.1.12}%
+\contentsline {subsubsection}{\numberline {1.2.1.13}Walidacja --- metryki sukcesu (\textit {model evaluation metrics})}{}{subsubsection.1.2.1.13}%
+\contentsline {subsubsection}{\numberline {1.2.1.14}Przeuczenie (\textit {overfitting})}{}{subsubsection.1.2.1.14}%
+\contentsline {subsubsection}{\numberline {1.2.1.15}Wektoryzacja tekstu}{}{subsubsection.1.2.1.15}%
+\contentsline {chapter}{\numberline {2}Narzędzia i algorytmy}{}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Las losowy}{}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Drzewo decyzyjne}{}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Konstrukcja lasu losowego}{}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Właściwości}{}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Implementacja}{}{subsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.4.1}Wybór hiperparametrów}{}{subsubsection.2.1.4.1}%
+\contentsline {section}{\numberline {2.2}Maszyna wektorów nośnych}{}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Konstrukcja}{}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Właściwości}{}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Implementacja}{}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Konwolucyjna sieć neuronowa}{}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Sieci neuronowe}{}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Trening sieci neuronowej}{}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Sieci konwolucyjne}{}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Wykorzystanie sieci konwolucyjnych w przetwarzaniu języka naturalnego}{}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Implementacja}{}{subsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.5.1}Word2Vec}{}{subsubsection.2.3.5.1}%
+\contentsline {subsubsection}{\numberline {2.3.5.2}Sieć konwolucyjna}{}{subsubsection.2.3.5.2}%
+\contentsline {section}{\numberline {2.4}Sieć LSTM}{}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Rekurencyjna sieć neuronowa}{}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Konstrukcja LSTM}{}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Zastosowanie LSTM w przetwarzaniu języka naturalnego}{}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Implementacja}{}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Połączenie sieci konwolucyjnej i LSTM}{}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Analiza i modelowanie}{}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Wstępne przygotowanie zbioru danych}{}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Modelowanie}{}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Las losowy}{}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}SVM}{}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Sieci neuronowe}{}{subsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}Konwolucyjna sieć neuronowa}{}{subsubsection.3.2.3.1}%
+\contentsline {subsubsection}{\numberline {3.2.3.2}LSTM}{}{subsubsection.3.2.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.3.3}CNN--LSTM Ensemble}{}{subsubsection.3.2.3.3}%
+\contentsline {section}{\numberline {3.3}Porównanie wyników dla wszystkich modeli}{}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Podsumowanie}{}{chapter.4}%
+\contentsline {chapter}{Załącznik A}{}{chapter.4}%
+\contentsline {section}{Zbiór danych}{}{section*.13}%
+\contentsline {section}{Środowisko obliczeniowe i biblioteki}{}{section*.13}%
+\contentsline {chapter}{Bibliografia}{}{section*.16}%

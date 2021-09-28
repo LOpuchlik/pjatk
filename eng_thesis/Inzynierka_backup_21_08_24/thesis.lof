@@ -1,0 +1,33 @@
+\babel@toc {polish}{}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Zdanie --- Tokenizacja to pierwszy etap w przetwarzaniu języka naturalnego. --- po wykonaniu tokenizacji.}}{7}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces \href {http://www.nltk.org/book/ch07.html}{Parsowanie płytkie.}}}{10}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Proces uczenia maszynowego.}}{11}{figure.1.3}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces \href {https://upload.wikimedia.org/wikipedia/commons/1/19/Overfitting.svg}{Przeuczenie (overfitting).}}}{16}{figure.1.4}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Drzewo decyzyjne \cite {rokach2007data}}}{18}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Przykład rozdzielonych punktów w 2-wymiarowej przestrzeni --- wektory nośne oznaczone są kwadratami \cite {cortes1995support}}}{21}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Schemat działania pojedynczego neuronu}}{23}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Wielowarstwowa sieć neuronowa \cite {o2015introduction}}}{23}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Zastosowanie filtra w sieci konwolucyjnej \cite {albawi2017understanding}}}{25}{figure.2.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Pięciowarstwowa sieć konwolucyjna \cite {o2015introduction}}}{26}{figure.2.6}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces \href {https://drive.google.com/file/d/0B7XkCwpI5KDYRWRnd1RzWXQ2TWc/edit?resourcekey=0-oGRnY6qG7yWEqCXOHFKPcw} {Wizualizacja działania metody Word2vec}}}{27}{figure.2.7}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces \href {https://commons.m.wikimedia.org/wiki/Artificial_neural_network} {Schemat działania rekurencyjnej sieci neuronowej z wektorem wejściowym $x$, wektorem wyjściowym $o$, wektorem stanu $h$ oraz macierzami wag $U, V, W$. Po lewej stronie przedstawiony został uprosznony model sieci, po prawej widzimy aplikację sieci dla kolejnych wektorów z sekwencji wejściowej}}}{29}{figure.2.8}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Połączenie sieci konwolucyjnej i LSTM \cite {minaee2019deep}}}{31}{figure.2.9}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Przykładowe próbki z surowego zbioru danych recenzji filmowych IMDB.}}{33}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Przykładowa recenzja przed usunięciem tagów HTML (surowa) oraz po usunięciu tagów.}}{33}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Wyniki klasyfikacji z użyciem lasu losowego dla n\_estimators=1000 i max\_depth=64. Trening modelu zajął 13.8 minuty.}}{36}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Ważność cech w drzewach decyzyjnych.}}{38}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Wykres LIME wydźwięków kluczowych słów dla przykładowej recenzji pozytywnej (góra) oraz negatywnej (dół).}}{38}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Idea obrazująca parametr 'C' --- płaszczyzny dla małej (lewy) i dużej (prawy) wartości parametru 'C'.}}{39}{figure.3.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Wyniki klasyfikacji z użyciem maszyny wektorów nośnych dla parametru C $\approx $ 0.003.}}{42}{figure.3.7}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Wizualizacja wydźwięku pozytywnego lub negatywnego wyrazów (SVC).}}{43}{figure.3.8}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Wyniki modelu Word2Vec --- wektory słów, dla size=150.}}{45}{figure.3.9}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Wizualizacja W2V}}{46}{figure.3.10}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Wizualizacja rozkładu liczby słów w recenzjach.}}{47}{figure.3.11}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Wyniki klasyfikacji z użyciem konwolucyjnej sieci neuronowej.}}{50}{figure.3.12}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Wyniki klasyfikacji z użyciem sieci LSTM.}}{52}{figure.3.13}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Wyniki połączenia modeli CNN i LSTM.}}{53}{figure.3.14}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Macierz omyłek dla wyników z połączonych modeli CNN i LSTM.}}{53}{figure.3.15}%
+\addvspace {10\p@ }

@@ -1,0 +1,222 @@
+\documentclass[12pt]{ociamthesis}  % default square logo 
+%\documentclass[12pt,beltcrest]{ociamthesis} % use old belt crest logo
+%\documentclass[12pt,shieldcrest]{ociamthesis} % use older shield crest logo
+
+% pakiety ze strony pjatk
+\pagenumbering{gobble}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,cmap}
+\usepackage[none]{hyphenat}
+
+
+%load any additional packages
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[polish]{babel}
+
+\usepackage{hyperref} % enables using hyperlinks in captions
+\usepackage{float} % allows using option [H] in the positioning of figures
+\usepackage{xcolor} % allows defining own colors according to schema \definecolor{myOrange}{rgb}{1, 0.5, 0}
+
+\usepackage{chronosys} % to make a timeline
+
+\definecolor{TODO}{rgb}{1, 0.5, 0}
+\definecolor{darkerBlue}{rgb}{0.01 ,0.2, 0.55}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\usepackage{hyperref}
+
+\usepackage{pifont} % special characters \ding{number}, np. \ding{70}
+
+\usepackage{listings} % for adding code snippets with labels and captions that can be referenced later
+\renewcommand\lstlistingname{Listing}
+\renewcommand\lstlistlistingname{Spis listingów}
+\def\lstlistingautorefname{Listing. }
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codeMygreen}{rgb}{0,0.99,0.78}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeLightBlue}{rgb}{0,0.48,1}
+\definecolor{codeyellow}{rgb}{0.67,0.67,0.0}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolourWhite}{rgb}{1,1,1.}
+
+\lstdefinestyle{mystyle}{
+	language=Python,
+	backgroundcolor=\color{backcolour},   
+	%backgroundcolor=\color{backcolourWhite},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codeLightBlue},
+	emph={testfunc,print,src},
+	emphstyle=\color{codeyellow},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{magenta},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=t,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\usepackage{fancyvrb} % adding indentation to Verbatim (with capital letter)  cells
+\usepackage{rotating}
+
+%input macros (i.e. write your own macros file called mymacros.tex 
+%and uncomment the next line)
+%\include{mymacros}
+
+%\title{Codimension-Two\\[1ex]     %your thesis title,
+%        Free Boundary Problems}   %note \\[1ex] is a line break in the title
+%
+%\author{Keith Gillow}             %your name
+%\college{St Catherine's College}  %your college
+%
+%%\renewcommand{\submittedtext}{change the default text here if needed}
+%\degree{Doctor of Philosophy}     %the degree
+%\degreedate{Trinity 1998}         %the degree date
+
+
+
+
+%end the preamble and start the document
+\begin{document}
+	
+	
+
+%this baselineskip gives sufficient line spacing for an examiner to easily
+%markup the thesis with comments
+\baselineskip=18pt plus1pt
+
+%set the number of sectioning levels that get number and appear in the contents
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+
+%\maketitle                  % create a title page from the preamble info
+
+
+
+\begin{center}
+	\includegraphics[width=1\textwidth]{images/logo_pl.jpg}
+	
+	\vspace*{1.25cm}
+	\textbf{Wydział Informatyki}
+	
+	\vspace*{1.25cm}
+	\textbf{Katedra Data Science}
+	
+	\vspace*{0.25cm}
+	Inteligentne Systemy Przetwarzania Danych
+	
+	\vspace*{1.25cm}
+	\begin{center}
+	\textbf{	Autorzy:} \\
+	\end{center}
+\begin{center}
+	\begin{tabular}{ c c }
+		\textbf{Lidia J. Opuchlik} \qquad & \qquad \textbf{Sandra Rawicz} \\ 
+		Nr albumu s16478 \qquad & \qquad Nr albumu s16536 \\  
+   
+	\end{tabular}
+\end{center}
+	
+	\vspace{1.5cm}
+	{\huge Analiza sentymentu w recenzjach filmowych}
+	
+	\vspace{0.5cm}
+	
+	{\large Sentiment analysis in film reviews  \par}
+	
+	
+	
+\end{center}
+
+\vspace*{1cm}
+
+\begin{center}
+{\large \textbf{Praca inżynierska}}
+\end{center}
+
+\vspace*{0.2cm}
+
+\begin{flushright}
+	
+	\begin{minipage}{0.5\textwidth}
+%	\textbf{\begin{center}
+%				Praca inżynierska
+%	\end{center}}
+		
+		\vspace{0.5cm}
+		\textbf{Promotor:} \\
+		dr hab. Grzegorz M. Wójcik, prof. PJATK
+	\end{minipage}
+	
+	
+\end{flushright}
+
+
+\begin{center}
+	\vspace*{\fill}
+	Warszawa, wrzesień 2021
+\end{center}
+\thispagestyle{empty}
+
+
+
+
+%\include{dedication}        % include a dedication.tex file
+%\include{acknowledgements}  % include an acknowledgements.tex file
+%\include{abstract}          % include the abstract
+\include{chapters/wklad}
+\begin{romanpages}          % start roman page numbering
+\tableofcontents            % generate and include a table of contents
+
+\listoffigures              % generate and include a list of figures
+\addcontentsline{toc}{section}{Spis rysunków}
+\listoftables      % generate and include a list of tables
+\addcontentsline{toc}{section}{Spis tablic}
+\lstlistoflistings
+\addcontentsline{toc}{section}{Spis listingów}
+\end{romanpages}            % end roman page numbering
+
+
+
+\addcontentsline{toc}{chapter}{Wstęp}
+\addcontentsline{toc}{section}{Cel pracy}
+\addcontentsline{toc}{section}{Słowa kluczowe}
+\addcontentsline{toc}{section}{Streszczenie}
+
+\include{chapters/cel} % cel.tex file
+ %now include the files of latex for each of the chapters etc
+\include{chapters/chapter1}
+%\include{chapters/chapter1.5}
+\include{chapters/chapter2}
+\include{chapters/chapter3}
+\include{chapters/chapter4}
+%now enable appendix numbering format and include any appendices
+%\appendix
+
+\addcontentsline{toc}{chapter}{Załącznik A}
+\addcontentsline{toc}{section}{Zbiór danych}
+\addcontentsline{toc}{section}{Środowisko obliczeniowe i biblioteki}
+\include{chapters/appendix}
+%\include{appendix2}
+
+%next line adds the Bibliography to the contents page
+\addcontentsline{toc}{chapter}{Bibliografia}
+%uncomment next line to change bibliography name to references
+%\renewcommand{\bibname}{References}
+\bibliography{refs}        %use a bibtex bibliography file refs.bib
+\bibliographystyle{plain}  %use the plain bibliography style
+
+\end{document}
+
